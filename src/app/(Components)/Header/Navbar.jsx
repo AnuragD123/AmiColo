@@ -11,7 +11,7 @@ const Navbar = () => {
                     <img
                         src="/images/navbar-logo.png"
                         alt="logo of AmiColo"
-                        className="w-32 ml-4 lg:ml-0"
+                        className="w-32 h-auto ml-4 lg:ml-0"
                     />
                 </Link>
             </div>
