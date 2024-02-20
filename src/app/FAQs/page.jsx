@@ -77,6 +77,7 @@ const FAQs = () => {
       "title": "How can I contact AmiColo for support or feedback?",
       "content": "For support or to provide feedback, please contact us through the contact form on our website, or email us directly at support@amicolo.com. We value your input and are here to help with any questions or concerns you may have."
     }
+    
   ];
   
 

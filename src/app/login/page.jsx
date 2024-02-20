@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react'
 
 
 const Login = ()=> {
+  
   return (
     <section>
       <div className="grid grid-cols-1 lg:grid-cols-2">

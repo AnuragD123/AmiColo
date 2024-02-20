@@ -72,6 +72,7 @@ const PrivacyPolicy = () => {
             If you have questions or comments about this Privacy Policy, please contact us at: <a href="mailto:contactus@amicolo.com" className="text-blue-500">contactus@amicolo.com</a>.
           </p>
         </div>
+        
       </div>
     </section>
   );
