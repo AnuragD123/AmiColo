@@ -17,12 +17,12 @@ export default function RootLayout({ children }) {
 
         {/* Navbar Common to All Pages */}
 
-        <Navbar/>
-                
+        <Navbar />
+
         {/* All the other pages gets displayed here */}
         {children}
 
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );
