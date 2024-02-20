@@ -51,48 +51,58 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            <div className="content m-auto">
-                <h5 className="heading text-xl text-start mx-8 mb-3">
-                    Kind to Your Wallet,
-                    <br />
-                    <span className="font-bold text-2xl">
-                        Gentle on Your Thoughts
-                    </span>
-                </h5>
-                <div className="content-p flex justify-around">
-                    <div className="vertical-heading text-start text-xs lg:text-lg">
-                        <p className="my-3 mx-2 lg:mx-8">
-                            AI Powered Roommate
-                            <br />
-                            <span>Recommendations</span>
-                        </p>
-                        <p className="my-3 mx-2 lg:mx-8">
-                            Housekeeping <br />
-                            <span>Amenities</span>
-                        </p>
-                    </div>
-                    <div className="vertical-heading text-start text-xs lg:text-lg">
-                        <p className="my-3 mx-2 lg:mx-8">
-                            AI Powered
-                            <br />
-                            <span>24 x 7 Support</span>
-                        </p>
-                        <p className="my-3 mx-2 lg:mx-8">
-                            Zero
-                            <br />
-                            <span>Brokerage</span>
-                        </p>
-                    </div>
-                    <div className="vertical-heading text-start text-xs lg:text-lg">
-                        <p className="my-3 mx-2 lg:mx-8">
-                            AmiColo Community
-                            <br />
-                            <span>Recommendations</span>
-                        </p>
-                        <p className="my-3 mx-2 lg:mx-8">
-                            Housekeeping <br />
-                            <span>Membership</span>
-                        </p>
+            <div
+                id="section-3"
+                className="flex flex-col lg:flex-row justify-between content-center"
+            >
+                <img
+                    className="w-[100vw] lg:w-[50vw]"
+                    src="/images/find-easy.png"
+                    alt="find-and-easy"
+                />
+                <div className="content m-auto">
+                    <h5 className="heading text-xl text-start mx-8 mb-3">
+                        Kind to Your Wallet,
+                        <br />
+                        <span className="font-bold text-2xl">
+                            Gentle on Your Thoughts
+                        </span>
+                    </h5>
+                    <div className="content-p flex justify-around">
+                        <div className="vertical-heading text-start text-lg">
+                            <p className="my-3 mx-2 lg:mx-8">
+                                AI Powered Roommate
+                                <br />
+                                <span>Recommendations</span>
+                            </p>
+                            <p className="my-3 mx-2 lg:mx-8">
+                                Housekeeping <br />
+                                <span>Amenities</span>
+                            </p>
+                        </div>
+                        <div className="vertical-heading text-start text-lg">
+                            <p className="my-3 mx-2 lg:mx-8">
+                                AI Powered
+                                <br />
+                                <span>24 x 7 Support</span>
+                            </p>
+                            <p className="my-3 mx-2 lg:mx-8">
+                                Zero
+                                <br />
+                                <span>Brokerage</span>
+                            </p>
+                        </div>
+                        <div className="vertical-heading text-start text-lg">
+                            <p className="my-3 mx-2 lg:mx-8">
+                                AmiColo Community
+                                <br />
+                                <span>Recommends</span>
+                            </p>
+                            <p className="my-3 mx-2 lg:mx-8">
+                                Housekeeping <br />
+                                <span>Membership</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -120,11 +130,11 @@ export default function Home() {
                             </p>
                         </div>
                         <div className="vertical-heading text-start">
-                            <p className="my-3 mx-8">
+                            <p className="my-3 mx-2 lg:mx-8">
                                 App Based Issue <br />
                                 <span>Resolution</span>
                             </p>
-                            <p className="my-3 mx-8">
+                            <p className="my-3 mx-2 lg:mx-8">
                                 Pure Fiber <br />
                                 <span>Internet</span>
                             </p>
