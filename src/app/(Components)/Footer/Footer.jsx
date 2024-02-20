@@ -5,7 +5,7 @@ import './FooterStyle.css';
 const Footer = () => {
     const currentYear = new Date().getFullYear();
     return (
-        <footer className="text-xl py-12 flex justify-around bg-gradient-to-b from-green-200 to-sky-200 font-light ">
+        <footer className="text-xl py-12 flex justify-around bg-gradient-to-b from-green-200 to-sky-200 font-light">
             <div className="ContactUS-StayInTouch">
                 <div
                     id="ContactUS"
