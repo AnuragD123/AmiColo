@@ -5,7 +5,6 @@ const contact = () => {
   return (
     <div className="min-h-screen">
       Contact Us
-
       <Roomate/>
     </div>
   )
