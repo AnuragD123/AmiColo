@@ -74,14 +74,14 @@ const EditProfile = () => {
               <label htmlFor="school">High School</label>
               <br />
               <input className='w-full rounded-3xl bg-gray-300' type="text" name='school'
-               onChange={(e) => setForm({ ...form, hSchool: e.target.value })}
+                onChange={(e) => setForm({ ...form, hSchool: e.target.value })}
               />
             </div>
             <div className='w-1/2'>
               <label htmlFor="college">Bachelors</label>
               <br />
               <input className='w-full rounded-3xl bg-gray-300' type="text" name='college'
-               onChange={(e) => setForm({ ...form, bachelors: e.target.value })}
+                onChange={(e) => setForm({ ...form, bachelors: e.target.value })}
               />
             </div>
           </div>

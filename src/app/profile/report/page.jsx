@@ -14,7 +14,7 @@ const Report = () => {
                             <label htmlFor="id">ID Number</label>
                             <br />
                             <input type="text" className='w-full  rounded-3xl bg-gray-300' name='id'
-                                onClick={(e) => setForm({ ...form, idNunmber: e.target.value })} />
+                                onChange={(e) => setForm({ ...form, idNunmber: e.target.value })} />
                         </div>
                         <div className='w-1/2'>
                             <label htmlFor="issue">Issue Category</label>
@@ -32,19 +32,23 @@ const Report = () => {
                             </select>
                         </div>
                     </div>
-                    <div className='mb-5'>
-                        <div className='w-full h-28'>
-                            <label htmlFor="id">ID Number</label>
+                    <div className='f'>
+                        <div className='w-full'>
+                            <label htmlFor="text">Text</label>
                             <br />
-                            <input type="text" className='w-full h-full  rounded-3xl bg-gray-300' name='id'
-                                onClick={(e) => setForm({ ...form, idNunmber: e.target.value })} />
+                            <textarea className='w-full rounded-3xl bg-gray-300' name='text' rows="4" cols="50" onChange={(e) => setForm({ ...form, idNunmber: e.target.value })} >
+                                At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
+                            </textarea>
                         </div>
                     </div>
+                    <div className='w-full flex items-center justify-end  gap-3 mb-6 mt-3'>
+                        <button className='px-4 py-2 rounded-xl bg-gray-200'> Send</button>
+                        <button className='px-4 py-2 rounded-xl bg-gray-200'> Discard</button>
 
-
+                    </div>
                 </div>
 
-            </div>
+            </div >
         </div >
     )
 }
