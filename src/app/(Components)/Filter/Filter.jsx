@@ -3,7 +3,7 @@ import React from 'react'
 
 const Filter = () => {
   return (
-    <div className='bg-gradient-to-r from-cyan-200 to-blue-200 w-3/12 max-w-60 py-3' style={{ backgroundImage: "linear-gradient(to right, #BBEEE0 , #B6D0FE)" }}>
+    <div className='bg-gradient-to-r from-cyan-200 to-blue-200 w-3/12 min-w-64 max-w-60 py-3' style={{ backgroundImage: "linear-gradient(to right, #BBEEE0 , #B6D0FE)" }}>
       <div className='flex flex-col items-center justify-center gap-2' >
         <h3 className='text-4xl font-extrabold w-11/12'>Filter</h3>
         <hr className='w-full h-1.5 bg-blue-400 mb-2' />
