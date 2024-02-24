@@ -1,11 +1,53 @@
-import React from 'react'
+"use client";
+
+import React, {useEffect} from "react";
+import {useRouter} from "next/navigation";
+import axios from "axios";
+import { toast,Toaster } from "react-hot-toast";
 import { ArrowRight } from 'lucide-react'
 
 
 const Login = ()=> {
+
+  const router = useRouter();
+    const [user, setUser] = React.useState({
+        email: "",
+        password: "",
+       
+    })
+    // const [buttonDisabled, setButtonDisabled] = React.useState(false);
+    // const [loading, setLoading] = React.useState(false);
+
+
+    const loginHandler = async () => {
+  
+        try {
+            // setLoading(true);
+            console.log(user);
+            const response = await axios.post("/api/auth/login", user);
+            console.log("Login success", response.data);
+            toast.success("Login success");
+            router.push("/profile");
+        } catch (error) {
+            // console.log("Login failed", error.message);
+            toast.error(error.response.data.error);
+        }
+        //  finally{
+        // setLoading(false);
+        // }
+    }
+
+    // useEffect(() => {
+    //     if(user.email.length > 0 && user.password.length > 0) {
+    //         setButtonDisabled(false);
+    //     } else{
+    //         setButtonDisabled(true);
+    //     }
+    // }, [user]);
   
   return (
     <section>
+      <Toaster/>
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
           <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
@@ -31,6 +73,8 @@ const Login = ()=> {
                     <input
                       className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                       type="email"
+                      onChange={(e) => setUser({...user, email: e.target.value})}
+                      value={user.email}
                       placeholder="Email"
                     ></input>
                   </div>
@@ -54,6 +98,8 @@ const Login = ()=> {
                     <input
                       className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                       type="password"
+                      value={user.password}
+                      onChange={(e) => setUser({...user, password: e.target.value})}
                       placeholder="Password"
                     ></input>
                   </div>
@@ -62,8 +108,9 @@ const Login = ()=> {
                   <button
                     type="button"
                     className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
+                    onClick={loginHandler}
                   >
-                    Get started <ArrowRight className="ml-2" size={16} />
+                    Login <ArrowRight className="ml-2" size={16} />
                   </button>
                 </div>
               </div>
@@ -87,6 +134,7 @@ const Login = ()=> {
               </button>
               <button
                 type="button"
+                
                 className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
               >
                 <span className="mr-2 inline-block">

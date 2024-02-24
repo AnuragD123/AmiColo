@@ -1,9 +1,51 @@
-import React from 'react'
+'use client'
+import {useState} from 'react'
 import { ArrowRight } from 'lucide-react'
+import {useRouter} from "next/navigation";
+import axios from "axios";
+import { Toaster,toast } from "react-hot-toast";
+
 
 const Signup= ()=> {
+
+
+  const router = useRouter();
+  const [user, setUser] = useState({
+
+    email: "",
+    password: "",
+    // username: "",
+})
+
+const handleSignup = async () => {
+  try {
+      // setLoading(true);
+      const response = await axios.post("/api/auth/signup", user);
+      console.log("Signup success", response.data);
+      router.push("/login");
+      
+  } catch (error) {
+      console.log("Signup failed", error.message);
+      
+      toast.error(error.message);
+  }
+  // finally {
+  //     setLoading(false);
+  // }
+}
+
+// useEffect(() => {
+//   if(user.email.length > 0 && user.password.length > 0 && user.username.length > 0) {
+//       setButtonDisabled(false);
+//   } else {
+//       setButtonDisabled(true);
+//   }
+// }, [user]);
+
+
   return (
     <section>
+       <Toaster/>
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
           <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
@@ -45,6 +87,8 @@ const Signup= ()=> {
                       type="email"
                       placeholder="Email"
                       id="email"
+                      value={user.email}
+                      onChange={(e) => setUser({...user, email: e.target.value})}
                     ></input>
                   </div>
                 </div>
@@ -61,6 +105,9 @@ const Signup= ()=> {
                       type="password"
                       placeholder="Password"
                       id="password"
+
+                      value={user.password}
+                      onChange={(e) => setUser({...user, password: e.target.value})}
                     ></input>
                   </div>
                 </div>
@@ -68,6 +115,7 @@ const Signup= ()=> {
                   <button
                     type="button"
                     className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
+                    onClick={handleSignup}
                   >
                     Create Account <ArrowRight className="ml-2" size={16} />
                   </button>
