@@ -1,4 +1,5 @@
-import Image from "next/image";
+"use client";
+import { useState } from "react";
 import {
     MapPin,
     Car,
@@ -9,10 +10,15 @@ import {
     Star,
     Share2,
     MessageCircle,
+    Send,
 } from "lucide-react";
+
 import ImageGrid from "../(Components)/ImageGrid/ImageGrid";
+import Invite from "../(Components)/invite/invite";
 
 export default function Home() {
+    const [showInvite, setShowInvite] = useState(false);
+
     return (
         <div className=" flex my-2 justify-center items-center lg:flex-row flex-col mx-4 md:mx-12">
             <div className="image-container md:mx-auto max-w-2xl lg:max-w-3xl">
@@ -191,11 +197,28 @@ export default function Home() {
                             </dl>
                         </div>
                     </div>
-                    <div className="w-full md:w-auto lg:mx-4 my-2">
-                        <button className="float-right md:float-none md:mx-auto rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400 text-white px-4 py-2">
+                    <div className="flex flex-col md:flex-row items-center w-full md:w-auto lg:mx-4 my-2">
+                        <button className="md:mr-2 mb-2 md:mb-0 md:float-none rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400 text-white px-4 py-2">
                             Book Now
                         </button>
+                        {showInvite ? (
+                            <Invite />
+                        ) : (
+                            <>
+                                <button
+                                    className=" flex items-center md:mr-2 mb-2 md:mb-0 md:float-none rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400 text-white px-4 py-2"
+                                    onClick={() => {
+                                        setShowInvite(true);
+                                    }}
+                                    isVisible={showInvite}
+                                >
+                                    Invite
+                                    <Send className="h-4 w-4 ml-2" />
+                                </button>
+                            </>
+                        )}
                     </div>
+
                     <div className="social-icons flex justify-start items-center text-xs text-gray-500 dark:text-gray-200 space-x-4">
                         <button className="flex justify-center items-center">
                             <Share2 className="w-4" />
