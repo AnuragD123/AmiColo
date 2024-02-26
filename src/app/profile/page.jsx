@@ -1,12 +1,28 @@
-"use client";
+'use client'
 import Link from "next/link";
 import Preference from "./preference/page"
-import { useState } from "react"
-const EditProfile = () => {
+import { useState,useEffect } from "react"
+import axios from "axios";
+const Profile = () => {
 
   const [form, setForm] = useState({ fName: "", lName: "", day: 0, month: 0, year: 0, gender: "", hSchool: "", bachelors: "", master: "", sector: "" });
   const [Preferences, setPreferences] = useState(false)
+  const [userData,setUserdata] =useState('');
 
+  useEffect(()=>{
+    const getData = async()=>{
+      try {
+        const response = await axios.get('/api/user/getdata');
+        console.log(response.data.data[0]);
+        setUserdata(response.data.data[0]);
+
+      } catch (error) {
+        console.log(error.message)
+      }
+      
+    }
+    getData();
+  },[])
 
   return (
     <div className='w-2/4 mx-auto mt-10 leading-10'>
@@ -19,15 +35,14 @@ const EditProfile = () => {
             <div className='w-1/2'>
               <label htmlFor="fname">First Name</label>
               <br />
-              <input disabled value={"valueji"} className='w-full rounded-3xl bg-gray-300' type="text" name='fname'
-                onChange={(e) => setForm({ ...form, fName: e.target.value })}
+              <input disabled value={userData.first_name} className='w-full rounded-3xl bg-gray-300' type="text"
               />
             </div>
             <div className='w-1/2'>
               <label htmlFor="lname">Last Name</label>
               <br />
-              <input disabled value={"valueji"} className='w-full rounded-3xl bg-gray-300' type="text" name='lname'
-                onChange={(e) => setForm({ ...form, lName: e.target.value })}
+              <input disabled value={userData.last_name} className='w-full rounded-3xl bg-gray-300' type="text" name='lname'
+               
               />
             </div>
           </div>
@@ -51,17 +66,9 @@ const EditProfile = () => {
             <div className='w-1/2'>
               <label htmlFor="gender">Gender</label>
               <br />
-              <select disabled value={"valueji"} className='w-full rounded-3xl bg-gray-300' name="gender">
-                <option
-                  onClick={(e) => setForm({ ...form, gender: e.target.value })}
-                  value="Male">Male</option>
-                <option
-                  onClick={(e) => setForm({ ...form, gender: e.target.value })}
-                  value="Female">Female</option>
-                <option
-                  onClick={(e) => setForm({ ...form, gender: e.target.value })}
-                  value="other">other</option>
-              </select>
+              <input disabled value={userData.gender} className='w-full rounded-3xl bg-gray-300' type="text" name='gender' 
+              />
+              
             </div>
           </div>
 
@@ -103,4 +110,4 @@ const EditProfile = () => {
   )
 }
 
-export default EditProfile
+export default Profile
