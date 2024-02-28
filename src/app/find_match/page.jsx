@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Roomate from '../(Components)/Roomate/Roomate'
 import axios from 'axios'
 import { toast, Toaster } from "react-hot-toast";
-const roommate = () => {
+const FindMatch = () => {
 
     const [users, setUsers] = useState([]);
 
@@ -46,4 +46,4 @@ const roommate = () => {
     )
 }
 
-export default roommate
+export default FindMatch

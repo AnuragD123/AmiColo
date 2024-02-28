@@ -1,13 +1,13 @@
 import React from 'react'
 import Image from 'next/image'
-const testimonialCard = ({ data }) => {
+const TestimonialCard = ({ data }) => {
     return (
         <div className="w-3/5 max-sm:w-full" >
             <div className="">
                 <div className=" ">
                     <div className="w-full flex flex-wrap items-center justify-around  gap-4">
                         {data.map((item, index) => (
-                            <div className="max-w-48 max-sm:w-full flex flex-col gap-4 items-center justify-center">
+                            <div key={index} className="max-w-48 max-sm:w-full flex flex-col gap-4 items-center justify-center">
                                 <Image
                                     className=''
                                     width={70}
@@ -33,4 +33,4 @@ const testimonialCard = ({ data }) => {
     )
 }
 
-export default testimonialCard
+export default TestimonialCard

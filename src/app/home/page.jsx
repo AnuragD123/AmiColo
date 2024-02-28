@@ -1,14 +1,13 @@
 'use client'
 import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import Card from './card';
 import TestimonialCard from './testimonialCard';
 import homeImg from '../../../images/home.png';
 import Easyfind from '../../../images/easyfind.jpg';
 import Easystay from '../../../images/easystay.jpg';
-import ProfileDemo from '../../../images/ProfileDemo.png';
-import Nav from '../(Components)/Header/Private/Nav';
+import ProfileDemo from '../../../images/profileDemo.png';
+
 
 const home = () => {
    
