@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-const Friend = ({ id, name, avatar, status }) => {
+const Friend = ({ id, first_name,last_name, profile_img, status }) => {
   const [isUnfriending, setUnfriending] = useState(false);
 
   const handleUnfriend = () => {
@@ -18,9 +18,9 @@ const Friend = ({ id, name, avatar, status }) => {
   return (
     <div className="bg-white p-4 rounded-md shadow-md flex items-center justify-between transition-transform transform hover:scale-105">
       <div className="flex items-center space-x-4">
-        <img src={avatar} alt={`${name}'s avatar`} className="w-12 h-12 object-cover rounded-full" />
+        <img src={profile_img} alt={`${first_name}'s avatar`} className="w-12 h-12 object-cover rounded-full" />
         <div>
-          <p className="text-lg font-semibold text-gray-800">{name}</p>
+          <p className="text-lg font-semibold text-gray-800">{first_name+' '+last_name}</p>
           <p className="text-gray-500">{status}</p>
         </div>
       </div>

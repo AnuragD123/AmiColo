@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Profile from '../../../../../images/AmiColo_Profile.png'
-import { BarChart, Wallet, Newspaper, BellRing, Paperclip, Brush, Wrench } from 'lucide-react'
+
 
 export default function Sidebar({data}) {
 
@@ -28,12 +28,13 @@ export default function Sidebar({data}) {
         <ul className='flex flex-col items-center leading-10'>
           <li> <Link href="/profile" >Edit Profile</Link></li>
           <li> <Link href="/profile/idverfication" >ID Verfication</Link></li>
-          <li> <Link href="/profile/matches" >Improve Matches</Link></li>
+          <li> <Link href="/profile/match_requests" >Match Requests</Link></li>
+          <li> <Link href="/profile/my_matches" >My Matches</Link></li>
+          <li> <Link href="/profile/booking" >My Booking</Link></li>
+          <li> <Link href="/profile/improve_matches" >Improve Matches</Link></li>
           <li> <Link href="/profile/report" >Report Issue</Link></li>
           <li> <Link href="/profile/orderreceiept" >Order Receipts</Link></li>
-          <li> <Link href="/profile/booking" >My Booking</Link></li>
-          <li> <Link href="/profile/mymatches" >My Matches</Link></li>
-          <li> <Link href="/profile/listing" >Saved Listings</Link></li>
+          <li> <Link href="/profile/saved_rooms" >Saved Listings</Link></li>
         </ul>
       </div>
     </aside>
