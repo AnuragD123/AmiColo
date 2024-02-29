@@ -3,9 +3,6 @@ import { NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-
-
-
 export async function POST(req) {
 
     try {

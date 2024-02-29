@@ -1,12 +1,13 @@
 'use client'
-import {useState} from 'react'
+import { useState } from 'react'
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react'
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 import axios from "axios";
-import { Toaster,toast } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 
 
-const Signup= ()=> {
+const Signup = () => {
 
 
   const router = useRouter();
@@ -15,50 +16,50 @@ const Signup= ()=> {
     email: "",
     password: "",
     // username: "",
-})
+  })
 
-const handleSignup = async () => {
-  try {
+  const handleSignup = async () => {
+    try {
       // setLoading(true);
       const response = await axios.post("/api/auth/signup", user);
       console.log("Signup success", response.data);
       router.push("/login");
-      
-  } catch (error) {
-      console.log("Signup failed", error.message);
-      
-      toast.error(error.message);
-  }
-  // finally {
-  //     setLoading(false);
-  // }
-}
 
-// useEffect(() => {
-//   if(user.email.length > 0 && user.password.length > 0 && user.username.length > 0) {
-//       setButtonDisabled(false);
-//   } else {
-//       setButtonDisabled(true);
-//   }
-// }, [user]);
+    } catch (error) {
+      console.log("Signup failed", error.message);
+
+      toast.error(error.message);
+    }
+    // finally {
+    //     setLoading(false);
+    // }
+  }
+
+  // useEffect(() => {
+  //   if(user.email.length > 0 && user.password.length > 0 && user.username.length > 0) {
+  //       setButtonDisabled(false);
+  //   } else {
+  //       setButtonDisabled(true);
+  //   }
+  // }, [user]);
 
 
   return (
     <section>
-       <Toaster/>
+      <Toaster />
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
           <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
             <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">Sign up</h2>
             <p className="mt-2 text-base text-gray-600">
               Already have an account?{' '}
-              <a
-                href="#"
+              <Link
+                href="/login"
                 title=""
                 className="font-medium text-black transition-all duration-200 hover:underline"
               >
                 Sign In
-              </a>
+              </Link>
             </p>
             <form action="#" method="POST" className="mt-8">
               <div className="space-y-5">
@@ -88,7 +89,7 @@ const handleSignup = async () => {
                       placeholder="Email"
                       id="email"
                       value={user.email}
-                      onChange={(e) => setUser({...user, email: e.target.value})}
+                      onChange={(e) => setUser({ ...user, email: e.target.value })}
                     ></input>
                   </div>
                 </div>
@@ -107,7 +108,7 @@ const handleSignup = async () => {
                       id="password"
 
                       value={user.password}
-                      onChange={(e) => setUser({...user, password: e.target.value})}
+                      onChange={(e) => setUser({ ...user, password: e.target.value })}
                     ></input>
                   </div>
                 </div>
