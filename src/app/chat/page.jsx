@@ -7,276 +7,110 @@ import Router from 'next/router'
 import { MdAttachFile } from "react-icons/md"
 import profile from '../../../images/profileDemo.png';
 import { io } from "socket.io-client";
-
+import axios from 'axios';
+import moment from 'moment/moment';
 
 const Chat = () => {
     var socket;
     socket = io("http://localhost:3001");
-
     const scrollRef = useRef(null);
-    const searchItem = [
-        {
-            id: 1,
-            username: "sonu"
-        },
-        {
-            id: 2,
-            username: "rohit"
-        },
-        {
-            id: 3,
-            username: "monu"
-        },
-        {
-            id: 4,
-            username: "chote"
-        },
-        {
-            id: 5,
-            username: "sidhu"
-        },
-    ]
-    const dummyLocalUser = {
-        id: 1,
-        username: "monu"
-    };
 
-    const dummyRoom = [
-        {
-            id: 1,
-            user: [
-                {
-                    id: 1,
-                    username: "sonu"
-                },
-                {
-                    id: 2,
-                    username: "rohit"
-                },
-            ],
-            createdAt: '2024-02-25T10:30:00',
-        },
-        {
-            id: 2,
-            user: [
-                {
-                    id: 4,
-                    username: "chote"
-                },
-                {
-                    id: 1,
-                    username: "sonu"
-                },
-            ],
-            createdAt: '2024-02-25T10:30:00',
-        },
-        {
-            id: 3,
-            user: [
-                {
-                    id: 3,
-                    username: "monu"
-                },
-                {
-                    id: 1,
-                    username: "sonu"
-                },
-            ],
-            createdAt: '2024-02-25T10:30:00',
-        },
-        {
-            id: 4,
-            user: [
-                {
-                    id: 5,
-                    username: "sidhu"
-                },
-                {
-                    id: 1,
-                    username: "sonu"
-                },
-            ],
-            createdAt: '2024-02-25T10:30:00',
-        },
-    ]
-
-    const dummyMessages = [
-        {
-            sender: {
-                id: 1,
-                username: "sonu"
-            },
-            reciver: {
-                id: 2,
-                username: "rohit"
-            },
-            message: 'Hello there!',
-            createdAt: '2024-02-25T10:30:00',
-        },
-
-        {
-            sender: {
-                id: 2,
-                username: "rohit"
-            },
-            reciver: {
-                id: 1,
-                username: "sonu"
-            },
-            message: 'Hi! How are you?',
-            createdAt: '2024-02-25T10:35:00',
-        },
-        {
-            sender: {
-                id: 1,
-                username: "sonu"
-            },
-            reciver: {
-                id: 2,
-                username: "rohit"
-            },
-            message: 'I\'m doing well, thank you!',
-            createdAt: '2024-02-25T10:40:00',
-        },
-        {
-            sender: {
-                id: 2,
-                username: "rohit"
-            },
-            reciver: {
-                id: 1,
-                username: "sonu"
-            },
-            message: 'That\'s great to hear!',
-            createdAt: '2024-02-25T10:45:00',
-        },
-
-        {
-            sender: {
-                id: 2,
-                username: "rohit"
-            },
-            reciver: {
-                id: 1,
-                username: "sonu"
-            },
-            message: 'That\'s great to hear!',
-            createdAt: '2024-02-25T10:45:00',
-        },
-        {
-            sender: {
-                id: 2,
-                username: "rohit"
-            },
-            reciver: {
-                id: 1,
-                username: "sonu"
-            },
-            message: 'That\'s great to hear!',
-            createdAt: '2024-02-25T10:45:00',
-        },
-        {
-            sender: {
-                id: 1,
-                username: "rohit"
-            },
-            reciver: {
-                id: 4,
-                username: "chote"
-            },
-            message: 'That\'s great ',
-            createdAt: '2024-02-25T10:45:00',
-        },
-        {
-            sender: {
-                id: 4,
-                username: "chote"
-            },
-            reciver: {
-                id: 1,
-                username: "sonu"
-            },
-            message: 'That\'s great ',
-            createdAt: '2024-02-25T10:45:00',
-        },
-        {
-            sender: {
-                id: 4,
-                username: "chote"
-            },
-            reciver: {
-                id: 5,
-                username: "sidhu"
-            },
-            message: 'That\'s great to hear!',
-            createdAt: '2024-02-25T10:45:00',
-        },
-        {
-            sender: {
-                id: 5,
-                username: "chote"
-            },
-            reciver: {
-                id: 4,
-                username: "sidhu"
-            },
-            message: 'That\'s great to hear!',
-            createdAt: '2024-02-25T10:45:00',
-        },
-
-    ];
-
-    const [messages, setMessages] = useState();
-    const [localuser, setLocalUser] = useState(dummyLocalUser);
+    const [messages, setMessages] = useState([]);
+    const [localuser, setLocalUser] = useState();
     const [showChat, setShowChat] = useState(false);
     const [message, setMessage] = useState("");
     const [reciverUser, setReciverUser] = useState();
+    const [user, setUsers] = useState([]);
+    const [roomData, setRoomData] = useState();
 
-    useEffect(() => {
-        if (reciverUser) {
-            // console.log("DATA", reciverUser)
-            const filtered = dummyMessages.filter(
-                (data) =>
-                    (localuser.id === data.sender.id && reciverUser.id === data.reciver.id) ||
-                    (localuser.id === data.reciver.id && reciverUser.id === data.sender.id)
-            );
-            console.log("object", filtered)
-            setMessages(filtered);
+    const renderTimestamp = (currentTimestamp, prevTimestamp) => {
+        const currentMoment = moment(currentTimestamp);
+        const prevMoment = moment(prevTimestamp);
+
+        const timeDifference = currentMoment.diff(prevMoment, 'minute');
+        // return formatTimestamp(currentTimestamp);
+        if (timeDifference >= 2) {
+            return formatTimestamp(currentTimestamp);
         }
-    }, [reciverUser]);
+
+        return null; // Return null if the difference is less than 2 hours
+    };
 
     useEffect(() => {
-        socket.on("receive_msg", (data) => {
+        socket.on("new_msg", (data) => {
             console.log("DFindssssssssssss", data)
         });
     }, [socket]);
 
-    const handleJoin = (e, rUser) => {
+    useEffect(() => {
+        fetchData();
+    }, [])
+    const fetchData = async () => {
+        try {
+            const response = await axios.get("/api/user/fetchusers");
+            const localuser = await axios.get('/api/user/getdata');
+            setUsers(response.data.data);
+            setLocalUser(localuser.data.data[0]);
+        } catch (error) {
+            console.error('Error fetching users:', error);
+        }
+    }
+
+    const handleJoin = async (e, rUser) => {
         e.preventDefault();
-        if (rUser) {
-            const room = dummyRoom.find((data) =>
-                data.user.some((user) => user.id === localuser.id) &&
-                data.user.some((user) => user.id === rUser.id)
-            );
-            if (room) {
-                socket.emit("join_room", room.id);
+        try {
+            const response = await axios.post("/api/chat/room_create", {
+                user_1: localuser.id,
+                user_2: rUser.id,
+            });
+            const getMessages = await axios.post('/api/chat/fetch_all_messages', {
+                senderId: localuser.id,
+                receiverId: rUser.id,
+            });
+
+            setRoomData(response.data.roomFind[0])
+            setMessages(getMessages.data.Chat)
+
+            if (response.data.roomFind[0]) {
+                socket.emit("join_room", response.data.roomFind[0].id);
             } else {
                 console.log("Room not found");
                 // Handle case when the room is not found
             }
+
+        } catch (error) {
+            console.error('Error fetching users:', error);
+
         }
+
     };
 
-    const handleSendMessage = (e) => {
+    const handleSendMessage = async (e) => {
         e.preventDefault();
-        if (reciverUser) {
-            const room = dummyRoom.find((data) =>
-                data.user.some((user) => user.id === localuser.id) &&
-                data.user.some((user) => user.id === reciverUser.id)
-            );
-            if (room) {
+
+        try {
+            const response = await axios.post("/api/chat/chatCreate", {
+                room: roomData.id,
+                message: message,
+                sender: localuser,
+                reciver: reciverUser,
+            });
+            setMessages([
+                ...messages,
+                {
+                    createdAt: Date.now(),
+                    updatedAt: Date.now(),
+                    message: message,
+                    receiverId: reciverUser.id,
+                    senderId: localuser.id,
+                    id: 0
+                }
+            ]);
+            setMessage("")
+
+            if (roomData) {
                 socket.emit('send_msg', {
-                    roomId: room.id,
+                    room: roomData,
                     message: message,
                     sender: localuser,
                     reciver: reciverUser,
@@ -284,10 +118,14 @@ const Chat = () => {
                 });
             }
 
+        } catch (error) {
+            console.error('Error fetching users:', error);
+
         }
 
     };
 
+    console.log(messages)
     return (
         <div className='grid grid-cols-2 max-sm:grid-cols-1 h-screen content-baseline'>
             {!showChat ?
@@ -312,7 +150,7 @@ const Chat = () => {
                                 <input type="search" placeholder='Search users...' className='w-full rounded-full border p-2 outline-none pl-9' />
                                 <IoSearchOutline className=' absolute top-3 left-3' />
                             </div>
-                            {searchItem?.map((user, index) => (
+                            {user?.map((user, index) => (
                                 <div key={index} >
                                     <div className='flex items-center gap-2 relative'>
                                         <Image
@@ -335,7 +173,7 @@ const Chat = () => {
                                                 setShowChat(true)
                                             }
                                         }}>
-                                            <p className='text-md font-light p-0 m-0'>{user.username}</p>
+                                            <p className='text-md font-light p-0 m-0'>{user.first_name + " " + user.last_name}</p>
                                             <p className='w-2 h-2 rounded-full absolute top-5 right-3 bg-green-600' ></p>
                                         </span>
                                     </div>
@@ -344,6 +182,20 @@ const Chat = () => {
                             ))}
                         </div>
                     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                     <div className="h-screen flex flex-col max-sm:hidden">
                         {/* User info container */}
@@ -358,7 +210,7 @@ const Chat = () => {
                                             src={profile}
                                             alt="alternative"
                                         />
-                                        <p className='text-lg font-semibold p-0 m-0'>{reciverUser?.username || ""}</p>
+                                        <p className='text-lg font-semibold p-0 m-0'>{reciverUser ? (reciverUser?.first_name + " " + reciverUser?.last_name) : ""}</p>
                                     </span>
                                     <p className='text-sm font-extralight p-0 m-0'>Online</p>
                                 </span>
@@ -372,13 +224,12 @@ const Chat = () => {
                             {/* For example */}
                             <div className="flex flex-col space-y-4" >
                                 {
-                                    messages?.map(({ sender, message }, index) => {
-                                        console.log("sender", sender.id)
-                                        const isLocalUser = localuser?.id === sender?.id;
+                                    messages?.map((chat, index) => {
+                                        const isLocalUser = localuser?.id === chat.senderId;
                                         return (
                                             <div key={index} >
                                                 {index > 0 && (
-                                                    <p className='w-full text-center'>21:44</p>
+                                                    <p className='w-full text-center'> {renderTimestamp(chat?.createdAt, messages[index - 1]?.createdAt)}</p>
                                                 )
                                                 }
 
@@ -390,7 +241,7 @@ const Chat = () => {
                                                                 src={profile}
                                                                 alt="alternative"
                                                             />
-                                                            <p className='bg-blue-600 rounded-b-xl rounded-tl-xl p-4 text-white max-w-xs'>{message}</p>
+                                                            <p className='bg-blue-600 rounded-b-xl rounded-tl-xl p-4 text-white max-w-xs'>{chat.message}</p>
                                                         </div>
                                                     ) : (
                                                         <div className='flex items-center gap-2 px-5 max-sm:px-2 '>
@@ -399,7 +250,7 @@ const Chat = () => {
                                                                 src={profile}
                                                                 alt="alternative"
                                                             />
-                                                            <p className='bg-blue-100 rounded-b-xl rounded-tr-xl p-4 text-black max-w-xs'>{message}</p>
+                                                            <p className='bg-blue-100 rounded-b-xl rounded-tr-xl p-4 text-black max-w-xs'>{chat.message}</p>
                                                         </div>
                                                     )}
                                             </div>
@@ -451,7 +302,7 @@ const Chat = () => {
                                         src={profile}
                                         alt="alternative"
                                     />
-                                    <p className='text-lg font-semibold p-0 m-0'>{reciverUser?.username || ""}</p>
+                                    <p className='text-lg font-semibold p-0 m-0'>{reciverUser ? (reciverUser?.first_name + " " + reciverUser?.last_name) : ""}</p>
                                 </span>
                                 <p className='text-sm font-extralight p-0 m-0'>Online</p>
                             </span>
@@ -465,12 +316,12 @@ const Chat = () => {
                         {/* For example */}
                         <div className="flex flex-col space-y-4" >
                             {
-                                messages?.map(({ sender, message }, index) => {
-                                    const isLocalUser = localuser?.id === sender?.id;
+                                messages?.map((chat, index) => {
+                                    const isLocalUser = localuser?.id === chat.senderId;
                                     return (
                                         <div key={index} >
                                             {index > 0 && (
-                                                <p className='w-full text-center'>21:44</p>
+                                                <p className='w-full text-center'> {renderTimestamp(chat?.createdAt, messages[index - 1]?.createdAt)}</p>
                                             )
                                             }
 
@@ -482,7 +333,7 @@ const Chat = () => {
                                                             src={profile}
                                                             alt="alternative"
                                                         />
-                                                        <p className='bg-blue-600 rounded-b-xl rounded-tl-xl p-4 text-white max-w-xs'>{message}</p>
+                                                        <p className='bg-blue-600 rounded-b-xl rounded-tl-xl p-4 text-white max-w-xs'>{chat.message}</p>
                                                     </div>
                                                 ) : (
                                                     <div className='flex items-center gap-2 px-5 max-sm:px-2 '>
@@ -491,16 +342,14 @@ const Chat = () => {
                                                             src={profile}
                                                             alt="alternative"
                                                         />
-                                                        <p className='bg-blue-100 rounded-b-xl rounded-tr-xl p-4 text-black max-w-xs'>{message}</p>
+                                                        <p className='bg-blue-100 rounded-b-xl rounded-tr-xl p-4 text-black max-w-xs'>{chat.message}</p>
                                                     </div>
                                                 )}
                                         </div>
                                     );
                                 })}
                         </div>
-
                     </div>
-
                     {/* Input section */}
                     <div className="bg-blue-50 p-4 sticky bottom-0">
 

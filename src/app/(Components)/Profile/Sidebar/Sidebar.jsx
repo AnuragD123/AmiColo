@@ -50,35 +50,12 @@ export default function Sidebar({ data }) {
       <div className='flex flex-col items-center gap-4 mb-3'>
         <Image
           className=' w-40 rounded-full'
-          src={file || data.avatar || Profile}
+          src={Profile}
           width={150}
           height={150}
           alt="Picture of the author"
         />
-        <button>
-          <label htmlFor="file" style={{ cursor: "pointer" }}> Upload Files
-            <input
-              type="file"
-              id="file"
-              name="photo"
-              accept="image/*"
-              style={{ display: "none" }}
 
-              onChange={(e) => {
-                const selectedFile = e.target.files[0];
-                const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/webp'];
-                if (selectedFile && validImageTypes.includes(selectedFile.type)) {
-                  handleImageUpload(e)
-                  // setImage(selectedFile);
-                } else {
-                  e.target.value = ""
-                  alert('Please select a valid image file.');
-                }
-              }}
-            />
-          </label>
-        </button>
-        <button onClick={handleSubmit}>Submit</button>
 
 
         <span>
@@ -89,10 +66,11 @@ export default function Sidebar({ data }) {
       </div>
       <div>
         <ul className='flex flex-col items-center leading-10'>
-          <li> <Link href="/profile" >Edit Profile</Link></li>
+          <li> <Link href="/profile/edit" >Edit Profile</Link></li>
           <li> <Link href="/profile/idverfication" >ID Verfication</Link></li>
           <li> <Link href="/profile/match_requests" >Match Requests</Link></li>
           <li> <Link href="/profile/my_matches" >My Matches</Link></li>
+          <li> <Link href="/profile/room_request" >Room Request</Link></li>
           <li> <Link href="/profile/booking" >My Booking</Link></li>
           <li> <Link href="/profile/improve_matches" >Improve Matches</Link></li>
           <li> <Link href="/profile/report" >Report Issue</Link></li>

@@ -2,6 +2,10 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
+import Profile from '../../../../images/AmiColo_Profile.png'
+import Image from "next/image";
+import { toast, Toaster } from "react-hot-toast";
+const baseUrl = "/public/images"
 const Edit = () => {
     const [form, setForm] = useState({
         fName: "",
@@ -14,8 +18,9 @@ const Edit = () => {
         bachelors: "",
         master: "",
         sector: "",
+        file: ""
     });
-
+    const [image, setImage] = useState();
     useEffect(() => {
         const getData = async () => {
             try {
@@ -23,20 +28,23 @@ const Edit = () => {
                 console.log(response.data.data[0]);
                 const userData = response.data.data[0];
 
+
                 // Update the form state with the retrieved data
                 setForm({
                     fName: userData.first_name || "",
                     lName: userData.last_name || "",
-                    day: userData.day || 0,
-                    month: userData.month || 0,
-                    year: userData.year || 0,
+                    day: userData.dob.split("-")[2].split("T")[0] || 0,
+                    month: userData.dob.split("-")[1] || 0,
+                    year: userData.dob.split("-")[0] || 0,
                     gender: userData.gender || "",
-                    hSchool: userData.hSchool || "",
+                    hSchool: userData.high_school || "",
                     bachelors: userData.bachelors || "",
                     master: userData.master || "",
                     sector: userData.sector || "",
+                    file: userData.avatar || "",
                 });
 
+                console.log("object", userData.dob, userData.dob.split("-"))
             } catch (error) {
                 console.log(error.message)
             }
@@ -44,9 +52,62 @@ const Edit = () => {
 
         getData();
     }, []);
+
+    const handleSubmit = async () => {
+        try {
+            const formData = new FormData();
+            // Append form data
+            formData.append("fName", form.fName);
+            formData.append("lName", form.lName);
+            formData.append("day", form.day);
+            formData.append("month", form.month);
+            formData.append("year", form.year);
+            formData.append("gender", form.gender);
+            formData.append("hSchool", form.hSchool);
+            formData.append("bachelors", form.bachelors);
+            formData.append("master", form.master);
+            formData.append("sector", form.sector);
+            // Append image data
+            if (image) {
+                formData.append("file", image);
+            }
+
+
+            const res = await axios.post(`/api/user/update_profile`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+            });
+
+            // Handle response
+            console.log(res.data);
+            if (res.success) {
+                toast.success("Profile Update Successull")
+            }
+        } catch (e) {
+            // Handle errors here
+            console.error(e);
+        }
+    };
+
+
+    const handleImageUpload = async (e) => {
+        const filedata = e.target.files[0];
+        if (!filedata) {
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = () => {
+            const imageData = reader.result;
+            setForm({ ...file, file: imageData })
+            setImage(filedata)
+        };
+        reader.readAsDataURL(filedata);
+
+    };
     return (
         <div className="w-2/4 mx-auto mt-10 leading-10">
-
+            <Toaster />
             <div className="w-full flex items-center justify-between mb-4 gap-2">
                 <Link href="/profile/edit" className="w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl">
                     Edit Profile
@@ -57,6 +118,40 @@ const Edit = () => {
             </div>
 
             <div>
+                <div className="w-full flex items-center gap-3 mb-6">
+                    <Image
+                        className=' w-40 rounded-full'
+                        src={`${baseUrl}/${form.file}`}
+                        // src={form.file || Profile}
+                        width={150}
+                        height={150}
+                        alt="Picture of the author"
+                    />
+
+                    <button>
+                        <label htmlFor="file" style={{ cursor: "pointer" }}> Upload Files
+                            <input
+                                type="file"
+                                id="file"
+                                name="photo"
+                                accept="image/*"
+                                style={{ display: "none" }}
+
+                                onChange={(e) => {
+                                    const selectedFile = e.target.files[0];
+                                    const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/webp'];
+                                    if (selectedFile && validImageTypes.includes(selectedFile.type)) {
+                                        handleImageUpload(e)
+                                        // setImage(selectedFile);
+                                    } else {
+                                        e.target.value = ""
+                                        alert('Please select a valid image file.');
+                                    }
+                                }}
+                            />
+                        </label>
+                    </button>
+                </div>
                 <div className="w-full flex items-center gap-3 mb-6">
                     <div className="w-1/2">
                         <label htmlFor="fname">First Name</label>
@@ -125,20 +220,19 @@ const Edit = () => {
                     <div className="w-1/2">
                         <label htmlFor="gender">Gender</label>
                         <br />
-                        <select
-                            className="w-full rounded-3xl bg-gray-300"
+                        <select className="w-full rounded-3xl bg-gray-300"
                             name="gender"
                             value={form.gender}
-                            onChange={(e) =>
-                                setForm({ ...form, gender: e.target.value })
-                            }
-                        >
+                            onChange={(e) => setForm({ ...form, gender: e.target.value })}>
+                            <option value="">Select</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
-                            <option value="other">Other</option>
+                            <option value="Other">Other</option>
                         </select>
+
+
                     </div>
-                </div>
+                </div >
 
                 <div className="w-full flex items-center gap-3 mb-6">
                     <div className="w-1/2">
@@ -197,20 +291,17 @@ const Edit = () => {
                         />
                     </div>
                 </div>
-            </div>
+            </div >
 
             <div className="flex justify-end mt-6">
                 <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
-                    onClick={() => {
-
-                        console.log("Save button clicked. Implement your save logic.");
-                    }}
+                    onClick={handleSubmit}
                 >
                     Save
                 </button>
             </div>
-        </div>
+        </div >
     );
 
 };
