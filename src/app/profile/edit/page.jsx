@@ -5,7 +5,7 @@ import axios from "axios";
 import Profile from '../../../../images/AmiColo_Profile.png'
 import Image from "next/image";
 import { toast, Toaster } from "react-hot-toast";
-const baseUrl = "/public/images"
+const baseUrl = "http://localhost:3000/public/images"
 const Edit = () => {
     const [form, setForm] = useState({
         fName: "",
@@ -81,7 +81,7 @@ const Edit = () => {
 
             // Handle response
             console.log(res.data);
-            if (res.success) {
+            if (res.data.success) {
                 toast.success("Profile Update Successull")
             }
         } catch (e) {
@@ -119,10 +119,10 @@ const Edit = () => {
 
             <div>
                 <div className="w-full flex items-center gap-3 mb-6">
-                    <Image
+                    <img
                         className=' w-40 rounded-full'
-                        src={`${baseUrl}/${form.file}`}
-                        // src={form.file || Profile}
+                        // src={`${baseUrl}/${form.file}`}
+                        src={form.file || Profile}
                         width={150}
                         height={150}
                         alt="Picture of the author"
