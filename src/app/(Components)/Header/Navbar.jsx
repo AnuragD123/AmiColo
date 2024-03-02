@@ -30,7 +30,7 @@ const Navbar = () => {
                     />
                     <p className="sm:inline">info@amicolo.com</p>
                 </div>
-                <Link href="/signin">
+                <Link href="/profile/login">
                     <button className="bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-400 hover:to-cyan-400 px-5 py-2 rounded-full ml-4 lg:ml-0 text-white">
                         Sign In
                     </button>

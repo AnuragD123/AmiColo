@@ -17,20 +17,16 @@
     "flowbite-react": "^0.7.2",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.323.0",
+    "moment": "^2.30.1",
     "mysql": "^2.18.1",
     "next": "14.1.0",
     "nodemon": "^3.1.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
-<<<<<<< HEAD
     "serverless-mysql": "^1.5.5",
     "socket.io": "^4.7.4",
     "socket.io-client": "^4.7.4"
-=======
-    "react-slick": "^0.30.2",
-    "serverless-mysql": "^1.5.5"
->>>>>>> f22267d1e11adb39b05277461a15f53374ecdafd
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
