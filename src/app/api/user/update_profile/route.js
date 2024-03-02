@@ -3,12 +3,6 @@ import { pool } from "@/dbConfig/dbConfig";
 import { NextResponse } from 'next/server';
 
 
-export const config = {
-    api: {
-        bodyParser: false,
-    }
-}
-
 export async function POST(request) {
     try {
 
