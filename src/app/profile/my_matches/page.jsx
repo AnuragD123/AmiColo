@@ -33,7 +33,7 @@ const MatchesPage = () => {
   };
 
   return (
-    <div className="bg-gray-100 w-full min-h-screen flex flex-col items-center justify-center">
+    <div className="bg-gray-100 w-full min-h-screen flex flex-col items-center justify-start">
       <div className="container mx-auto p-8 bg-white rounded-lg shadow-md">
         <h1 className="text-4xl font-extrabold mb-6 text-gray-800">My Matches</h1>
         <div className="mb-4">
