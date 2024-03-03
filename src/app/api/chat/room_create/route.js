@@ -7,9 +7,15 @@ export async function POST(req) {
         const reqBody = await req.json();
         const { user_1, user_2 } = reqBody;
 
+        console.log("DATA", reqBody)
+
         const roomFind = await pool.query("SELECT * FROM chatroom WHERE (user1_id = ? AND user2_id = ?) OR (user1_id = ? AND user2_id = ?)", [user_1, user_2, user_2, user_1]);
+        console.log("Roomfind", roomFind)
         if (roomFind.length == 0) {
+            console.log("1")
             const createRoom = await pool.query("INSERT INTO chatroom (user1_id, user2_id) VALUES (?, ?)", [user_1, user_2]);
+            console.log("2")
+
             return NextResponse.json({
                 message: "Room created successfully",
                 success: true,

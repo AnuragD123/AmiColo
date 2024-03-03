@@ -47,9 +47,9 @@ const Chat = () => {
     }, [])
     const fetchData = async () => {
         try {
-            const response = await axios.get("/api/user/fetchusers");
+            const response = await axios.get("/api/user/fetch_all_matches");
             const localuser = await axios.get('/api/user/getdata');
-            setUsers(response.data.data);
+            setUsers(response.data.matches);
             setLocalUser(localuser.data.data[0]);
         } catch (error) {
             console.error('Error fetching users:', error);
@@ -58,14 +58,15 @@ const Chat = () => {
 
     const handleJoin = async (e, rUser) => {
         e.preventDefault();
+        console.log("Rr", rUser)
         try {
             const response = await axios.post("/api/chat/room_create", {
                 user_1: localuser.id,
-                user_2: rUser.id,
+                user_2: rUser.user2,
             });
             const getMessages = await axios.post('/api/chat/fetch_all_messages', {
                 senderId: localuser.id,
-                receiverId: rUser.id,
+                receiverId: rUser.user2,
             });
 
             setRoomData(response.data.roomFind[0])
@@ -101,7 +102,7 @@ const Chat = () => {
                     createdAt: Date.now(),
                     updatedAt: Date.now(),
                     message: message,
-                    receiverId: reciverUser.id,
+                    receiverId: reciverUser.user2,
                     senderId: localuser.id,
                     id: 0
                 }
@@ -139,7 +140,7 @@ const Chat = () => {
                                 alt="alternative"
                             />
                             <span>
-                                <p className='text-md font-light p-0 m-0 cursor-pointer'>Alstons</p>
+                                <p className='text-md font-light p-0 m-0 cursor-pointer'>{localuser?.first_name + " " + localuser?.last_name}</p>
                                 <p className='text-sm font-extralight p-0 m-0'>My Account</p>
                             </span>
                         </div>

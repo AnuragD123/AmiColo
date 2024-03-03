@@ -3,14 +3,12 @@ import { pool } from "@/dbConfig/dbConfig";
 import { NextResponse } from 'next/server';
 
 
-export const config = {
-    api: {
-        bodyParser: false,
-    }
-}
-
 export async function POST(request) {
     try {
+
+        const currentUserId = getDataFromToken(request);
+
+        const maxSize = 1024 * 1024 * 5; // 5 MB limit
         const file = await request.formData();
         const uploadedFile = file.get('file');
         const fName = file.get('fName');
