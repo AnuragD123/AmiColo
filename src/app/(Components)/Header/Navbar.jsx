@@ -6,16 +6,16 @@ import { getDataFromToken } from "@/helper/getDataFromToken";
 import Cookies from "js-cookie";
 
 const Navbar = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const token = Cookies.get('token'); // this is always giving undefined
     useEffect(() => {
-        const token = Cookies.get('token'); // this is always giving undefined
         console.log("token =>",token);
         if (token == null) {
             setIsLoggedIn(false);
         } else {
             setIsLoggedIn(true);
         }
-    }, []);
+    }, [token,Cookies]);
 
     return (
         <div className="flex flex-col lg:flex-row bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400 p-2 lg:px-8 items-center justify-between">

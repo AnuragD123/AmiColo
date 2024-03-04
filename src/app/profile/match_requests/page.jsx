@@ -14,7 +14,7 @@ const MatchRequestsPage = () => {
     const fetchMatchRequests = async () => {
       try {
         const response = await axios.get('/api/user/fetch_matching_requests');
-        
+        console.log(response)
         setMatchRequests(response.data.data);
         // console.log(matchRequests)
       } catch (error) {

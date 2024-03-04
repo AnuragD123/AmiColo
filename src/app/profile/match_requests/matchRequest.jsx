@@ -1,15 +1,15 @@
+
+import React from "react";
 import axios from "axios";
-import React, { use } from "react";
 import { toast } from "react-hot-toast";
 
 const MatchRequest = ({ user }) => {
-    console.log(user);
     const acceptFriendReq = async (from_id) => {
         try {
             const response = await axios.post("/api/user/matchrequest/accept", {
                 from_id: from_id,
             });
-            console.log(response.data.data);
+            console.log(response.data);
             // Add any additional logic upon successful acceptance
         } catch (error) {
             console.error("Error accepting friend request:", error.message);
@@ -17,14 +17,13 @@ const MatchRequest = ({ user }) => {
             toast.error("Failed to accept friend request");
         }
     };
-    const declineFriendReq = async (req_id) => {
+
+    const declineFriendReq = async (from_id) => {
         try {
-            const response = await axios.post(
-                "/api/user/matchrequest/decline", {
-                  req_id: req_id,
-                }
-            );
-            console.log(response.data.data);
+            const response = await axios.post("/api/user/matchrequest/decline", {
+                from_id: from_id,
+            });
+            console.log(response.data);
             // Add any additional logic upon successful decline
         } catch (error) {
             console.error("Error declining friend request:", error.message);
@@ -43,7 +42,7 @@ const MatchRequest = ({ user }) => {
                 />
                 <div className="ml-4">
                     <h2 className="text-lg font-semibold">
-                        {user.first_name + " " + user.last_name}
+                        {user.first_name} {user.last_name}
                     </h2>
                     <p className="text-gray-500">{user.email}</p>
                 </div>
