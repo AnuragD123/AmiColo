@@ -12,17 +12,15 @@ export default function Sidebar({ data }) {
 
 
   const handleSubmit = async () => {
-
     try {
-
       const filedata = new FormData()
       filedata.set('file', image)
-
       const res = await fetch(`/api/user/update_profile?id=${data.id}`, {
         method: 'POST',
         body: filedata,
 
       })
+      console.log(data)
       // handle the error
       if (!res.ok) throw new Error(await res.text())
     } catch (e) {
@@ -42,9 +40,7 @@ export default function Sidebar({ data }) {
       setImage(filedata)
     };
     reader.readAsDataURL(filedata);
-
   };
-
   return (
     <aside className="flex h-full w-64 overflow-y-scroll flex-col border-r px-5 py-8 items-center font-semibold">
       <div className='flex flex-col items-center gap-4 mb-3'>
@@ -55,14 +51,10 @@ export default function Sidebar({ data }) {
           height={150}
           alt="Picture of the author"
         />
-
-
-
         <span>
           <h3>{first_name + ' ' + last_name}</h3>
           <p className=' text-sm font-normal'>ID # {id}</p>
         </span>
-
       </div>
       <div>
         <ul className='flex flex-col items-center leading-10'>
@@ -79,7 +71,5 @@ export default function Sidebar({ data }) {
         </ul>
       </div>
     </aside>
-
-
   )
 }

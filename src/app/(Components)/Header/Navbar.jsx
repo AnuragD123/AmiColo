@@ -1,9 +1,22 @@
-import React from 'react';
+"use client"
+import React, { useState, useEffect } from 'react';
 import { Phone, Mail } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { getDataFromToken } from "@/helper/getDataFromToken";
+import Cookies from "js-cookie";
 
 const Navbar = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const token = Cookies.get('token'); // this is always giving undefined
+    useEffect(() => {
+        console.log("token =>",token);
+        if (token == null) {
+            setIsLoggedIn(false);
+        } else {
+            setIsLoggedIn(true);
+        }
+    }, [token,Cookies]);
+
     return (
         <div className="flex flex-col lg:flex-row bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400 p-2 lg:px-8 items-center justify-between">
             <div className="flex items-center">
@@ -30,9 +43,9 @@ const Navbar = () => {
                     />
                     <p className="sm:inline">info@amicolo.com</p>
                 </div>
-                <Link href="/profile/login">
+                <Link href={isLoggedIn ? "/logout" : "/login"}>
                     <button className="bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-400 hover:to-cyan-400 px-5 py-2 rounded-full ml-4 lg:ml-0 text-white">
-                        Sign In
+                        {isLoggedIn ? "Sign Out" : "Sign In"}
                     </button>
                 </Link>
             </div>
