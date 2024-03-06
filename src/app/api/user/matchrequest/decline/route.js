@@ -6,7 +6,6 @@ export async function POST(req) {
     try {
         const reqBody = await req.json();
         const { from_id } = reqBody;
-        console.log(from_id)
         const currentUser = getDataFromToken(req);
         
         // Update query to mark the request as declined

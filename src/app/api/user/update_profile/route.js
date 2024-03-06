@@ -1,12 +1,16 @@
+import { getDataFromToken } from "@/helper/getDataFromToken";
 import { writeFile } from 'fs/promises';
 import { pool } from "@/dbConfig/dbConfig";
 import { NextResponse } from 'next/server';
+
 
 
 export async function POST(request) {
     try {
 
         const currentUserId = getDataFromToken(request);
+
+        console.log("SDFSADF",currentUserId)
 
         const maxSize = 1024 * 1024 * 5; // 5 MB limit
         const file = await request.formData();
@@ -30,7 +34,6 @@ export async function POST(request) {
         if (fName || lName || day || month || year || gender || hSchool || bachelors || master || sector || place || city || food || uploadedFile) {
             const whereClause = {};
             if (uploadedFile) {
-                console.log("data", uploadedFile)  // it is return true fix here bug 
                 const uniqueFilename = generateUniqueFilename(uploadedFile.name); // Function defined below
                 const path = `./public/images/${uniqueFilename}`;
                 // Write the file to the server:
@@ -72,8 +75,9 @@ export async function POST(request) {
             if (food) {
                 whereClause.food = food;
             }
-            const user = await pool.query("UPDATE users SET ? WHERE id = ?", [whereClause, 5]);
-            return NextResponse.json({ success: true, message: 'File uploaded successfully', user });
+            await pool.query("UPDATE users SET ? WHERE id = ?", [whereClause, currentUserId]);
+            const getUser = await pool.query('SELECT * FROM users WHERE id=?', currentUserId);
+            return NextResponse.json({ success: true, message: 'Data update successfully', getUser });
 
         }
         return NextResponse.json({ success: true, message: 'Data not update' });

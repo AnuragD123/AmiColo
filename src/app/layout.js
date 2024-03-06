@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./(Components)/Header/Navbar";
 import Footer from "./(Components)/Footer/Footer";
 import Nav from "./(Components)/Header/Private/Nav";
+import AppStore from "@/context/context"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,15 +17,19 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
 
+        <AppStore>
+
+          <Navbar />
+          <Nav />
+
+          {/* All the other pages gets displayed here */}
+          {children}
+
+          <Footer />
+        </AppStore>
+
         {/* Navbar Common to All Pages */}
 
-        <Navbar />
-        <Nav/>
-
-        {/* All the other pages gets displayed here */}
-        {children}
-
-        <Footer />
       </body>
     </html>
   );

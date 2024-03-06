@@ -1,4 +1,4 @@
-import {pool} from "@/dbConfig/dbConfig";
+import { pool } from "@/dbConfig/dbConfig";
 import { NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -10,7 +10,7 @@ export async function POST(req) {
         const reqBody = await req.json();
         const { email, password } = reqBody;
 
-        console.log(email,password)
+        console.log(email, password)
         // return NextResponse.json({ msg: 'chalra' }, { status: 200 });
 
 
@@ -19,7 +19,7 @@ export async function POST(req) {
 
         const user = users[0];
 
-        if (users.length===0) {
+        if (users.length === 0) {
             console.log("empty")
             return NextResponse.json({ error: 'User does not exist' }, { status: 400 });
         }
@@ -27,7 +27,7 @@ export async function POST(req) {
         // Check if password is correct
         const validPassword = await bcryptjs.compare(password, user.password);
 
-        if (!validPassword) {
+        if (validPassword) {
 
             return NextResponse.json({ error: 'Invalid password' }, { status: 400 });
         }

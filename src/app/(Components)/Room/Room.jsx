@@ -9,13 +9,32 @@ import {
     PawPrint,
     Star,
     Share2,
+    Book,
 } from 'lucide-react';
+import axios from 'axios';
 
-const Room = () => {
+const Room = ({ key, data, requests, Callback, booked }) => {
+    const Decline = async (id) => {
+        try {
+            const res = await axios.post(`/api/room/Decline`, JSON.stringify({ id: id }))
+            if (!res.ok) throw new Error(await res.text());
+            Callback;
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
+    const BookNow = async (id) => {
+        try {
+            const res = await axios.post(`/api/room/book`, JSON.stringify({ id: id }))
+            if (!res.ok) throw new Error(await res.text());
+            Callback;
+        } catch (e) {
+            console.error(e);
+        }
+    };
     return (
-
-        <Link
-            href="#"
+        <div
             className="w-full bg-white  rounded-lg shadow-md  hover:bg-gray-100  dark:bg-gray-800 dark:hover:bg-gray-700 flex flex-col md:flex-row"
         >
             <img
@@ -23,48 +42,65 @@ const Room = () => {
                 src="/images/room.jpg"
                 alt="room photo"
             />
-            <div className="p-4 flex flex-col justify-between">
+            <div className="p-4 flex flex-col justify-between" style={{ width: '100%' }}>
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-green-600 dark:text-white">
-                    $2,500.00
+                    ${data.price}
                 </h5>
                 <p className="font-normal text-gray-700 dark:text-gray-400">
                     ***Roommate Immediately needed***
                 </p>
                 <p className="text-xs text-gray-500 dark:text-gray-200">
-                    Montreal | 11 hours ago
-                </p>
-                <p className="border rounded-md px-[0.3rem] py-[0.1rem] w-3 border-gray-700 text-xs min-w-fit text-gray-500 dark:text-gray-200">
-                    TOP Ad
+                    Parking: {data.parking === 'yes' ? 'Available' : 'Not Available'} | Gym: {data.gym === 'yes' ? 'Available' : 'Not Available'}
                 </p>
                 <p className="text-xs text-gray-500 dark:text-gray-200">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam totam deleniti neque ipsa, aliquam accusantium earum, quos tenetur inventore ducimus quis ad dolores hic aut aliquid ullam nobis perspiciatis velit.
+                    Room Type is {data.type} and area is {data.area}. it has {data.rooms} bedrooms and {data.washrooms} bathrooms
                 </p>
-                <div className="features flex flex-wrap gap-2 mt-2 text-xs text-gray-500 dark:text-gray-200">
-                    <div className="flex items-center location">
-                        <MapPin className="w-4 mr-1" /> <p>Rue Denoville</p>
+                {requests && requests.length > 0 && (
+                    <div className="flex flex-col gap-2 my-5">
+                        <h5 className="text-lg font-bold text-green-600 dark:text-white">Booking Requests</h5>
+                        {requests.map((request) => (
+                            <div className="bg-white p-4 shadow-md rounded-md">
+                                <div className="flex items-center">
+                                    <img
+                                        src={`https://placekitten.com/50/50?image=${request.user_id}`} // Replace with your actual requests avatar
+                                        alt={`Avatar of ${request.first_name}`}
+                                        className="rounded-full h-10 w-10 object-cover"
+                                    />
+                                    <div className="flex items-center" style={{ justifyContent: 'space-between', width: '100%' }}>
+                                        <div className="ml-4">
+                                            <h2 className="text-lg font-semibold">
+                                                {request.first_name} {request.last_name}
+                                            </h2>
+                                            <p className="text-gray-500">{request.email}</p>
+                                        </div>
+
+                                        <div className="mt-4">
+                                            <div
+                                                className="text-black ml-2 px-2 rounded-xl" style={{ border: '1px solid black', fontSize: 10 }}>
+                                                {request.status}
+                                            </div>
+                                        </div>
+
+                                        <div className="mt-4">
+                                            <button
+                                                onClick={() => Decline(request.id)}
+                                                className="bg-gray-300 text-gray-700 ml-2 px-3 py-1 rounded-md">
+                                                Decline
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                    <div className="flex items-center vehicle">
-                        <Car className="w-4 mr-1" /> <p>4</p>
-                    </div>
-                    <div className="flex items-center bathroom">
-                        <Bath className="w-4 mr-1" /> <p>1.5</p>
-                    </div>
-                    <div className="flex items-center building">
-                        <Building className="w-4 mr-1" />{' '}
-                        <p>Duplex/Triplex</p>
-                    </div>
-                    <div className="flex items-center parking">
-                        <ParkingCircle className="w-4 mr-1" /> <p>0</p>
-                    </div>
-                    <div className="flex items-center pet">
-                        <PawPrint className="w-4 mr-1" /> <p>Yes</p>
-                    </div>
-                </div>
-                <div className='w-full'>
-                    <button className=" float-right rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400 text-white px-4 py-2">
+                )}
+                {!booked && <div className='w-full'>
+                    <button
+                        onClick={() => { BookNow(data.id) }}
+                        className=" float-right rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400 text-white px-4 py-2">
                         Book Now
                     </button>
-                </div>
+                </div>}
                 <div className="flex justify-start items-center text-xs text-gray-500 dark:text-gray-200 space-x-4">
 
 
@@ -82,7 +118,7 @@ const Room = () => {
                     </div>
                 </div>
             </div>
-        </Link>
+        </div>
 
     );
 };

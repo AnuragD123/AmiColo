@@ -3,13 +3,14 @@ import React from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
-const MatchRequest = ({ user }) => {
+const MatchRequest = ({ user, handlematchReq }) => {
     const acceptFriendReq = async (from_id) => {
         try {
             const response = await axios.post("/api/user/matchrequest/accept", {
                 from_id: from_id,
             });
-            console.log(response.data);
+            handlematchReq(from_id);
+            toast.success("Friend request accepted");
             // Add any additional logic upon successful acceptance
         } catch (error) {
             console.error("Error accepting friend request:", error.message);
@@ -23,7 +24,8 @@ const MatchRequest = ({ user }) => {
             const response = await axios.post("/api/user/matchrequest/decline", {
                 from_id: from_id,
             });
-            console.log(response.data);
+            handlematchReq(from_id);
+            toast.success("Friend request decline");
             // Add any additional logic upon successful decline
         } catch (error) {
             console.error("Error declining friend request:", error.message);

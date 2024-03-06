@@ -20,6 +20,12 @@ const MatchesPage = () => {
     fetchMatches();
   }, []);
 
+  const handlematchReq = (id) => {
+    console.log("Enter", id)
+    setMatchRequests(matchRequests.filter((data) => data.from_id !== id));
+  }
+
+
   const handleSearch = (event) => {
     const query = event.target.value.toLowerCase();
     setSearchQuery(query);
@@ -48,7 +54,7 @@ const MatchesPage = () => {
         <ul className="grid grid-cols-1 gap-4">
           {matchesList.map((match) => (
             <li key={match.id}>
-              <Friend {...match} />
+              <Friend {...match} handlematchReq={handlematchReq} />
             </li>
           ))}
         </ul>

@@ -7,11 +7,9 @@ export async function GET(req) {
         const currentUser = await getDataFromToken(req);
 
         const data = await pool.query(
-            'SELECT users.id,users.first_name,users.last_name ,users.email,users.gender,users.dob, match_request.req_id,match_request.from_id,match_request.status FROM users INNER JOIN match_request ON users.id = match_request.from_id WHERE match_request.to_id = ? AND match_request.status = "pending"',
-            [currentUser]
+            'SELECT * FROM amicolo.rooms;'
         );
 
-      
         return NextResponse.json({ data }, { status: 200 });
     } catch (error) {
         console.log(error);

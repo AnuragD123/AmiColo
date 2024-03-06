@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const Friend = ({ id, first_name, last_name, profile_img, status }) => {
+const Friend = ({ id, first_name, last_name, profile_img, status, user2, handlematchReq }) => {
     const [isUnfriending, setUnfriending] = useState(false);
     const [isAddingFriend, setAddingFriend] = useState(false);
     const [isFriend, setFriend] = useState(true);
@@ -16,6 +16,7 @@ const Friend = ({ id, first_name, last_name, profile_img, status }) => {
 
             // Assuming the DELETE request was successful, update the state to indicate the user is no longer friends
             setFriend(false);
+            // handlematchReq(user2) //For Remove entry after Unfriend click
         } catch (error) {
             // Handle errors by logging them and/or displaying error messages to the user
             console.error("Error unfriending:", error.message);
@@ -56,19 +57,17 @@ const Friend = ({ id, first_name, last_name, profile_img, status }) => {
             </div>
             {isFriend ? (
                 <button
-                    onClick={() => handleUnfriend(id)}
-                    className={`px-4 py-2 bg-red-500 text-white rounded-full ${
-                        isUnfriending && "opacity-50 cursor-not-allowed"
-                    }`}
+                    onClick={() => handleUnfriend(user2)}//Change Id to user2 id 
+                    className={`px-4 py-2 bg-red-500 text-white rounded-full ${isUnfriending && "opacity-50 cursor-not-allowed"
+                        }`}
                     disabled={isUnfriending}>
                     Unfriend
                 </button>
             ) : (
                 <button
-                    onClick={() => handleAddFriend(id)}
-                    className={`px-4 py-2 bg-green-500 text-white rounded-full ${
-                        isAddingFriend && "opacity-50 cursor-not-allowed"
-                    }`}
+                    onClick={() => handleAddFriend(user2)}//Change Id to user2 id 
+                    className={`px-4 py-2 bg-green-500 text-white rounded-full ${isAddingFriend && "opacity-50 cursor-not-allowed"
+                        }`}
                     disabled={isAddingFriend}>
                     Add Friend
                 </button>
