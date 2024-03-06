@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import Room from '@/app/(Components)/Room/Room'
 import axios from 'axios';
-const listing = () => {
+const Listing = () => {
 
     const [rooms, setRooms] = useState([]);
 
@@ -38,4 +38,4 @@ const listing = () => {
     )
 }
 
-export default listing
+export default Listing
