@@ -11,8 +11,8 @@ export async function POST(req) {
         const currentUser = getDataFromToken(req);
         const matchUserFind = await pool.query("SELECT * FROM matches WHERE (user1=? AND user2=?) OR (user2=? AND user1=?)", [from_id, currentUser, currentUser, from_id]);
         if (matchUserFind && matchUserFind.length === 0) {
-            const insertMatchesQuery = 'INSERT INTO matches(user1, user2) VALUES (?, ?)';
-            const insertMatchesData = [from_id, currentUser];
+            const insertMatchesQuery = 'INSERT INTO matches(user1, user2) VALUES (?, ?), (?, ?)';
+            const insertMatchesData = [from_id, currentUser, currentUser, from_id];
             const updateQuery = 'UPDATE match_request SET status = ? WHERE from_id = ? AND to_id = ?';
             const updateData = ['accepted', from_id, currentUser];
             const insertMatchesResult = await pool.query(insertMatchesQuery, insertMatchesData);

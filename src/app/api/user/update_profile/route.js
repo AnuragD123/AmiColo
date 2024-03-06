@@ -1,12 +1,16 @@
+import { getDataFromToken } from "@/helper/getDataFromToken";
 import { writeFile } from 'fs/promises';
 import { pool } from "@/dbConfig/dbConfig";
 import { NextResponse } from 'next/server';
+
 
 
 export async function POST(request) {
     try {
 
         const currentUserId = getDataFromToken(request);
+
+        console.log("SDFSADF",currentUserId)
 
         const maxSize = 1024 * 1024 * 5; // 5 MB limit
         const file = await request.formData();
@@ -71,7 +75,7 @@ export async function POST(request) {
             if (food) {
                 whereClause.food = food;
             }
-            await pool.query("UPDATE users SET ? WHERE id = ?", [whereClause, 5]);
+            await pool.query("UPDATE users SET ? WHERE id = ?", [whereClause, currentUserId]);
             const getUser = await pool.query('SELECT * FROM users WHERE id=?', currentUserId);
             return NextResponse.json({ success: true, message: 'Data update successfully', getUser });
 

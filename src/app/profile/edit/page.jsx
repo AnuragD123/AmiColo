@@ -23,6 +23,7 @@ const Edit = () => {
         file: ""
     });
     const [image, setImage] = useState();
+    
     useEffect(() => {
         // const getData = async () => {
         //     try {
@@ -53,6 +54,7 @@ const Edit = () => {
         // }
 
         // getData();
+        console.log("USERDATQA",user)
         setForm({
             fName: user?.first_name || "",
             lName: user?.last_name || "",
