@@ -9,10 +9,7 @@ export async function POST(req) {
         // Get request body
         const reqBody = await req.json();
         const { email, password } = reqBody;
-
-        console.log(email,password)
         // return NextResponse.json({ msg: 'chalra' }, { status: 200 });
-
 
         const users = await pool.query("SELECT * FROM users WHERE email=?",[email]);
         console.log(users);
