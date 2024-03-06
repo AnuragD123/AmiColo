@@ -58,8 +58,8 @@ const Room = ({ key, data, requests, Callback, booked }) => {
                 {requests && requests.length > 0 && (
                     <div className="flex flex-col gap-2 my-5">
                         <h5 className="text-lg font-bold text-green-600 dark:text-white">Booking Requests</h5>
-                        {requests.map((request) => (
-                            <div className="bg-white p-4 shadow-md rounded-md">
+                        {requests.map((request,index) => (
+                            <div key={index} className="bg-white p-4 shadow-md rounded-md">
                                 <div className="flex items-center">
                                     <img
                                         src={`https://placekitten.com/50/50?image=${request.user_id}`} // Replace with your actual requests avatar

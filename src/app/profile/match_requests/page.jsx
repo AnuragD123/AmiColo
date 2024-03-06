@@ -4,7 +4,7 @@ import MatchRequest from './matchRequest'; // assuming you have a FollowRequest 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Toaster } from 'react-hot-toast'
-import { Toaster } from 'react-hot-toast'
+
 const MatchRequestsPage = () => {
   // Dummy data for friend requests
 
