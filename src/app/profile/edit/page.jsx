@@ -4,9 +4,11 @@ import Link from "next/link";
 import axios from "axios";
 import Profile from '../../../../images/AmiColo_Profile.png'
 import Image from "next/image";
+import { useUserContext } from '@/context/context';
 import { toast, Toaster } from "react-hot-toast";
-const baseUrl = "http://localhost:3000/public/images"
+// const baseUrl = require("http://192.168.127.176:3000");
 const Edit = () => {
+    const { user, setUser } = useUserContext();
     const [form, setForm] = useState({
         fName: "",
         lName: "",
@@ -21,37 +23,53 @@ const Edit = () => {
         file: ""
     });
     const [image, setImage] = useState();
+    
     useEffect(() => {
-        const getData = async () => {
-            try {
-                const response = await axios.get('/api/user/getdata');
-                console.log(response.data.data[0]);
-                const userData = response.data.data[0];
+        // const getData = async () => {
+        //     try {
+        //         const response = await axios.get('/api/user/getdata');
+        //         console.log(response.data.data[0]);
+        //         const userData = response.data.data[0];
 
 
-                // Update the form state with the retrieved data
-                setForm({
-                    fName: userData.first_name || "",
-                    lName: userData.last_name || "",
-                    day: userData.dob.split("-")[2].split("T")[0] || 0,
-                    month: userData.dob.split("-")[1] || 0,
-                    year: userData.dob.split("-")[0] || 0,
-                    gender: userData.gender || "",
-                    hSchool: userData.high_school || "",
-                    bachelors: userData.bachelors || "",
-                    master: userData.master || "",
-                    sector: userData.sector || "",
-                    file: userData.avatar || "",
-                });
+        //         // Update the form state with the retrieved data
+        //         setForm({
+        //             fName: userData.first_name || "",
+        //             lName: userData.last_name || "",
+        //             day: userData.dob.split("-")[2].split("T")[0] || 0,
+        //             month: userData.dob.split("-")[1] || 0,
+        //             year: userData.dob.split("-")[0] || 0,
+        //             gender: userData.gender || "",
+        //             hSchool: userData.high_school || "",
+        //             bachelors: userData.bachelors || "",
+        //             master: userData.master || "",
+        //             sector: userData.sector || "",
+        //             file: userData.avatar || "",
+        //         });
 
-                console.log("object", userData.dob, userData.dob.split("-"))
-            } catch (error) {
-                console.log(error.message)
-            }
-        }
+        //         console.log("object", userData.dob, userData.dob.split("-"))
+        //     } catch (error) {
+        //         console.log(error.message)
+        //     }
+        // }
 
-        getData();
-    }, []);
+        // getData();
+        console.log("USERDATQA",user)
+        setForm({
+            fName: user?.first_name || "",
+            lName: user?.last_name || "",
+            day: user?.dob.split("-")[2].split("T")[0] || 0,
+            month: user?.dob.split("-")[1] || 0,
+            year: user?.dob.split("-")[0] || 0,
+            gender: user?.gender || "",
+            hSchool: user?.high_school || "",
+            bachelors: user?.bachelors || "",
+            master: user?.master || "",
+            sector: user?.sector || "",
+            file: user?.avatar || "",
+        });
+
+    }, [user]);
 
     const handleSubmit = async () => {
         try {
@@ -78,9 +96,8 @@ const Edit = () => {
                     'Content-Type': 'multipart/form-data'
                 },
             });
-
             // Handle response
-            console.log(res.data);
+            setUser(res.data?.getUser[0])
             if (res.data.success) {
                 toast.success("Profile Update Successull")
             }
@@ -121,7 +138,7 @@ const Edit = () => {
                 <div className="w-full flex items-center gap-3 mb-6">
                     <img
                         className=' w-40 rounded-full'
-                        // src={`${baseUrl}/${form.file}`}
+                        // src={`${baseUrl}/assets/images/${form.file}`}
                         src={form.file || Profile}
                         width={150}
                         height={150}

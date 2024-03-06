@@ -9,27 +9,22 @@ export async function POST(req) {
         const { from_id } = reqBody;
 
         const currentUser = getDataFromToken(req);
-        console.log("test1")
-        const insertMatchesQuery = 'INSERT INTO matches(user1, user2) VALUES (?, ?), (?, ?)';
-        const insertMatchesData = [from_id, currentUser, currentUser, from_id];
-        console.log("test2")
-        const updateQuery = 'UPDATE match_request SET status = ? WHERE from_id = ? AND to_id = ?';
-        const updateData = ['accepted', from_id, currentUser];
-        console.log("test3")
-        const insertMatchesResult = await pool.query(insertMatchesQuery, insertMatchesData);
-        console.log("test4")
-        if (insertMatchesResult && insertMatchesResult.affectedRows > 0) {
-            console.log("test5")
-            // Execute the update query
-            const updateResult = await pool.query(updateQuery, updateData);
-            console.log('Update Request Result:', updateResult);
-        } else {
-            console.log("test6")
-            console.log('Insert Matches Query was not successful.');
+        const matchUserFind = await pool.query("SELECT * FROM matches WHERE (user1=? AND user2=?) OR (user2=? AND user1=?)", [from_id, currentUser, currentUser, from_id]);
+        if (matchUserFind && matchUserFind.length === 0) {
+            const insertMatchesQuery = 'INSERT INTO matches(user1, user2) VALUES (?, ?), (?, ?)';
+            const insertMatchesData = [from_id, currentUser, currentUser, from_id];
+            const updateQuery = 'UPDATE match_request SET status = ? WHERE from_id = ? AND to_id = ?';
+            const updateData = ['accepted', from_id, currentUser];
+            const insertMatchesResult = await pool.query(insertMatchesQuery, insertMatchesData);
+            if (insertMatchesResult && insertMatchesResult.affectedRows > 0) {
+                const updateResult = await pool.query(updateQuery, updateData);
+                console.log('Update Request Result:', updateResult);
+            } else {
+                console.log('Insert Matches Query was not successful.');
+            }
         }
-        console.log("test7")
-        return NextResponse.json({ status: "success"}, { status: 200 });
-        console.log("test8")
+
+        return NextResponse.json({ status: "success" }, { status: 200 });
 
     }
     catch (error) {

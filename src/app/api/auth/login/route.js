@@ -14,7 +14,7 @@ export async function POST(req) {
         // return NextResponse.json({ msg: 'chalra' }, { status: 200 });
 
 
-        const users = await pool.query("SELECT * FROM users WHERE email=?", [email]);
+        const users = await pool.query("SELECT * FROM users WHERE email=?",[email]);
         console.log(users);
 
         const user = users[0];

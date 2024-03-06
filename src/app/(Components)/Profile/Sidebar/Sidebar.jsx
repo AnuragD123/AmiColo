@@ -3,44 +3,11 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Profile from '../../../../../images/AmiColo_Profile.png'
+import { useUserContext } from '@/context/context';
 
+export default function Sidebar() {
+  const { user, } = useUserContext();
 
-export default function Sidebar({ data }) {
-  const [image, setImage] = useState(null);
-  const [file, setFile] = useState("");
-  const { first_name, last_name, id } = data;
-
-
-  const handleSubmit = async () => {
-    try {
-      const filedata = new FormData()
-      filedata.set('file', image)
-      const res = await fetch(`/api/user/update_profile?id=${data.id}`, {
-        method: 'POST',
-        body: filedata,
-
-      })
-      console.log(data)
-      // handle the error
-      if (!res.ok) throw new Error(await res.text())
-    } catch (e) {
-      // Handle errors here
-      console.error(e)
-    }
-  }
-  const handleImageUpload = async (e) => {
-    const filedata = e.target.files[0];
-    if (!filedata) {
-      return;
-    }
-    const reader = new FileReader();
-    reader.onload = () => {
-      const imageData = reader.result;
-      setFile(imageData);
-      setImage(filedata)
-    };
-    reader.readAsDataURL(filedata);
-  };
   return (
     <aside className="flex h-full w-64 overflow-y-scroll flex-col border-r px-5 py-8 items-center font-semibold">
       <div className='flex flex-col items-center gap-4 mb-3'>
@@ -52,8 +19,8 @@ export default function Sidebar({ data }) {
           alt="Picture of the author"
         />
         <span>
-          <h3>{first_name + ' ' + last_name}</h3>
-          <p className=' text-sm font-normal'>ID # {id}</p>
+          <h3>{user?.first_name + ' ' + user?.last_name}</h3>
+          <p className=' text-sm font-normal'>ID # {user?.id}</p>
         </span>
       </div>
       <div>

@@ -4,6 +4,7 @@ import MatchRequest from './matchRequest'; // assuming you have a FollowRequest 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Toaster } from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast'
 const MatchRequestsPage = () => {
   // Dummy data for friend requests
 
@@ -14,7 +15,7 @@ const MatchRequestsPage = () => {
     const fetchMatchRequests = async () => {
       try {
         const response = await axios.get('/api/user/fetch_matching_requests');
-        console.log(response)
+        console.log("DATA Found ", response.data.data)
         setMatchRequests(response.data.data);
         // console.log(matchRequests)
       } catch (error) {
@@ -40,7 +41,7 @@ const MatchRequestsPage = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {matchRequests.map((user) => (
-            <MatchRequest key={user.req_id} user={user} />
+            <MatchRequest key={user.req_id} user={user} handlematchReq={handlematchReq} />
           ))}
         </div>
       </div>
