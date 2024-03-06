@@ -13,7 +13,7 @@ export default function Sidebar() {
       <div className='flex flex-col items-center gap-4 mb-3'>
         <Image
           className=' w-40 rounded-full'
-          src={Profile}
+          src={user?.avatar ? `/uploads/${user?.avatar}` : Profile}
           width={150}
           height={150}
           alt="Picture of the author"

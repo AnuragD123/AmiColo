@@ -10,7 +10,7 @@ export async function POST(request) {
 
         const currentUserId = getDataFromToken(request);
 
-        console.log("SDFSADF",currentUserId)
+        console.log("SDFSADF", currentUserId)
 
         const maxSize = 1024 * 1024 * 5; // 5 MB limit
         const file = await request.formData();
