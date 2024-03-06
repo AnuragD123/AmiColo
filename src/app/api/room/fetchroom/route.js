@@ -4,7 +4,6 @@ import { pool } from "@/dbConfig/dbConfig";
 
 export async function GET(req) {
     try {
-        const currentUser = await getDataFromToken(req);
 
         const data = await pool.query(
             'SELECT * FROM amicolo.rooms;'
