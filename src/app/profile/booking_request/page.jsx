@@ -28,7 +28,7 @@ const listing = () => {
             <div className="mt-5 w-4/5 flex flex-col justify-center items-center gap-5">
                 {
                     rooms.map((room) => (
-                        <Room key={room.id} data={room} booked={true} />
+                        <Room key={room.id} data={room} requests={room.requests} Callback={() => fetchRooms}/>
                     )
 
                     )

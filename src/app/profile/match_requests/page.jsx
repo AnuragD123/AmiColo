@@ -1,9 +1,9 @@
 'use client'
 import React from 'react';
-import MatchRequest from './MatchRequest'; // assuming you have a FollowRequest component
-import { useState,useEffect } from 'react';
+import MatchRequest from './matchRequest'; // assuming you have a FollowRequest component
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Toaster} from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast'
 const MatchRequestsPage = () => {
   // Dummy data for friend requests
 
@@ -24,17 +24,17 @@ const MatchRequestsPage = () => {
 
     fetchMatchRequests();
   }, []);
-//   const friendRequests = [
-//     { id: 1, username: 'john_doe' },
-//     { id: 2, username: 'jane_smith' },
-//     { id: 3, username: 'joe_root' },
-//     { id: 4, username: 'autin_thomas' },
-//     // Add more friend requests as needed
-//   ];
+  //   const friendRequests = [
+  //     { id: 1, username: 'john_doe' },
+  //     { id: 2, username: 'jane_smith' },
+  //     { id: 3, username: 'joe_root' },
+  //     { id: 4, username: 'autin_thomas' },
+  //     // Add more friend requests as needed
+  //   ];
 
   return (
     <div>
-        <Toaster/>
+      <Toaster />
       <div className="container mx-auto mt-8">
         <h1 className="text-3xl text-center font-bold mb-4">Match Requests</h1>
 
