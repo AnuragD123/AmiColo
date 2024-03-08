@@ -2,20 +2,46 @@
 import React, { useState, useEffect } from 'react';
 import { Phone, Mail } from 'lucide-react';
 import Link from 'next/link';
-import { getDataFromToken } from "@/helper/getDataFromToken";
+import axios from 'axios';
+import { useUserContext } from '@/context/context';
+import { useRouter } from 'next/navigation'
+
 import Cookies from "js-cookie";
 
 const Navbar = () => {
+
+    const { user, setUser } = useUserContext();
+    const router = useRouter();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const token = Cookies.get('token'); // this is always giving undefined
     useEffect(() => {
-        console.log("token =>",token);
+        console.log("token =>", token);
         if (token == null) {
             setIsLoggedIn(false);
         } else {
             setIsLoggedIn(true);
         }
-    }, [token,Cookies]);
+    }, [token, Cookies]);
+
+
+    const handleLogout = async () => {
+        try {
+          // Make a request to your logout API using Axios
+          const response = await axios.get('/api/auth/logout');
+      
+          if (response.data.success) {
+            // Logout successful, redirect to login page
+            setUser();
+            router.push('/login');
+          } else {
+            // Handle logout failure
+            console.error('Logout failed');
+          }
+        } catch (error) {
+          // Handle network or other errors
+          console.error('Error during logout:', error);
+        }
+      };
 
     return (
         <div className="flex flex-col lg:flex-row bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400 p-2 lg:px-8 items-center justify-between">
@@ -43,11 +69,12 @@ const Navbar = () => {
                     />
                     <p className="sm:inline">info@amicolo.com</p>
                 </div>
-                <Link href={isLoggedIn ? "/logout" : "/login"}>
-                    <button className="bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-400 hover:to-cyan-400 px-5 py-2 rounded-full ml-4 lg:ml-0 text-white">
-                        {isLoggedIn ? "Sign Out" : "Sign In"}
-                    </button>
-                </Link>
+                <button
+                    className="bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-400 hover:to-cyan-400 px-5 py-2 rounded-full ml-4 lg:ml-0 text-white"
+                    onClick={user ? handleLogout : () => router.push('/login')}
+                >
+                    {user ? "Sign Out" : "Sign In"}
+                </button>
             </div>
         </div>
     );
