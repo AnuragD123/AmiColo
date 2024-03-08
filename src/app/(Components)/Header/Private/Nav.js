@@ -16,7 +16,6 @@ const Nav = () => {
         // { label: 'Pricing', href: '/pricing' },
     ];
     const pathname = usePathname()
-    console.log(pathname)
     return (
         <nav className="navbar fixed-top px-4 py-2 border-b border-gray-300">
             <div className="sm:px-4 lg:px-8 flex flex-wrap items-center justify-between lg:flex-nowrap relative">

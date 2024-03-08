@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useUserContext } from '@/context/context';
 export default function ProfileLayout({ children }) {
   const [userData, setUserdata] = useState('');
-  const { user, setUser, } = useUserContext();
+  const { user, setUser, socket } = useUserContext();
   useEffect(() => {
     const getData = async () => {
       try {
@@ -17,10 +17,19 @@ export default function ProfileLayout({ children }) {
       } catch (error) {
         console.log(error.message)
       }
-
     }
     getData();
   }, [])
+  useEffect(() => {
+    if (user) {
+      console.log("ENter In Add User")
+      socket?.emit('addUser', user?.id)
+    }
+
+    socket?.on('getUsers', users => {
+      console.log("ActiveUSers=>", users)
+    })
+  }, [socket, user]);
   return (
 
     <div className="flex flex-row gap-2">

@@ -23,7 +23,7 @@ const Edit = () => {
         file: ""
     });
     const [image, setImage] = useState();
-    
+
     useEffect(() => {
         // const getData = async () => {
         //     try {
@@ -54,7 +54,7 @@ const Edit = () => {
         // }
 
         // getData();
-        console.log("USERDATQA",user)
+        console.log("USERDATQA", user)
         setForm({
             fName: user?.first_name || "",
             lName: user?.last_name || "",
@@ -66,7 +66,7 @@ const Edit = () => {
             bachelors: user?.bachelors || "",
             master: user?.master || "",
             sector: user?.sector || "",
-            file: user?.avatar || "",
+
         });
 
     }, [user]);
@@ -89,8 +89,6 @@ const Edit = () => {
             if (image) {
                 formData.append("file", image);
             }
-
-
             const res = await axios.post(`/api/user/update_profile`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -136,10 +134,11 @@ const Edit = () => {
 
             <div>
                 <div className="w-full flex items-center gap-3 mb-6">
-                    <img
+                    <Image
                         className=' w-40 rounded-full'
                         // src={`${baseUrl}/assets/images/${form.file}`}
-                        src={form.file || Profile}
+                        src={form.file ? form.file : user?.avatar ? `/uploads/${form?.file}` : Profile}
+                        // src={form.file || Profile}
                         width={150}
                         height={150}
                         alt="Picture of the author"
