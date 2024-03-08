@@ -5,6 +5,8 @@ import Link from 'next/link';
 import axios from 'axios';
 import { useUserContext } from '@/context/context';
 import { useRouter } from 'next/navigation'
+import { Toaster, toast } from "react-hot-toast";
+
 
 import Cookies from "js-cookie";
 
@@ -32,9 +34,11 @@ const Navbar = () => {
           if (response.data.success) {
             // Logout successful, redirect to login page
             setUser();
+            toast.success(response.data.message);
             router.push('/login');
           } else {
             // Handle logout failure
+            toast.error('Logout failed');
             console.error('Logout failed');
           }
         } catch (error) {

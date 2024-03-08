@@ -62,10 +62,10 @@ const Footer = () => {
                 className=""
             >
                 <h5 className="font-medium">Company Information</h5>
-                <Link href="contact"><p className='text-sm'>Contact Us</p></Link>
-                <Link href="FAQs"><p className='text-sm'>FAQs</p></Link>
-                <Link href="privacy-policy"><p className='text-sm'>Privacy Policy</p></Link>
-                <Link href="TermsAndConditions"><p className='text-sm'>T&C</p></Link>
+                <Link href="/contact"><p className='text-sm'>Contact Us</p></Link>
+                <Link href="/FAQs"><p className='text-sm'>FAQs</p></Link>
+                <Link href="/privacy-policy"><p className='text-sm'>Privacy Policy</p></Link>
+                <Link href="/TermsAndConditions"><p className='text-sm'>T&C</p></Link>
                 {/* <a href="disclaimers"><p className='text-sm'>Disclaimers</p></a> */}
             </div>
             <div
