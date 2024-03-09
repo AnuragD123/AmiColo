@@ -307,7 +307,7 @@ const Chat = () => {
                                         }}>
                                             <span>
                                                 <p className='text-md font-light p-0 m-0'>{user.first_name + " " + user.last_name}</p>
-                                                <p className='text-xs font-light p-0 m-0'>{messages[messages.length - 1]?.message}</p>
+                                                {/* <p className='text-xs font-light p-0 m-0'>{messages[messages.length - 1]?.message}</p> */}
 
                                             </span>
                                             <p className='w-2 h-2 rounded-full absolute top-5 right-3 bg-green-600' ></p>

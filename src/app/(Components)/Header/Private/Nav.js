@@ -12,7 +12,7 @@ import Profile from "../../../../../images/AmiColo_Profile.png";
 
 const Nav = () => {
     const [navToggle, setNavToggle] = useState(false);
-    const { user, setUser } = useUserContext();
+    const { user } = useUserContext();
     const navItems = [
         { label: "Home", href: "/home" },
         { label: "Find Room", href: "/find_room" },
