@@ -5,7 +5,7 @@ import { useState,useEffect } from "react"
 import axios from "axios";
 const Profile = () => {
 
-  const [form, setForm] = useState({ fName: "", lName: "", day: 0, month: 0, year: 0, gender: "", hSchool: "", bachelors: "", master: "", sector: "" });
+  const [form, setForm] = useState({ fName: "", lName: "", day: 0, month: 0, year: 0, gender: "", smoker: "", occupation: "", nationality: "", bio: "", bTime: "", diet: "", language: "", education:"", });
   const [Preferences, setPreferences] = useState(false)
   const [userData,setUserdata] =useState('');
 
@@ -76,14 +76,14 @@ const Profile = () => {
             <div className='w-1/2'>
               <label htmlFor="smoker">Smoker</label>
               <br />
-              <input disabled value={"no"} className='w-full rounded-3xl bg-gray-300' type="text" name='smoker'
+              <input disabled value={userData.smoker} className='w-full rounded-3xl bg-gray-300' type="text" name='smoker'
                 onChange={(e) => setForm({ ...form, smoker: e.target.value })}
               />
             </div>
             <div className='w-1/2'>
               <label htmlFor="occupation">Occupation</label>
               <br />
-              <input disabled value={"Student"} className='w-full rounded-3xl bg-gray-300' type="text" name='occupation'
+              <input disabled value={userData.occupation} className='w-full rounded-3xl bg-gray-300' type="text" name='occupation'
                 onChange={(e) => setForm({ ...form, occupation: e.target.value })}
               />
             </div>
@@ -93,15 +93,15 @@ const Profile = () => {
             <div className='w-1/2'>
               <label htmlFor="school">Nationality</label>
               <br />
-              <input disabled value={"USA"} className='w-full rounded-3xl bg-gray-300' type="text" name='nationality'
+              <input disabled value={userData.nationality} className='w-full rounded-3xl bg-gray-300' type="text" name='nationality'
                 onChange={(e) => setForm({ ...form, nationality: e.target.value })}
               />
             </div>
             <div className='w-1/2'>
-              <label htmlFor="cleanness">Cleanness</label>
+              <label htmlFor="bio">bio</label>
               <br />
-              <input disabled value={"4.6"} className='w-full rounded-3xl bg-gray-300' type="text" name='cleanness'
-                onChange={(e) => setForm({ ...form, cleanness: e.target.value })}
+              <input disabled value={userData.bio} className='w-full rounded-3xl bg-gray-300' type="text" name='bio'
+                onChange={(e) => setForm({ ...form, bio: e.target.value })}
               />
             </div>
           </div>
@@ -110,14 +110,14 @@ const Profile = () => {
             <div className='w-1/2'>
               <label htmlFor="bTime">Bed Time</label>
               <br />
-              <input disabled value={"12pm-7pm"} className='w-full rounded-3xl bg-gray-300' type="text" name='bTime'
+              <input disabled value={userData.bedtime} className='w-full rounded-3xl bg-gray-300' type="text" name='bTime'
                 onChange={(e) => setForm({ ...form, bTime: e.target.value })}
               />
             </div>
             <div className='w-1/2'>
               <label htmlFor="diet">Diet</label>
               <br />
-              <input disabled value={"Vegetarian"} className='w-full rounded-3xl bg-gray-300' type="text" name='diet'
+              <input disabled value={userData.diet} className='w-full rounded-3xl bg-gray-300' type="text" name='diet'
                 onChange={(e) => setForm({ ...form, diet: e.target.value })}
               />
             </div>
@@ -127,14 +127,14 @@ const Profile = () => {
             <div className='w-1/2'>
               <label htmlFor="school">Language</label>
               <br />
-              <input disabled value={"English"} className='w-full rounded-3xl bg-gray-300' type="text" name='language'
+              <input disabled value={userData.language} className='w-full rounded-3xl bg-gray-300' type="text" name='language'
                 onChange={(e) => setForm({ ...form, language: e.target.value })}
               />
             </div>
             <div className='w-1/2'>
               <label htmlFor="education">Education</label>
               <br />
-              <input disabled value={"Post Graduate"} className='w-full rounded-3xl bg-gray-300' type="text" name='education'
+              <input disabled value={userData.education} className='w-full rounded-3xl bg-gray-300' type="text" name='education'
                 onChange={(e) => setForm({ ...form, education: e.target.value })}
               />
             </div>
