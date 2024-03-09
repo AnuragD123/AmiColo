@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation';
 import { useUserContext } from '@/context/context';
 const Nav = () => {
     const [navToggle, setNavToggle] = useState(false);
-    const { user, setUser } = useUserContext();
+    const { user } = useUserContext();
     const navItems = [
         { label: 'Home', href: '/home' },
         { label: 'Find Room', href: '/find_room' },
@@ -17,6 +17,8 @@ const Nav = () => {
         // { label: 'Pricing', href: '/pricing' },
     ];
     const pathname = usePathname()
+
+    console.log("USER", user)
     return (
         <>
             {user && (<nav className="navbar fixed-top px-4 py-2 border-b border-gray-300">
