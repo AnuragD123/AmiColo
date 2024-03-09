@@ -351,7 +351,7 @@ const Edit = () => {
 
                 <div className="w-full flex items-center gap-3 mb-6">
                     <div className="w-1/2">
-                        <label htmlFor="languages">Languages</label>
+                        <label htmlFor="languages">Language</label>
                         <br />
                         <input
                             className="w-full rounded-3xl bg-gray-300"
