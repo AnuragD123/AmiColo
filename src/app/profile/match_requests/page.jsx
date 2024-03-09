@@ -9,10 +9,7 @@ const MatchRequestsPage = () => {
   // Dummy data for friend requests
 
   const [matchRequests, setMatchRequests] = useState([]);
-  const handlematchReq = (id) => {
-    console.log("Enter", id)
-    setMatchRequests(matchRequests.filter((data) => data.from_id !== id));
-  }
+
 
   useEffect(() => {
     // Fetch friend requests data from the API endpoint

@@ -39,7 +39,7 @@ export async function POST(request) {
             const whereClause = {};
             if (uploadedFile) {
                 const uniqueFilename = generateUniqueFilename(uploadedFile.name); // Function defined below
-                const path = `./public/images/${uniqueFilename}`;
+                const path = `./public/uploads/${uniqueFilename}`;
                 // Write the file to the server:
                 const bytes = await uploadedFile.arrayBuffer();
                 const buffer = Buffer.from(bytes);
