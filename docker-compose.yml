@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  amicolo:
+    build: ./
+    container_name: amicolo
+
+networks:
+  default:
+    name: proxy_default
+    external: true
