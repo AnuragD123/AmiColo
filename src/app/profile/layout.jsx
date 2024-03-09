@@ -5,13 +5,13 @@ import axios from 'axios'
 import { useUserContext } from '@/context/context';
 export default function ProfileLayout({ children }) {
   const [userData, setUserdata] = useState('');
-  const { user, setUser, socket } = useUserContext();
+  const { user, socket } = useUserContext();
   useEffect(() => {
     const getData = async () => {
       try {
         const response = await axios.get('/api/user/getdata');
         console.log(response.data.data[0]);
-        setUser(response.data.data[0]);
+        // setUser(response.data.data[0]);
         setUserdata(response.data.data[0]);
 
       } catch (error) {

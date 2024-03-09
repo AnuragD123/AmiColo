@@ -133,7 +133,7 @@ const Preference = () => {
             console.log(res.data);
             setUser(res.data?.getUser[0])
             if (res.success) {
-                toast.success("Profile Update Successull")
+                toast.success("Profile Update Successfully")
             }
         } catch (e) {
             // Handle errors here

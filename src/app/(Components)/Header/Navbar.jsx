@@ -17,6 +17,19 @@ const Navbar = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const token = Cookies.get('token'); // this is always giving undefined
     useEffect(() => {
+        const getData = async () => {
+            try {
+                const response = await axios.get('/api/user/getdata');
+                setUser(response?.data?.data[0]);
+
+            } catch (error) {
+                console.log(error.message)
+            }
+        }
+        getData();
+    }, [])
+
+    useEffect(() => {
         console.log("token =>", token);
         if (token == null) {
             setIsLoggedIn(false);
@@ -28,24 +41,24 @@ const Navbar = () => {
 
     const handleLogout = async () => {
         try {
-          // Make a request to your logout API using Axios
-          const response = await axios.get('/api/auth/logout');
-      
-          if (response.data.success) {
-            // Logout successful, redirect to login page
-            setUser();
-            toast.success(response.data.message);
-            router.push('/login');
-          } else {
-            // Handle logout failure
-            toast.error('Logout failed');
-            console.error('Logout failed');
-          }
+            // Make a request to your logout API using Axios
+            const response = await axios.get('/api/auth/logout');
+
+            if (response.data.success) {
+                // Logout successful, redirect to login page
+                setUser();
+                toast.success(response.data.message);
+                router.push('/login');
+            } else {
+                // Handle logout failure
+                toast.error('Logout failed');
+                console.error('Logout failed');
+            }
         } catch (error) {
-          // Handle network or other errors
-          console.error('Error during logout:', error);
+            // Handle network or other errors
+            console.error('Error during logout:', error);
         }
-      };
+    };
 
     return (
         <div className="flex flex-col lg:flex-row bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400 p-2 lg:px-8 items-center justify-between">

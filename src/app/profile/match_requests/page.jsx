@@ -29,13 +29,11 @@ const MatchRequestsPage = () => {
 
     fetchMatchRequests();
   }, []);
-  //   const friendRequests = [
-  //     { id: 1, username: 'john_doe' },
-  //     { id: 2, username: 'jane_smith' },
-  //     { id: 3, username: 'joe_root' },
-  //     { id: 4, username: 'autin_thomas' },
-  //     // Add more friend requests as needed
-  //   ];
+  const handlematchReq = (id) => {
+    console.log("Enter", id)
+    setMatchRequests(matchRequests.filter((data) => data.from_id !== id));
+  }
+
 
   return (
     <div>
