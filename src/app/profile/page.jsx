@@ -127,7 +127,7 @@ const Profile = () => {
             <div className='w-1/2'>
               <label htmlFor="school">Language</label>
               <br />
-              <input disabled value={userData.language} className='w-full rounded-3xl bg-gray-300' type="text" name='language'
+              <input disabled value={userData.languages} className='w-full rounded-3xl bg-gray-300' type="text" name='language'
                 onChange={(e) => setForm({ ...form, language: e.target.value })}
               />
             </div>
