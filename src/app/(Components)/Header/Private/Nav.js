@@ -47,8 +47,9 @@ const Nav = () => {
                             </div>
                             <div className="ml-4">
                                 <Link
-                                    className={`inline-block ${pathname === "/profile" ? "text-pink-500" : "text-gray-700"
-                                        } hover:text-pink-500`}
+                                    className={`inline-block ${
+                                        pathname === "/profile" ? "text-pink-500" : "text-gray-700"
+                                    } hover:text-pink-500`}
                                     href="/profile">
                                     {user ? (
                                         <Image
