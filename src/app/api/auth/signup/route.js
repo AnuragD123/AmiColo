@@ -7,7 +7,7 @@ import bcryptjs from "bcryptjs";
 export async function POST(req) {
     try {
         const reqBody = await req.json()
-        const { email, password } = reqBody
+        const { first_name, last_name,dob, email, password,gender } = reqBody
 
         console.log(reqBody);
 
@@ -24,7 +24,7 @@ export async function POST(req) {
 
 
 
-        const savedUser = await pool.query("INSERT INTO users (email, password) VALUES (?, ?)", [email, hashedPassword]);
+        const savedUser = await pool.query("INSERT INTO users (first_name,last_name,email, password,dob,gender) VALUES (?, ?,?,?,?,?)", [first_name,last_name,email,hashedPassword,dob,gender]);
 
         console.log(savedUser);
 

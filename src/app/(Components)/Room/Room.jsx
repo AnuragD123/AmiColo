@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import {toast,Toaster} from 'react-hot-toast'
 import {
     MapPin,
     Car,
@@ -17,7 +18,8 @@ const Room = ({ key, data, requests, Callback, booked }) => {
     const Decline = async (id) => {
         try {
             const res = await axios.post(`/api/room/Decline`, JSON.stringify({ id: id }))
-            if (!res.ok) throw new Error(await res.text());
+            if(res.data.status==='success'){toast.success(res.data.msg)}
+            else{ toast.error(res.data.msg)}
             Callback;
         } catch (e) {
             console.error(e);
@@ -37,6 +39,7 @@ const Room = ({ key, data, requests, Callback, booked }) => {
         <div
             className="w-full bg-white  rounded-lg shadow-md  hover:bg-gray-100  dark:bg-gray-800 dark:hover:bg-gray-700 flex flex-col md:flex-row"
         >
+            <Toaster/>
             <img
                 className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
                 src="/images/room.jpg"

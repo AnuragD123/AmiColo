@@ -5,24 +5,46 @@ import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 
 
-const RoomRequestCard = () => {
+const RoomRequestCard = ({ data }) => {
 
-  const [data, setData] = useState();
+  const { invitedby_first_name, invitedby_last_name, type,gym,rooms,parking,area,price,washrooms,invitation_id } = data;
 
-  useEffect(() => {
-    fetchData();
-  }, [])
-  const fetchData = async () => {
+  const acceptRoomInvite = async (invitation_id) => {
     try {
-      const response = await axios.get("/api/user/fetch_matching_requests");
-      console.log("RESponse", response)
-      setData(response.data);
+      const response = await axios.post(`/api/apartment/accept_room_req`,{invitation_id});
+      console.log('Room invite accepted:', response.data);
 
+      if (response.data.status==='success') {
+        toast.success(response.data.msg)
+      }
+      else{
+        toast.error(response.data.msg)
+      }
+      // Optionally, you can perform additional actions after a successful request
     } catch (error) {
-      console.error('Error fetching users:', error);
-
+      console.error('Error accepting room invite:', error.message);
+      // Handle errors or display an error message
     }
-  }
+  };
+  
+  const declineRoomInvite = async (invitation_id) => {
+    try {
+    const response = await axios.post(`/api/apartment/decline_room_req`,{invitation_id});
+      console.log('Room invite declined:', response.data);
+      
+      if (response.data.status==='success') {
+        toast.success(response.data.msg)
+      }
+      else{
+        toast.error(response.data.msg)
+      }
+    } catch (error) {
+      console.error('Error declining room invite:', error.message);
+      // Handle errors or display an error message
+    }
+  };
+  
+
 
   return (
     <div className='w-full rounded-lg flex item-start gap-5 max-lg:flex-col' style={{ boxShadow: "0px 0px 13px -3px black" }}>
@@ -36,16 +58,29 @@ const RoomRequestCard = () => {
         alt="Picture of the author"
       />
       <div className="py-2  max-lg:px-2">
-        <h3 className="text-lg font-semibold mb-1">2BHK fully Funrnist Room</h3>
-        <p className="text-xs text-gray-600 mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non expedita aspernatur impedit sapiente temporibus iusto ipsa repellendus reprehenderit, fugiat eum culpa.</p>
+        <h3 className="text-lg font-semibold mb-1">{type}</h3>
+        <p className="text-xs text-gray-600 mb-2">
+
+          <ul>
+            <li>Gym: {gym}</li>
+            <li>Rooms: {rooms}</li>
+            <li>Washrooms: {washrooms}</li>
+            <li>Area: {area}</li>
+            <li>Parking: {parking}</li>
+            <li>Price: ${price}</li>
+          </ul>
+        </p>
         <p className="text-xs text-gray-600 ">
           <span className="font-sm text-black mr-2">Suggest By:</span>
-          Anurag Dubey
+          {invitedby_first_name + " " + invitedby_last_name}
         </p>
 
-        <div className="w-full px-3">
-          <button className=" float-right rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400 text-white px-4 py-2">
-            View Detail
+        <div className="w-full my-3 px-3">
+          <button className=" float-right rounded-full bg-red-600 text-white px-4 py-1" onClick={()=>declineRoomInvite(invitation_id)}>
+            Decline
+          </button>
+          <button className=" float-right rounded-full bg-green-600 text-white px-4 py-1"onClick={()=>acceptRoomInvite(invitation_id)}>
+            Accept
           </button>
         </div>
 
