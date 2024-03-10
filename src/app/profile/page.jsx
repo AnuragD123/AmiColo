@@ -5,7 +5,7 @@ import { useState,useEffect } from "react"
 import axios from "axios";
 const Profile = () => {
 
-  const [form, setForm] = useState({ fName: "", lName: "", day: 0, month: 0, year: 0, gender: "", hSchool: "", bachelors: "", master: "", sector: "" });
+  const [form, setForm] = useState({ fName: "", lName: "", day: 0, month: 0, year: 0, gender: "", smoker: "", occupation: "", nationality: "", bio: "", bTime: "", diet: "", language: "", education:"", });
   const [Preferences, setPreferences] = useState(false)
   const [userData,setUserdata] =useState('');
 
@@ -49,15 +49,15 @@ const Profile = () => {
 
           <div className='w-full flex items-center mb-6 gap-4'>
             <div className='w-1/2'>
-              <label htmlFor="age">Age</label>
+              <label htmlFor="dob">Date of Birth</label>
               <div className='flex gap-3'>
-                <input disabled value={"valueji"} className='w-2/6 rounded-3xl bg-gray-300' placeholder='day' type="number" name='age'
+                <input disabled value={"25"} className='w-2/6 rounded-3xl bg-gray-300' placeholder='day' type="number" name='age'
                   onChange={(e) => setForm({ ...form, day: e.target.value })}
                 />
-                <input disabled value={"valueji"} className='w-2/6 rounded-3xl bg-gray-300' placeholder='month' type="number" name='age'
+                <input disabled value={"02"} className='w-2/6 rounded-3xl bg-gray-300' placeholder='month' type="number" name='age'
                   onChange={(e) => setForm({ ...form, month: e.target.value })}
                 />
-                <input disabled value={"valueji"} className='w-2/6 rounded-3xl bg-gray-300' placeholder='year' type="number" name='age'
+                <input disabled value={"2024"} className='w-2/6 rounded-3xl bg-gray-300' placeholder='year' type="number" name='age'
                   onChange={(e) => setForm({ ...form, year: e.target.value })}
                 />
               </div>
@@ -74,34 +74,68 @@ const Profile = () => {
 
           <div className='w-full flex items-center gap-3 mb-6'>
             <div className='w-1/2'>
-              <label htmlFor="school">High School</label>
+              <label htmlFor="smoker">Smoker</label>
               <br />
-              <input disabled value={"valueji"} className='w-full rounded-3xl bg-gray-300' type="text" name='school'
-                onChange={(e) => setForm({ ...form, hSchool: e.target.value })}
+              <input disabled value={userData.smoker} className='w-full rounded-3xl bg-gray-300' type="text" name='smoker'
+                onChange={(e) => setForm({ ...form, smoker: e.target.value })}
               />
             </div>
             <div className='w-1/2'>
-              <label htmlFor="college">Bachelors</label>
+              <label htmlFor="occupation">Occupation</label>
               <br />
-              <input disabled value={"valueji"} className='w-full rounded-3xl bg-gray-300' type="text" name='college'
-                onChange={(e) => setForm({ ...form, bachelors: e.target.value })}
+              <input disabled value={userData.occupation} className='w-full rounded-3xl bg-gray-300' type="text" name='occupation'
+                onChange={(e) => setForm({ ...form, occupation: e.target.value })}
               />
             </div>
           </div>
 
           <div className='w-full flex items-center gap-3 mb-6'>
             <div className='w-1/2'>
-              <label htmlFor="pg">Master</label>
+              <label htmlFor="school">Nationality</label>
               <br />
-              <input disabled value={"valueji"} className='w-full rounded-3xl bg-gray-300' type="text" name='pg'
-                onChange={(e) => setForm({ ...form, master: e.target.value })}
+              <input disabled value={userData.nationality} className='w-full rounded-3xl bg-gray-300' type="text" name='nationality'
+                onChange={(e) => setForm({ ...form, nationality: e.target.value })}
               />
             </div>
             <div className='w-1/2'>
-              <label htmlFor="sector">Sector</label>
+              <label htmlFor="bio">bio</label>
               <br />
-              <input disabled value={"valueji"} className='w-full rounded-3xl bg-gray-300' type="text" name='sector'
-                onChange={(e) => setForm({ ...form, sector: e.target.value })}
+              <input disabled value={userData.bio} className='w-full rounded-3xl bg-gray-300' type="text" name='bio'
+                onChange={(e) => setForm({ ...form, bio: e.target.value })}
+              />
+            </div>
+          </div>
+
+          <div className='w-full flex items-center gap-3 mb-6'>
+            <div className='w-1/2'>
+              <label htmlFor="bTime">Bed Time</label>
+              <br />
+              <input disabled value={userData.bedtime} className='w-full rounded-3xl bg-gray-300' type="text" name='bTime'
+                onChange={(e) => setForm({ ...form, bTime: e.target.value })}
+              />
+            </div>
+            <div className='w-1/2'>
+              <label htmlFor="diet">Diet</label>
+              <br />
+              <input disabled value={userData.diet} className='w-full rounded-3xl bg-gray-300' type="text" name='diet'
+                onChange={(e) => setForm({ ...form, diet: e.target.value })}
+              />
+            </div>
+          </div>
+
+          <div className='w-full flex items-center gap-3 mb-6'>
+            <div className='w-1/2'>
+              <label htmlFor="school">Language</label>
+              <br />
+              <input disabled value={userData.languages} className='w-full rounded-3xl bg-gray-300' type="text" name='language'
+                onChange={(e) => setForm({ ...form, language: e.target.value })}
+              />
+            </div>
+            <div className='w-1/2'>
+              <label htmlFor="education">Education</label>
+              <br />
+              <input disabled value={userData.education} className='w-full rounded-3xl bg-gray-300' type="text" name='education'
+                onChange={(e) => setForm({ ...form, education: e.target.value })}
               />
             </div>
           </div>

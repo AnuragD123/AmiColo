@@ -21,21 +21,25 @@ export async function POST(request) {
         const month = file.get('month');
         const year = file.get('year');
         const gender = file.get('gender');
-        const hSchool = file.get('hSchool');
-        const bachelors = file.get('bachelors');
-        const master = file.get('master');
-        const sector = file.get('sector');
+        const smoker = file.get('smoker');
+        const occupation = file.get('occupation');
+        const nationality = file.get('nationality');
+        const bio = file.get('bio');
+        const bedtime = file.get('bedtime');
+        const diet = file.get('diet');
+        const languages = file.get('languages');
+        const education = file.get('education');
 
         const place = file.get('place');
         const city = file.get('city');
         const food = file.get('food');
 
 
-        if (fName || lName || day || month || year || gender || hSchool || bachelors || master || sector || place || city || food || uploadedFile) {
+        if (fName || lName || day || month || year || gender || smoker || occupation || nationality || bio || bedtime || diet || languages || education || city || food || uploadedFile) {
             const whereClause = {};
             if (uploadedFile) {
                 const uniqueFilename = generateUniqueFilename(uploadedFile.name); // Function defined below
-                const path = `./public/images/${uniqueFilename}`;
+                const path = `./public/uploads/${uniqueFilename}`;
                 // Write the file to the server:
                 const bytes = await uploadedFile.arrayBuffer();
                 const buffer = Buffer.from(bytes);
@@ -54,17 +58,29 @@ export async function POST(request) {
             if (gender) {
                 whereClause.gender = gender;
             }
-            if (hSchool) {
-                whereClause.high_school = hSchool;
+            if (smoker) {
+                whereClause.smoker = smoker;
             }
-            if (bachelors) {
-                whereClause.bachelors = bachelors;
+            if (occupation) {
+                whereClause.occupation = occupation;
             }
-            if (master) {
-                whereClause.master = master;
+            if (nationality) {
+                whereClause.nationality = nationality;
             }
-            if (sector) {
-                whereClause.sector = sector;
+            if (bio) {
+                whereClause.bio = bio;
+            }
+            if (bedtime) {
+                whereClause.bedtime = bedtime;
+            }
+            if (diet) {
+                whereClause.diet = diet;
+            }
+            if (languages) {
+                whereClause.languages = languages;
+            }
+            if (education) {
+                whereClause.education = education;
             }
             if (place) {
                 whereClause.place = place;

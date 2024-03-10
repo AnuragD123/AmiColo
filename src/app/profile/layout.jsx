@@ -17,7 +17,7 @@ export default function ProfileLayout({ children }) {
       } catch (error) {
         console.log(error.message)
       }
-    }
+    } 
     getData();
   }, [])
   useEffect(() => {

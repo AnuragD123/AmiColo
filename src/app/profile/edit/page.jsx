@@ -16,10 +16,14 @@ const Edit = () => {
         month: 0,
         year: 0,
         gender: "",
-        hSchool: "",
-        bachelors: "",
-        master: "",
-        sector: "",
+        smoker: "",
+        occupation: "",
+        nationality: "",
+        bio: "",
+        bedtime: "",
+        diet: "",
+        languages: "",
+        education: "",
         file: ""
     });
     const [image, setImage] = useState();
@@ -62,11 +66,14 @@ const Edit = () => {
             month: user?.dob.split("-")[1] || 0,
             year: user?.dob.split("-")[0] || 0,
             gender: user?.gender || "",
-            hSchool: user?.high_school || "",
-            bachelors: user?.bachelors || "",
-            master: user?.master || "",
-            sector: user?.sector || "",
-
+            smoker: user?.smoker || "",
+            occupation: user?.occupation || "",
+            nationality: user?.nationality || "",
+            bio: user?.bio || "",
+            bedtime: user?.bedtime || "",
+            diet: user?.diet || "",
+            languages: user?.languages || "",
+            education: user?.education || "",
         });
 
     }, [user]);
@@ -81,10 +88,14 @@ const Edit = () => {
             formData.append("month", form.month);
             formData.append("year", form.year);
             formData.append("gender", form.gender);
-            formData.append("hSchool", form.hSchool);
-            formData.append("bachelors", form.bachelors);
-            formData.append("master", form.master);
-            formData.append("sector", form.sector);
+            formData.append("smoker", form.smoker);
+            formData.append("occupation", form.occupation);
+            formData.append("nationality", form.nationality);
+            formData.append("bio", form.bio);
+            formData.append("bedtime", form.bedtime);
+            formData.append("diet", form.diet);
+            formData.append("languages", form.languages);
+            formData.append("education", form.education);
             // Append image data
             if (image) {
                 formData.append("file", image);
@@ -97,7 +108,7 @@ const Edit = () => {
             // Handle response
             setUser(res.data?.getUser[0])
             if (res.data.success) {
-                toast.success("Profile Update Successull")
+                toast.success("Profile Update Successfully")
             }
         } catch (e) {
             // Handle errors here
@@ -168,6 +179,7 @@ const Edit = () => {
                         </label>
                     </button>
                 </div>
+
                 <div className="w-full flex items-center gap-3 mb-6">
                     <div className="w-1/2">
                         <label htmlFor="fname">First Name</label>
@@ -199,7 +211,7 @@ const Edit = () => {
 
                 <div className="w-full flex items-center mb-6 gap-4">
                     <div className="w-1/2">
-                        <label htmlFor="age">Age</label>
+                        <label htmlFor="age">Date of Birth</label>
                         <div className="flex gap-3">
                             <input
                                 className="w-2/6 rounded-3xl bg-gray-300"
@@ -240,10 +252,10 @@ const Edit = () => {
                             name="gender"
                             value={form.gender}
                             onChange={(e) => setForm({ ...form, gender: e.target.value })}>
-                            <option value="">Select</option>
+                            <option value="ratherNotSay">Rather not say</option>
+                            <option value="Other">Other</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
-                            <option value="Other">Other</option>
                         </select>
 
 
@@ -252,28 +264,28 @@ const Edit = () => {
 
                 <div className="w-full flex items-center gap-3 mb-6">
                     <div className="w-1/2">
-                        <label htmlFor="school">High School</label>
+                        <label htmlFor="smoker">Smoker</label>
                         <br />
                         <input
                             className="w-full rounded-3xl bg-gray-300"
                             type="text"
-                            name="school"
-                            value={form.hSchool}
+                            name="smoker"
+                            value={form.smoker}
                             onChange={(e) =>
-                                setForm({ ...form, hSchool: e.target.value })
+                                setForm({ ...form, smoker: e.target.value })
                             }
                         />
                     </div>
                     <div className="w-1/2">
-                        <label htmlFor="college">Bachelors</label>
+                        <label htmlFor="occupation">Occupation</label>
                         <br />
                         <input
                             className="w-full rounded-3xl bg-gray-300"
                             type="text"
-                            name="college"
-                            value={form.bachelors}
+                            name="occupation"
+                            value={form.occupation}
                             onChange={(e) =>
-                                setForm({ ...form, bachelors: e.target.value })
+                                setForm({ ...form, occupation: e.target.value })
                             }
                         />
                     </div>
@@ -281,28 +293,86 @@ const Edit = () => {
 
                 <div className="w-full flex items-center gap-3 mb-6">
                     <div className="w-1/2">
-                        <label htmlFor="pg">Master</label>
+                        <label htmlFor="nationality">Nationality</label>
                         <br />
                         <input
                             className="w-full rounded-3xl bg-gray-300"
                             type="text"
-                            name="pg"
-                            value={form.master}
+                            name="nationality"
+                            value={form.nationality}
                             onChange={(e) =>
-                                setForm({ ...form, master: e.target.value })
+                                setForm({ ...form, nationality: e.target.value })
                             }
                         />
                     </div>
                     <div className="w-1/2">
-                        <label htmlFor="sector">Sector</label>
+                        <label htmlFor="bio">Bio</label>
                         <br />
                         <input
                             className="w-full rounded-3xl bg-gray-300"
                             type="text"
-                            name="sector"
-                            value={form.sector}
+                            name="bio"
+                            value={form.bio}
                             onChange={(e) =>
-                                setForm({ ...form, sector: e.target.value })
+                                setForm({ ...form, bio: e.target.value })
+                            }
+                        />
+                    </div>
+                </div>
+
+                <div className="w-full flex items-center gap-3 mb-6">
+                    <div className="w-1/2">
+                        <label htmlFor="bedtime">Bed Time</label>
+                        <br />
+                        <input
+                            className="w-full rounded-3xl bg-gray-300"
+                            type="text"
+                            name="bedtime"
+                            value={form.bedtime}
+                            onChange={(e) =>
+                                setForm({ ...form, bedtime: e.target.value })
+                            }
+                        />
+                    </div>
+                    <div className="w-1/2">
+                        <label htmlFor="diet">Diet</label>
+                        <br />
+                        <input
+                            className="w-full rounded-3xl bg-gray-300"
+                            type="text"
+                            name="diet"
+                            value={form.diet}
+                            onChange={(e) =>
+                                setForm({ ...form, diet: e.target.value })
+                            }
+                        />
+                    </div>
+                </div>
+
+                <div className="w-full flex items-center gap-3 mb-6">
+                    <div className="w-1/2">
+                        <label htmlFor="languages">Language</label>
+                        <br />
+                        <input
+                            className="w-full rounded-3xl bg-gray-300"
+                            type="text"
+                            name="languages"
+                            value={form.languages}
+                            onChange={(e) =>
+                                setForm({ ...form, languages: e.target.value })
+                            }
+                        />
+                    </div>
+                    <div className="w-1/2">
+                        <label htmlFor="education">Education</label>
+                        <br />
+                        <input
+                            className="w-full rounded-3xl bg-gray-300"
+                            type="text"
+                            name="education"
+                            value={form.education}
+                            onChange={(e) =>
+                                setForm({ ...form, education: e.target.value })
                             }
                         />
                     </div>
@@ -311,7 +381,7 @@ const Edit = () => {
 
             <div className="flex justify-end mt-6">
                 <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold my-2 px-5 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
                     onClick={handleSubmit}
                 >
                     Save
