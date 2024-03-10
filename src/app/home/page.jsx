@@ -9,7 +9,6 @@ import Easyfind from '../../../images/easyfind.jpg';
 import Easystay from '../../../images/easystay.jpg';
 import ProfileDemo from '../../../images/profileDemo.png';
 import { useUserContext } from '@/context/context';
-
 import GetStart from '../(Components)/getStart/getStart';
 
 const Home = () => {
@@ -169,4 +168,4 @@ const Home = () => {
     )
 }
 
-export default home;
+export default Home;
