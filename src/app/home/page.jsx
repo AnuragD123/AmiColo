@@ -10,7 +10,7 @@ import ProfileDemo from '../../../images/profileDemo.png';
 
 import GetStart from '../(Components)/getStart/getStart';
 
-const home = () => {
+const Home = () => {
 
     const [closeModel, setCloseModle] = useState(true);
     const easyfind = [
