@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import Room from '@/app/(Components)/Room/Room'
+import Room from './Room'
 import { GrNext, GrPrevious } from "react-icons/gr";
 import axios from 'axios';
 const Listing = () => {

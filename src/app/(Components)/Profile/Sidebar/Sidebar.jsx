@@ -30,7 +30,7 @@ export default function Sidebar() {
           <li> <Link href="/profile/match_requests" >Match Requests</Link></li>
           <li> <Link href="/profile/my_matches" >My Matches</Link></li>
           <li> <Link href="/profile/room_request" >Room Request</Link></li>
-          <li> <Link href="/profile/booking_request" >Booking Requests</Link></li>
+          <li> <Link href="/profile/sent_booking_request" > Sent Booking Requests</Link></li>
           <li> <Link href="/profile/booking" >My Booking</Link></li>
           <li> <Link href="/profile/improve_matches" >Improve Matches</Link></li>
           <li> <Link href="/profile/report" >Report Issue</Link></li>

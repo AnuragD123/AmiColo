@@ -5,6 +5,9 @@ import { ArrowRight } from 'lucide-react'
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 
 const Signup = () => {
@@ -12,17 +15,21 @@ const Signup = () => {
 
   const router = useRouter();
   const [user, setUser] = useState({
-
+    first_name: "",
+    last_name: "",
+    dob: new Date(),
     email: "",
     password: "",
-    // username: "",
+    gender: "",
   })
 
   const handleSignup = async () => {
     try {
       // setLoading(true);
       const response = await axios.post("/api/auth/signup", user);
-      console.log("Signup success", response.data);
+      // console.log("Signup success", response.data);
+      toast.success(response.data.message);
+
       router.push("/login");
 
     } catch (error) {
@@ -63,18 +70,73 @@ const Signup = () => {
             </p>
             <form action="#" method="POST" className="mt-8">
               <div className="space-y-5">
-                <div>
-                  <label htmlFor="name" className="text-base font-medium text-gray-900">
-                    {' '}
-                    Full Name{' '}
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                      type="text"
-                      placeholder="Full Name"
-                      id="name"
-                    ></input>
+                <div className="grid grid-cols-2 gap-4">
+                  {/* First Name */}
+                  <div>
+                    <label htmlFor="first_name" className="text-base font-medium text-gray-900">
+                      First Name
+                    </label>
+                    <div className="mt-2">
+                      <input
+                        className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                        type="text"
+                        placeholder="First Name"
+                        id="first_name"
+                        value={user.first_name}
+                        onChange={(e) => setUser({ ...user, first_name: e.target.value })}
+                      ></input>
+                    </div>
+                  </div>
+                  {/* Last Name */}
+                  <div>
+                    <label htmlFor="last_name" className="text-base font-medium text-gray-900">
+                      Last Name
+                    </label>
+                    <div className="mt-2">
+                      <input
+                        className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                        type="text"
+                        placeholder="Last Name"
+                        id="last_name"
+                        value={user.last_name}
+                        onChange={(e) => setUser({ ...user, last_name: e.target.value })}
+                      ></input>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  {/* Date of Birth */}
+                  <div>
+                    <label htmlFor="date" className="text-base font-medium text-gray-900">
+                      Date of Birth
+                    </label>
+                    <div className="mt-2">
+                      <DatePicker
+                        className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                        selected={user.dob}
+                        onChange={(date) => setUser({ ...user, dob: date })}
+                      />
+                    </div>
+                  </div>
+                  {/* Gender */}
+                  <div>
+                    <label htmlFor="gender" className="text-base font-medium text-gray-900">
+                      Gender
+                    </label>
+                    <div className="mt-2">
+                      <select
+                        className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                        id="gender"
+                        value={user.gender}
+                        onChange={(e) => setUser({ ...user, gender: e.target.value })}
+                      >
+                        <option value="" disabled>Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
                 <div>
@@ -124,7 +186,7 @@ const Signup = () => {
               </div>
             </form>
             <div className="mt-3 space-y-3">
-             
+
               <button
                 type="button"
                 className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"

@@ -33,7 +33,8 @@ const Roomate = ({data}) => {
             <a href="/">
                 <img
                     className="mx-auto pt-4 rounded-full center w-40 h-40 "
-                    src="/images/lady.jpg"
+                    src={data?.avatar ? `/uploads/${data?.avatar}` : "/images/lady.jpg"}
+                
                     alt="Roommate photo"
                 />
             </a>

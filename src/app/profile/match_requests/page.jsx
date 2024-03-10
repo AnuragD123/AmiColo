@@ -10,6 +10,7 @@ const MatchRequestsPage = () => {
 
   const [matchRequests, setMatchRequests] = useState([]);
 
+
   useEffect(() => {
     // Fetch friend requests data from the API endpoint
     const fetchMatchRequests = async () => {

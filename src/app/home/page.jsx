@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Card from './card';
 import TestimonialCard from './testimonialCard';
@@ -8,9 +8,11 @@ import Easyfind from '../../../images/easyfind.jpg';
 import Easystay from '../../../images/easystay.jpg';
 import ProfileDemo from '../../../images/profileDemo.png';
 
+import GetStart from '../(Components)/getStart/getStart';
 
 const home = () => {
-   
+
+    const [closeModel, setCloseModle] = useState(true);
     const easyfind = [
         {
             Img: Easyfind,
@@ -58,9 +60,15 @@ const home = () => {
             review: "I've been searching for a tool like Pavo for so long. I love the reports it generates and the amazing high accuracy"
         },
     ]
+    const handleSubmitForm = (data) => {
+        setCloseModle(false)
+        console.log("DATA", data)
+    }
     return (
         <>
             <header id="header" className="py-28 text-center md:pt-36 lg:text-left xl:pt-44 xl:pb-32 bg-gradient-to-b from-blue-300 to-white">
+                {closeModel && <GetStart handleSubmitForm={handleSubmitForm} />}
+
                 <div className="px-4 sm:px-8 lg:grid lg:grid-cols-2 lg:gap-x-8">
                     <div className="mb-16 lg:mt-32 xl:mt-40 xl:mr-12">
                         <h1 className="text-5xl max-sm:text-4xl font-extrabold mb-5">Your New City, <span>Your New Home</span></h1>
