@@ -10,7 +10,8 @@ export default function AppStore({ children }) {
   const [socket, setSocket] = useState(null);
   const [user, setUser] = useState();
 
-  const allowedOrigins = "https://websocket.futuregeek.tech";
+  const allowedOrigins = process.env.Socket_URL;
+  // const allowedOrigins = "https://websocket.futuregeek.tech";
 
   useEffect(() => setSocket(io(allowedOrigins)), []);
 

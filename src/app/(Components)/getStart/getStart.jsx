@@ -14,6 +14,7 @@ import beach from '@/../../public/images/beach.jpg'
 import mountains from '@/../../public/images/mountains.jpeg'
 import cityscape from '@/../../public/images/cityscape.jpeg'
 import countryside from '@/../../public/images/countryside.jpeg'
+import { toast, Toaster } from "react-hot-toast";
 
 
 // Functional component for the multipage form
@@ -88,10 +89,13 @@ const GetStart = ({ handleSubmitForm }) => {
 
     // Function to handle moving to the next page
     const handleNext = () => {
+
         if (slideNumber < 6) {
             setSlideNumber((prevSlideNumber) => prevSlideNumber + 1);
-        } else if (slideNumber === 6) {
+        } else if (slideNumber === 6 && form.nationality != null && form.language != null && form.occupation != null && form.smoker != null && form.food != null && form.place != null && form.city != null) {
             handleSubmitForm(form)
+        } else {
+            toast.error("fill all field")
         }
     };
 
@@ -100,6 +104,7 @@ const GetStart = ({ handleSubmitForm }) => {
     // Render the form based on the current slide number
     return (
         <div className="fixed top-0 left-0 w-full h-screen bg-black bg-opacity-70 flex items-center justify-center">
+            <Toaster />
             <div className="bg-white w-1/2 h-1/2 max-lg:w-3/4 max-md:w-4/5 max-sm:w-11/12 rounded-2xl p-8 text-center flex flex-col items-center justify-center pb-8">
                 {slideNumber === 0 && (
                     <div className="flex flex-col item-center gap-5 max-sm:w-full">
@@ -107,7 +112,7 @@ const GetStart = ({ handleSubmitForm }) => {
                         <select name="" value={form.nationality} onChange={(e) => updateForm("nationality", e.target.value)} className=" rounded-xl outline-none">
                             <option value={null}>Select Nationality</option>
                             {country.map((data, index) => (
-                                <option key={index} value={form.nationality}>{data.name}</option>
+                                <option key={index} value={form.name}>{data.name}</option>
                             ))}
                         </select>
                     </div>
@@ -176,8 +181,15 @@ const GetStart = ({ handleSubmitForm }) => {
                         <h2 className="text-2xl font-bold mb-4">Do you smoke?</h2>
                         {/* <label>Smoker:</label> */}
                         <div className="flex items-center justify-around">
-                            <button onClick={() => updateForm("smoker", true)} className='  float-right text-center text-xl text-white font-extrabold py-2 px-4 transition-all duration-300 ease-linear hover:scale-110 hover:rounded-xl ' style={{ backgroundImage: "linear-gradient(#EF8463, #7170F5 )" }}>Yes</button>
-                            <button onClick={() => updateForm("smoker", false)} className=' float-right text-center text-xl text-white font-extrabold py-2 px-4 transition-all duration-300 ease-linear hover:scale-110 hover:rounded-xl ' style={{ backgroundImage: "linear-gradient(#EF8463, #7170F5 )" }}>No</button>
+                            <button onClick={() => {
+                                updateForm("smoker", true)
+                                handleNext()
+
+                            }} className='  float-right text-center text-xl text-white font-extrabold py-2 px-4 transition-all duration-300 ease-linear hover:scale-110 hover:rounded-xl ' style={{ backgroundImage: "linear-gradient(#EF8463, #7170F5 )" }}>Yes</button>
+                            <button onClick={() => {
+                                updateForm("smoker", false)
+                                handleNext()
+                            }} className=' float-right text-center text-xl text-white font-extrabold py-2 px-4 transition-all duration-300 ease-linear hover:scale-110 hover:rounded-xl ' style={{ backgroundImage: "linear-gradient(#EF8463, #7170F5 )" }}>No</button>
                         </div>
                     </div>
                 )}

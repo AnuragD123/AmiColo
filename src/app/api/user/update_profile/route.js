@@ -29,13 +29,14 @@ export async function POST(request) {
         const diet = file.get('diet');
         const languages = file.get('languages');
         const education = file.get('education');
+        const login = file.get('login');
 
         const place = file.get('place');
         const city = file.get('city');
         const food = file.get('food');
 
 
-        if (fName || lName || day || month || year || gender || smoker || occupation || nationality || bio || bedtime || diet || languages || education || city || food || uploadedFile) {
+        if (fName || lName || day || month || year || gender || smoker || occupation || nationality || bio || bedtime || diet || languages || education || city || food || login || uploadedFile) {
             const whereClause = {};
             if (uploadedFile) {
                 const uniqueFilename = generateUniqueFilename(uploadedFile.name); // Function defined below
@@ -66,6 +67,9 @@ export async function POST(request) {
             }
             if (nationality) {
                 whereClause.nationality = nationality;
+            }
+            if (login) {
+                whereClause.login = true;
             }
             if (bio) {
                 whereClause.bio = bio;
