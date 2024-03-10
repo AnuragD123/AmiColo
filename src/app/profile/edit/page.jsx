@@ -2,13 +2,15 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
-import Profile from '../../../../images/AmiColo_Profile.png'
+import { Circles, MutatingDots } from "react-loader-spinner";
+import Profile from "../../../../images/AmiColo_Profile.png";
 import Image from "next/image";
-import { useUserContext } from '@/context/context';
+import { useUserContext } from "@/context/context";
 import { toast, Toaster } from "react-hot-toast";
 // const baseUrl = require("http://192.168.127.176:3000");
 const Edit = () => {
     const { user, setUser } = useUserContext();
+    const [loading, setLoading] = useState(false);
     const [form, setForm] = useState({
         fName: "",
         lName: "",
@@ -24,7 +26,7 @@ const Edit = () => {
         diet: "",
         languages: "",
         education: "",
-        file: ""
+        file: "",
     });
     const [image, setImage] = useState();
 
@@ -34,7 +36,6 @@ const Edit = () => {
         //         const response = await axios.get('/api/user/getdata');
         //         console.log(response.data.data[0]);
         //         const userData = response.data.data[0];
-
 
         //         // Update the form state with the retrieved data
         //         setForm({
@@ -58,7 +59,7 @@ const Edit = () => {
         // }
 
         // getData();
-        console.log("USERDATQA", user)
+        console.log("USERDATA", user);
         setForm({
             fName: user?.first_name || "",
             lName: user?.last_name || "",
@@ -75,11 +76,11 @@ const Edit = () => {
             languages: user?.languages || "",
             education: user?.education || "",
         });
-
     }, [user]);
 
     const handleSubmit = async () => {
         try {
+            setLoading(true);
             const formData = new FormData();
             // Append form data
             formData.append("fName", form.fName);
@@ -102,20 +103,20 @@ const Edit = () => {
             }
             const res = await axios.post(`/api/user/update_profile`, formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    "Content-Type": "multipart/form-data",
                 },
             });
             // Handle response
-            setUser(res.data?.getUser[0])
+            setUser(res.data?.getUser[0]);
             if (res.data.success) {
-                toast.success("Profile Update Successfully")
+                setLoading(false);
+                toast.success("Profile Update Successfully");
             }
         } catch (e) {
             // Handle errors here
             console.error(e);
         }
     };
-
 
     const handleImageUpload = async (e) => {
         const filedata = e.target.files[0];
@@ -125,20 +126,35 @@ const Edit = () => {
         const reader = new FileReader();
         reader.onload = () => {
             const imageData = reader.result;
-            setForm({ ...file, file: imageData })
-            setImage(filedata)
+            setForm({ ...file, file: imageData });
+            setImage(filedata);
         };
         reader.readAsDataURL(filedata);
-
     };
-    return (
+    return loading ? (
+        <MutatingDots
+            visible={true}
+            height="100"
+            width="100"
+            color="#4fa94d"
+            secondaryColor="#4fa94d"
+            radius="12.5"
+            ariaLabel="mutating-dots-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+        />
+    ) : (
         <div className="w-2/4 mx-auto mt-10 leading-10">
             <Toaster />
             <div className="w-full flex items-center justify-between mb-4 gap-2">
-                <Link href="/profile/edit" className="w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl">
+                <Link
+                    href="/profile/edit"
+                    className="w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl">
                     Edit Profile
                 </Link>
-                <Link href="/profile/preference" className="w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl">
+                <Link
+                    href="/profile/preference"
+                    className="w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl">
                     Your Preferences
                 </Link>
             </div>
@@ -146,9 +162,15 @@ const Edit = () => {
             <div>
                 <div className="w-full flex items-center gap-3 mb-6">
                     <Image
-                        className=' w-40 rounded-full'
+                        className=" w-40 rounded-full"
                         // src={`${baseUrl}/assets/images/${form.file}`}
-                        src={form.file ? form.file : user?.avatar ? `/uploads/${form?.file}` : Profile}
+                        src={
+                            form.file
+                                ? form.file
+                                : user?.avatar
+                                ? `/uploads/${form?.file}`
+                                : Profile
+                        }
                         // src={form.file || Profile}
                         width={150}
                         height={150}
@@ -156,23 +178,39 @@ const Edit = () => {
                     />
 
                     <button>
-                        <label htmlFor="file" style={{ cursor: "pointer" }}> Upload Files
+                        <label
+                            htmlFor="file"
+                            style={{ cursor: "pointer" }}>
+                            {" "}
+                            Upload Files
                             <input
                                 type="file"
                                 id="file"
                                 name="photo"
                                 accept="image/*"
                                 style={{ display: "none" }}
-
                                 onChange={(e) => {
                                     const selectedFile = e.target.files[0];
-                                    const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/webp'];
-                                    if (selectedFile && validImageTypes.includes(selectedFile.type)) {
-                                        handleImageUpload(e)
+                                    const validImageTypes = [
+                                        "image/jpeg",
+                                        "image/png",
+                                        "image/gif",
+                                        "image/bmp",
+                                        "image/webp",
+                                    ];
+                                    if (
+                                        selectedFile &&
+                                        validImageTypes.includes(
+                                            selectedFile.type
+                                        )
+                                    ) {
+                                        handleImageUpload(e);
                                         // setImage(selectedFile);
                                     } else {
-                                        e.target.value = ""
-                                        alert('Please select a valid image file.');
+                                        e.target.value = "";
+                                        alert(
+                                            "Please select a valid image file."
+                                        );
                                     }
                                 }}
                             />
@@ -248,19 +286,20 @@ const Edit = () => {
                     <div className="w-1/2">
                         <label htmlFor="gender">Gender</label>
                         <br />
-                        <select className="w-full rounded-3xl bg-gray-300"
+                        <select
+                            className="w-full rounded-3xl bg-gray-300"
                             name="gender"
                             value={form.gender}
-                            onChange={(e) => setForm({ ...form, gender: e.target.value })}>
+                            onChange={(e) =>
+                                setForm({ ...form, gender: e.target.value })
+                            }>
                             <option value="ratherNotSay">Rather not say</option>
                             <option value="Other">Other</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                         </select>
-
-
                     </div>
-                </div >
+                </div>
 
                 <div className="w-full flex items-center gap-3 mb-6">
                     <div className="w-1/2">
@@ -301,7 +340,10 @@ const Edit = () => {
                             name="nationality"
                             value={form.nationality}
                             onChange={(e) =>
-                                setForm({ ...form, nationality: e.target.value })
+                                setForm({
+                                    ...form,
+                                    nationality: e.target.value,
+                                })
                             }
                         />
                     </div>
@@ -377,19 +419,30 @@ const Edit = () => {
                         />
                     </div>
                 </div>
-            </div >
+            </div>
 
             <div className="flex justify-end mt-6">
                 <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold my-2 px-5 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
-                    onClick={handleSubmit}
-                >
-                    Save
+                    onClick={handleSubmit}>
+                    {loading ? (
+                        <Circles
+                            className="p-1"
+                            height="40"
+                            width="40"
+                            color="#ffffff"
+                            ariaLabel="circles-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                            visible={loading}
+                        />
+                    ) : (
+                        "Save"
+                    )}
                 </button>
             </div>
-        </div >
+        </div>
     );
-
 };
 
 export default Edit;

@@ -12,7 +12,7 @@ import { useUserContext } from '@/context/context';
 
 import GetStart from '../(Components)/getStart/getStart';
 
-const home = () => {
+const Home = () => {
 
     const { user, setUser } = useUserContext();
 
