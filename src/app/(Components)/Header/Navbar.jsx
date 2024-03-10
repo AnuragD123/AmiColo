@@ -77,14 +77,14 @@ const Navbar = () => {
                         className="mr-2"
                         size={18}
                     />
-                    <p className="sm:inline">+1 514-586-4586</p>
+                    <Link href="https://chat.whatsapp.com/FOJm9BG8PJz1VsQz69OQJn" className="sm:inline">+1 514-586-4586</Link>
                 </div>
                 <div className="flex items-center ml-4 lg:ml-0 lg:mr-8 py-2">
                     <Mail
                         className="mr-2"
                         size={18}
                     />
-                    <p className="sm:inline">info@amicolo.com</p>
+                    <Link href="mailto:info@amicolo.com" className="sm:inline">info@amicolo.com</Link>
                 </div>
                 <button
                     className="bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-400 hover:to-cyan-400 px-5 py-2 rounded-full ml-4 lg:ml-0 text-white"

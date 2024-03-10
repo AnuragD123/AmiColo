@@ -5,7 +5,8 @@ const httpServer = http.createServer();
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "https:futuregeek.tech", // Replace with your frontend URL
+    // origin: "https:futuregeek.tech", // Replace with your frontend URL
+    origin: "http://localhost:3000", // Replace with your frontend URL
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true,

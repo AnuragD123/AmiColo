@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { Country, State, City } from 'country-state-city';
+import { Country } from 'country-state-city';
 import gluten from '@/../../public/images/gluten.jpeg'
 import vegan from '@/../../public/images/vegan.jpeg'
 import vegetarian from '@/../../public/images/vegetarian.jpeg'
@@ -120,7 +120,6 @@ const GetStart = ({ handleSubmitForm }) => {
                 {slideNumber === 1 && (
                     <div className="flex flex-col item-center gap-5 max-sm:w-full">
                         <h2 className="text-2xl font-bold mb-4">Could you share with us your language preference?</h2>
-                        {/* <label>Language:</label> */}
                         <select name="" value={form.language} onChange={(e) => updateForm("language", e.target.value)} className=" rounded-xl outline-none">
                             <option value={null}>Select Language</option>
                             <option value="english">English</option>
@@ -157,14 +156,6 @@ const GetStart = ({ handleSubmitForm }) => {
                 {slideNumber === 2 && (
                     <div className="flex flex-col item-center gap-5 max-sm:w-full">
                         <h2 className="text-2xl font-bold mb-4">What is your Occupation?</h2>
-                        {/* <label>Occupation:</label> */}
-                        {/* <input
-                            type="text"
-                            value={form.occupation || ""}
-                            placeholder="Enter your Occupation"
-                            onChange={(e) => updateForm("occupation", e.target.value)}
-                            className=" outline-none rounded-xl"
-                        /> */}
                         <select name="" value={form.occupation} onChange={(e) => updateForm("occupation", e.target.value)} className="rounded-xl outline-none">
                             <option value={null}>Select Occupation</option>
                             <option value="student">Student</option>
@@ -172,7 +163,6 @@ const GetStart = ({ handleSubmitForm }) => {
                             <option value="developer">Developer</option>
                             <option value="teacher">Teacher</option>
                             <option value="engineer">Engineer</option>
-                            {/* Add more options as needed */}
                         </select>
                     </div>
                 )}

@@ -94,19 +94,19 @@ const Preference = () => {
             data: [
                 {
                     img: new_york,
-                    value: "New York"
+                    value: "Toronto"
                 },
                 {
                     img: london,
-                    value: "London"
+                    value: "Vancouver"
                 },
                 {
                     img: tokyo,
-                    value: "Tokyo"
+                    value: "Montreal"
                 },
                 {
                     img: dubai,
-                    value: "Dubai"
+                    value: "Calgary"
                 }
             ]
         }
