@@ -29,8 +29,17 @@ export default function RootLayout({ children }) {
         </AppStore>
 
         {/* Navbar Common to All Pages */}
-
+        <script
+          src="https://app.wonderchat.io/scripts/wonderchat.js"
+          data-name="wonderchat"
+          data-address="app.wonderchat.io"
+          data-id="clsvcjdfl002zlg22aajxm3e0"
+          data-widget-size="normal"
+          data-widget-button-size="normal"
+          defer
+        ></script>
       </body>
+
     </html>
   );
 }

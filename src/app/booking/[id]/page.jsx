@@ -245,6 +245,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {toast,Toaster} from 'react-hot-toast';
 
+import Image from 'next/image';
+import Profile from '@/../../public/images/lady.jpg';
+import Apartment from '@/../../public/images/apartment.png';
 const apartmentImage = 'https://via.placeholder.com/1200x600/3366cc/ffffff?text=Apartment';
 
 const BookingRoomPage = ({ params }) => {
@@ -266,6 +269,7 @@ const BookingRoomPage = ({ params }) => {
   }
   const [apartmentData,SetAppartmentData] = useState([])
   const [matchesList, setMatchesList] = useState([]);
+  const [matchSearch, setMatchSearch] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedMatchIds, setSelectedMatchIds] = useState([]);
 
@@ -282,6 +286,7 @@ const BookingRoomPage = ({ params }) => {
       try {
         const response = await axios.get('/api/user/fetch_all_matches');
         setMatchesList(response.data.matches);
+        setMatchSearch(response.data.matches);
       } catch (error) {
         console.error('Error fetching matches:', error);
       }
@@ -293,12 +298,14 @@ const BookingRoomPage = ({ params }) => {
   const handleSearch = (event) => {
     const query = event.target.value.toLowerCase();
     setSearchQuery(query);
+    if (query == "") {
+      setMatchSearch(matchesList)
+    }
 
     const filteredMatches = matchesList.filter((match) =>
-      match.name.toLowerCase().includes(query)
+      match.first_name.toLowerCase().includes(query) || match.last_name.toLowerCase().includes(query)
     );
-
-    setMatchesList(filteredMatches);
+    setMatchSearch(filteredMatches)
   };
 
   const handleMatchSelect = (match) => {
@@ -318,7 +325,13 @@ const BookingRoomPage = ({ params }) => {
     <div className="bg-gray-100">
       <Toaster/>
       <div className="max-w-full overflow-hidden">
-        <img src={apartmentImage} alt="Apartment" className="w-full h-auto" />
+        <Image
+          alt="Apartment" className="w-full h-auto"
+          src={Apartment}
+        // width={50}
+        // height={50}
+        />
+        {/* <img src={apartmentImage} /> */}
       </div>
       <div className="container mx-auto mt-8 p-4 bg-white rounded shadow-md">
       {apartmentData ? (
@@ -352,10 +365,19 @@ const BookingRoomPage = ({ params }) => {
         </div>
         <div>
           <ul className="space-y-2">
-            {matchesList.map((match) => (
+            {matchSearch.map((match) => (
               <li key={match.user2} onClick={() => handleMatchSelect(match)} className="cursor-pointer">
                 <div className={`bg-white p-4 rounded-md shadow-md transition-transform transform hover:scale-105 flex align-center ${selectedMatchIds.includes(match.user2) && 'ring ring-blue-500'}`}>
-                  <img src={match.avatar} alt={`${match.first_name}'s avatar`} className="w-8 h-8 object-cover rounded-full mb-2" />
+                  <Image
+                    className="w-8 h-8 object-cover rounded-full mb-2"
+                    src={
+                      match.avatar ? `/uploads/${user?.avatar}` : Profile
+                    }
+                    width={50}
+                    height={50}
+                    alt="Picture of the author"
+                  />
+                  {/* <img src={match.avatar} alt={`${match.first_name}'s avatar`} /> */}
                   <div className="ml-2">
                     <p className="text-sm font-semibold text-gray-800">{match.first_name + ' ' + match.last_name}</p>
                     <p className="text-xs text-gray-500">Age: {match.age}, Gender: {match.gender}</p>
@@ -386,7 +408,25 @@ const BookingRoomPage = ({ params }) => {
           </button>
         </div>
       </div>
-    </div>
+      <div className="max-w-full overflow-hidden">
+        {/* <iframe
+          className='w-full my-10  bottom-1 border-solid border-black'
+          height="450"
+          loading="lazy"
+          allowfullscreen
+          // referrerpolicy="no-referrer-when-downgrade"
+          src="//maps.google.com/maps?q=53.3381768,-6.2613077&z=15&output=embed"></iframe> */}
+
+        <iframe src="https://www.google.com/maps/d/embed?mid=1x7oYYlsyPPhC1xW3X3rwW5Ibr-7kDNw&ehbc=2E312F&noprof=1"
+          className='w-full my-10  bottom-1 border-solid border-black'
+          height="450"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+
+      </div>
+    </div >
   );
 };
 

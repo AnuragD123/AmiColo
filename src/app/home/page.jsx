@@ -1,18 +1,24 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Card from './card';
+import axios from 'axios';
 import TestimonialCard from './testimonialCard';
 import homeImg from '../../../images/home.png';
 import Easyfind from '../../../images/easyfind.jpg';
 import Easystay from '../../../images/easystay.jpg';
 import ProfileDemo from '../../../images/profileDemo.png';
-
+import { useUserContext } from '@/context/context';
 import GetStart from '../(Components)/getStart/getStart';
 
 const Home = () => {
 
-    const [closeModel, setCloseModle] = useState(true);
+    const { user, setUser } = useUserContext();
+
+    useEffect(() => {
+        console.log("update data")
+    }, [user])
+
     const easyfind = [
         {
             Img: Easyfind,
@@ -60,14 +66,40 @@ const Home = () => {
             review: "I've been searching for a tool like Pavo for so long. I love the reports it generates and the amazing high accuracy"
         },
     ]
-    const handleSubmitForm = (data) => {
-        setCloseModle(false)
-        console.log("DATA", data)
-    }
+    const handleSubmitForm = async (data) => {
+        console.log("ENter", data)
+        try {
+            const formData = new FormData();
+            // Append form data
+            formData.append("smoker", data.smoker);
+            formData.append("occupation", data.occupation);
+            formData.append("nationality", data.nationality);
+            formData.append("languages", data.languages);
+            formData.append("food", data.food);
+            formData.append("place", data.place);
+            formData.append("city", data.city);
+            formData.append("login", true);
+
+            const res = await axios.post(`/api/user/update_profile`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+            });
+            // Handle response
+            setUser(res.data?.getUser[0])
+            if (res.data.success) {
+                toast.success("Well done we get your recode")
+            }
+        } catch (e) {
+            // Handle errors here
+            console.error(e);
+        }
+    };
+
     return (
         <>
             <header id="header" className="py-28 text-center md:pt-36 lg:text-left xl:pt-44 xl:pb-32 bg-gradient-to-b from-blue-300 to-white">
-                {closeModel && <GetStart handleSubmitForm={handleSubmitForm} />}
+                {user && !user?.login && <GetStart handleSubmitForm={handleSubmitForm} />}
 
                 <div className="px-4 sm:px-8 lg:grid lg:grid-cols-2 lg:gap-x-8">
                     <div className="mb-16 lg:mt-32 xl:mt-40 xl:mr-12">

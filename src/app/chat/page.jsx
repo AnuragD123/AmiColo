@@ -254,10 +254,10 @@ const Chat = () => {
 
 
     return (
-        <div className='grid grid-cols-2 max-sm:grid-cols-1 h-screen content-baseline'>
+        <div className='grid grid-cols-2 max-sm:grid-cols-1 content-baseline' style={{ height: "85vh", overflow: "hidden" }}>
             {!showChat ?
                 <>
-                    <div className='sideBox p-5 bg-blue-50 flex flex-col h-screen'>
+                    <div className='sideBox p-5 bg-blue-50 flex flex-col' style={{ height: 'inherit' }}>
                         <div className='flex items-center gap-2'>
                             <IoArrowBackCircleOutline className='text-3xl text-gray-500' onClick={() => Router.back()} />
                             <Image
@@ -319,7 +319,7 @@ const Chat = () => {
                         </div>
                     </div>
 
-                    <div className="h-screen flex flex-col max-sm:hidden">
+                    <div className="flex flex-col max-sm:hidden" style={{ height: 'inherit' }}>
                         {/* User info container */}
                         <div className="bg-blue-50 p-4 sticky top-0 flex items-center">
                             <IoArrowBackCircleOutline className='text-3xl text-gray-500 md:hidden' />
@@ -336,7 +336,7 @@ const Chat = () => {
                                         />
                                         <p className='text-lg font-semibold p-0 m-0'>{reciverUser ? (reciverUser?.first_name + " " + reciverUser?.last_name) : ""}</p>
                                     </span>
-                                    <p className='text-sm font-extralight p-0 m-0'>{typing ? "typing" : "Online"}</p>
+                                    <p className='text-sm font-extralight p-0 m-0'>{typing ? "typing" : " "}</p>
                                 </span>
                             </div>
                         </div>
@@ -429,7 +429,7 @@ const Chat = () => {
                     </div >
                 </>
                 :
-                <div className="h-screen flex flex-col sm:hidden">
+                <div className=" flex flex-col sm:hidden" style={{ height: 'inherit' }}>
                     {/* User info container */}
                     <div className="bg-blue-50 p-4 sticky top-0 flex items-center">
                         <IoArrowBackCircleOutline className='text-3xl text-gray-500 md:hidden' onClick={() => setShowChat(false)} />
@@ -447,7 +447,7 @@ const Chat = () => {
                                     />
                                     <p className='text-lg font-semibold p-0 m-0'>{reciverUser ? (reciverUser?.first_name + " " + reciverUser?.last_name) : ""}</p>
                                 </span>
-                                <p className='text-sm font-extralight p-0 m-0'>Online</p>
+                                <p className='text-sm font-extralight p-0 m-0'>{typing ? "typing" : " "}</p>
                             </span>
                         </div>
                     </div>

@@ -18,7 +18,7 @@ const Footer = () => {
                 <div id="StayInTouch">
                     <h5 className="font-medium">Stay In Touch</h5>
                     <div className="image flex content-evenly">
-                        <Link href={'/'}>
+                        <Link href={'https://www.instagram.com/ami.colo.mtl'}>
                             <Image
                                 className='mr-3'
                                 width={20}
@@ -27,7 +27,7 @@ const Footer = () => {
                                 alt="Instagram"
                             />
                         </Link>
-                        <Link href={'/'}>
+                        <Link href={'https://www.facebook.com/amicolomtl'}>
                             <Image
                                 className='mr-3 rounded-xl'
                                 width={20}
@@ -65,6 +65,8 @@ const Footer = () => {
                 <Link href="/contact"><p className='text-sm'>Contact Us</p></Link>
                 <Link href="/FAQs"><p className='text-sm'>FAQs</p></Link>
                 <Link href="/privacy-policy"><p className='text-sm'>Privacy Policy</p></Link>
+                <Link href="/dataDeletation-policy"><p className='text-sm'>User Data Deletation Policy</p></Link>
+
                 <Link href="/TermsAndConditions"><p className='text-sm'>T&C</p></Link>
                 {/* <a href="disclaimers"><p className='text-sm'>Disclaimers</p></a> */}
             </div>

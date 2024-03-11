@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
+import { Country } from 'country-state-city';
 import { Circles, MutatingDots } from "react-loader-spinner";
 import Profile from "../../../../images/AmiColo_Profile.png";
 import Image from "next/image";
@@ -9,6 +10,7 @@ import { useUserContext } from "@/context/context";
 import { toast, Toaster } from "react-hot-toast";
 // const baseUrl = require("http://192.168.127.176:3000");
 const Edit = () => {
+    const country = Country.getAllCountries();
     const { user, setUser } = useUserContext();
     const [loading, setLoading] = useState(false);
     const [form, setForm] = useState({
@@ -59,7 +61,7 @@ const Edit = () => {
         // }
 
         // getData();
-        console.log("USERDATA", user);
+
         setForm({
             fName: user?.first_name || "",
             lName: user?.last_name || "",
@@ -131,6 +133,7 @@ const Edit = () => {
         };
         reader.readAsDataURL(filedata);
     };
+    console.log("object", form.smoker)
     return loading ? (
         <MutatingDots
             visible={true}
@@ -167,9 +170,8 @@ const Edit = () => {
                         src={
                             form.file
                                 ? form.file
-                                : user?.avatar
-                                ? `/uploads/${form?.file}`
-                                : Profile
+                                : user?.avatar ? `/uploads/${user?.avatar}`
+                                    : Profile
                         }
                         // src={form.file || Profile}
                         width={150}
@@ -303,30 +305,27 @@ const Edit = () => {
 
                 <div className="w-full flex items-center gap-3 mb-6">
                     <div className="w-1/2">
-                        <label htmlFor="smoker">Smoker</label>
+                        <label htmlFor="smoker">Smoker </label>
+                        <span className="text-xs text-gr">Yes/No</span>
+
                         <br />
-                        <input
-                            className="w-full rounded-3xl bg-gray-300"
-                            type="text"
-                            name="smoker"
-                            value={form.smoker}
-                            onChange={(e) =>
-                                setForm({ ...form, smoker: e.target.value })
-                            }
-                        />
+                        <span className=" flex items-center gap-5">
+                            <button className={`px-3 py-1 rounded-xl ${form.smoker == "true" || form.smoker == true ? "bg-gray-400" : "bg-gray-300"}`} onClick={(e) => setForm({ ...form, smoker: true })}>Yes</button>
+                            <button className={`px-3 py-1 rounded-xl ${form.smoker == "false" || form.smoker == false ? "bg-gray-400" : "bg-gray-300"}`} onClick={(e) => setForm({ ...form, smoker: false })}>No</button>
+                        </span>
                     </div>
                     <div className="w-1/2">
                         <label htmlFor="occupation">Occupation</label>
                         <br />
-                        <input
-                            className="w-full rounded-3xl bg-gray-300"
-                            type="text"
-                            name="occupation"
-                            value={form.occupation}
-                            onChange={(e) =>
-                                setForm({ ...form, occupation: e.target.value })
-                            }
-                        />
+                        <select name="occupation" value={form.occupation} onChange={(e) => setForm({ ...form, occupation: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+                            <option value={null}>Select Occupation</option>
+                            <option value="student">Student</option>
+                            <option value="goverment">Goverment Servent</option>
+                            <option value="developer">Developer</option>
+                            <option value="teacher">Teacher</option>
+                            <option value="engineer">Engineer</option>
+                        </select>
+
                     </div>
                 </div>
 
@@ -334,18 +333,15 @@ const Edit = () => {
                     <div className="w-1/2">
                         <label htmlFor="nationality">Nationality</label>
                         <br />
-                        <input
-                            className="w-full rounded-3xl bg-gray-300"
-                            type="text"
-                            name="nationality"
-                            value={form.nationality}
-                            onChange={(e) =>
-                                setForm({
-                                    ...form,
-                                    nationality: e.target.value,
-                                })
-                            }
-                        />
+                        <select name="nationality" value={form.nationality} onChange={(e) => setForm({
+                            ...form,
+                            nationality: e.target.value,
+                        })} className="w-full rounded-3xl bg-gray-300">
+                            <option value={null}>Select Nationality</option>
+                            {country.map((data, index) => (
+                                <option key={index} value={form.name}>{data.name}</option>
+                            ))}
+                        </select>
                     </div>
                     <div className="w-1/2">
                         <label htmlFor="bio">Bio</label>
@@ -395,15 +391,38 @@ const Edit = () => {
                     <div className="w-1/2">
                         <label htmlFor="languages">Language</label>
                         <br />
-                        <input
-                            className="w-full rounded-3xl bg-gray-300"
-                            type="text"
-                            name="languages"
-                            value={form.languages}
-                            onChange={(e) =>
-                                setForm({ ...form, languages: e.target.value })
-                            }
-                        />
+                        <select name="languages" value={form.languages} onChange={(e) => setForm({ ...form, languages: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+                            <option value={null}>Select Language</option>
+                            <option value="english">English</option>
+                            <option value="spanish">Spanish</option>
+                            <option value="french">French</option>
+                            <option value="german">German</option>
+                            <option value="chinese">Chinese</option>
+                            <option value="japanese">Japanese</option>
+                            <option value="arabic">Arabic</option>
+                            <option value="portuguese">Portuguese</option>
+                            <option value="russian">Russian</option>
+                            <option value="italian">Italian</option>
+                            <option value="hindi">Hindi</option>
+                            <option value="korean">Korean</option>
+                            <option value="dutch">Dutch</option>
+                            <option value="swedish">Swedish</option>
+                            <option value="turkish">Turkish</option>
+                            <option value="polish">Polish</option>
+                            <option value="indonesian">Indonesian</option>
+                            <option value="vietnamese">Vietnamese</option>
+                            <option value="thai">Thai</option>
+                            <option value="greek">Greek</option>
+                            <option value="czech">Czech</option>
+                            <option value="danish">Danish</option>
+                            <option value="finnish">Finnish</option>
+                            <option value="norwegian">Norwegian</option>
+                            <option value="hebrew">Hebrew</option>
+                            <option value="tagalog">Tagalog</option>
+                            <option value="malay">Malay</option>
+                            <option value="swahili">Swahili</option>
+                        </select>
+
                     </div>
                     <div className="w-1/2">
                         <label htmlFor="education">Education</label>

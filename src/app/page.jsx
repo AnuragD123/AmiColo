@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import Link from "next/link";
 
 export default function Home() {
 
@@ -224,9 +224,9 @@ export default function Home() {
                         <h5 className="text-sm md:text-6xl lg:text-9xl font-bold">
                             Memories!
                         </h5>
-                        <button className="text-white py-2 px-6 lg:px-8 mt-4 lg:mt-6 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400">
+                        <Link href="https://www.youtube.com/@ColoTales" className="text-white py-2 px-6 lg:px-8 mt-4 lg:mt-6 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400">
                             Colo-Tales
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>
