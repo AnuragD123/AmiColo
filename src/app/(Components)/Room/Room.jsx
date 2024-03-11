@@ -1,20 +1,33 @@
-import React from 'react';
+'use client'
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import {toast,Toaster} from 'react-hot-toast'
 import {
-    MapPin,
-    Car,
-    Bath,
-    Building,
-    ParkingCircle,
-    PawPrint,
     Star,
     Share2,
-    Book,
 } from 'lucide-react';
 import axios from 'axios';
 
-const Room = ({ key, data, requests, Callback, booked }) => {
+const Room = ({ key, data,booking_req_id, Callback, booked }) => {
+
+    const [requests,setRequests] = useState([]);
+    
+   
+    useEffect(()=>{
+        const fetchSentRoomReq = async () => {
+            console.log('*************ROOM PAGE',booking_req_id);
+            try {
+                const res = await axios.post(`/api/room/fetch_sent_room_req`, { booking_req_id});
+                setRequests(res.data.data);
+               
+                Callback;
+            } catch (e) {
+                console.error(e);
+            }
+        };
+        fetchSentRoomReq();
+
+    },[])
     const Decline = async (id) => {
         try {
             const res = await axios.post(`/api/room/Decline`, JSON.stringify({ id: id }))
@@ -65,7 +78,7 @@ const Room = ({ key, data, requests, Callback, booked }) => {
                             <div key={index} className="bg-white p-4 shadow-md rounded-md">
                                 <div className="flex items-center">
                                     <img
-                                        src={`https://placekitten.com/50/50?image=${request.user_id}`} // Replace with your actual requests avatar
+                                        src={`https://placekitten.com/50/50?image=${request.id}`} // Replace with your actual requests avatar
                                         alt={`Avatar of ${request.first_name}`}
                                         className="rounded-full h-10 w-10 object-cover"
                                     />
@@ -80,15 +93,15 @@ const Room = ({ key, data, requests, Callback, booked }) => {
                                         <div className="mt-4">
                                             <div
                                                 className="text-black ml-2 px-2 rounded-xl" style={{ border: '1px solid black', fontSize: 10 }}>
-                                                {request.status}
+                                                {request.invitation_status}
                                             </div>
                                         </div>
 
                                         <div className="mt-4">
                                             <button
-                                                onClick={() => Decline(request.id)}
+                                                onClick={() => Decline(request.invitation_id)}
                                                 className="bg-gray-300 text-gray-700 ml-2 px-3 py-1 rounded-md">
-                                                Decline
+                                                withdraw request
                                             </button>
                                         </div>
                                     </div>
@@ -99,7 +112,7 @@ const Room = ({ key, data, requests, Callback, booked }) => {
                 )}
                 {!booked && <div className='w-full'>
                     <button
-                        onClick={() => { BookNow(data.id) }}
+                        onClick={() => { BookNow(booking_req_id) }}
                         className=" float-right rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400 text-white px-4 py-2">
                         Book Now
                     </button>

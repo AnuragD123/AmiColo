@@ -15,6 +15,7 @@ const Listing = () => {
         try {
             const response = await axios.get('/api/room/requestroom');
             setRooms(response.data.data);
+            console.log('*************',response.data.data)
 
         } catch (error) {
             console.error('Error fetching rooms:', error);
@@ -28,7 +29,7 @@ const Listing = () => {
             <div className="mt-5 w-4/5 flex flex-col justify-center items-center gap-5">
                 {
                     rooms.map((room) => (
-                        <Room key={room.id} data={room} requests={room.requests} Callback={() => fetchRooms}/>
+                        <Room key={room.id} data={room} booking_req_id={room.booking_req_id} Callback={() => fetchRooms}/>
                     )
 
                     )
