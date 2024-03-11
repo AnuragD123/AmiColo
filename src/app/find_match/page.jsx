@@ -63,10 +63,11 @@ const FindMatch = () => {
     useEffect(() => {
         const fetchUsers = async () => {
 
-            const recommended_user_ids = Object.values(usersData);
+            // const recommended_user_ids = Object.values(usersData);
             console.log(recommended_user_ids);
             try {
-                const response = await axios.POST('/api/user/fetchusers',{recommended_user_ids});
+                // const response = await axios.POST('/api/user/fetchusers_ml',{recommended_user_ids});
+                const response = await axios.get('/api/user/fetchusers');
                 setUsers(response.data.data);
                 console.log(response.data);
 
