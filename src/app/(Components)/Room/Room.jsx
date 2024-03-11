@@ -42,7 +42,12 @@ const Room = ({ key, data,booking_req_id, Callback, booked }) => {
     const BookNow = async (id) => {
         try {
             const res = await axios.post(`/api/room/book`, JSON.stringify({ id: id }))
-            if (!res.ok) throw new Error(await res.text());
+            if(res.data.status==='success'){
+                toast.success(res.data.msg);
+            }else{
+                
+                toast.error(res.data.msg);
+            }
             Callback;
         } catch (e) {
             console.error(e);
