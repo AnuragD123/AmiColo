@@ -243,6 +243,8 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {toast,Toaster} from 'react-hot-toast';
+
 import Image from 'next/image';
 import Profile from '@/../../public/images/lady.jpg';
 import Apartment from '@/../../public/images/apartment.png';
@@ -256,17 +258,30 @@ const BookingRoomPage = ({ params }) => {
     console.log(room_id);
 
     const response = await axios.post('/api/apartment/send_booking_req', { room_id, selectedMatchIds });
+    if(response.data.status==='success'){
+      toast.success(response.data.msg)
+      // console.log(response.data.msg);
+    }else{
+      toast.error(response.data.msg)
 
-    console.log(response.data);
+    }
 
   }
-
+  const [apartmentData,SetAppartmentData] = useState([])
   const [matchesList, setMatchesList] = useState([]);
   const [matchSearch, setMatchSearch] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedMatchIds, setSelectedMatchIds] = useState([]);
 
   useEffect(() => {
+
+    const fetch_appartment_info=async()=>{
+      const response = await axios.get(`/api/apartment/fetch_apartment_info?room_id=${params.id}`);
+      if (response.data.status==='success') {
+        SetAppartmentData(response.data.room_data[0])
+      }
+    }
+    fetch_appartment_info();
     const fetchMatches = async () => {
       try {
         const response = await axios.get('/api/user/fetch_all_matches');
@@ -308,6 +323,7 @@ const BookingRoomPage = ({ params }) => {
 
   return (
     <div className="bg-gray-100">
+      <Toaster/>
       <div className="max-w-full overflow-hidden">
         <Image
           alt="Apartment" className="w-full h-auto"
@@ -318,9 +334,24 @@ const BookingRoomPage = ({ params }) => {
         {/* <img src={apartmentImage} /> */}
       </div>
       <div className="container mx-auto mt-8 p-4 bg-white rounded shadow-md">
-        <h1 className="text-2xl font-bold mb-4">Apartment Details</h1>
-        <p className="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis, nunc vel auctor malesuada.</p>
-      </div>
+      {apartmentData ? (
+        <>
+          <h1 className="text-2xl font-bold mb-4">{apartmentData.type}</h1>
+          <p className="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis, nunc vel auctor malesuada.</p>
+          <ul className="mt-4">
+            <li><strong>Gym:</strong> {apartmentData.gym}</li>
+            <li><strong>Rooms:</strong> {apartmentData.rooms}</li>
+            <li><strong>Washrooms:</strong> {apartmentData.washrooms}</li>
+            <li><strong>Area:</strong> {apartmentData.area}</li>
+            <li><strong>Parking:</strong> {apartmentData.parking}</li>
+            <li><strong>Price:</strong> {apartmentData.price}</li>
+            {/* <li><strong>Cluster ID:</strong> {apartmentData.cluster_id}</li> */}
+          </ul>
+        </>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
       <div className="container mx-auto p-8 bg-white rounded-lg shadow-md">
         <h1 className="text-4xl font-extrabold mb-6 text-gray-800">Match Search</h1>
         <div className="mb-4">
@@ -373,7 +404,7 @@ const BookingRoomPage = ({ params }) => {
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             onClick={handleBookingReq}
           >
-            Book Now
+            Send Room Invitation
           </button>
         </div>
       </div>

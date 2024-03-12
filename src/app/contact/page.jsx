@@ -1,18 +1,40 @@
 'use client'
 
-import React from 'react'
-import { Menu, X, MapPin } from 'lucide-react'
+import React, {useState} from 'react'
+import { sendEmail } from '@/helper/sendMail'
 
-
+import {toast,Toaster} from 'react-hot-toast'
 const Contact = () => {
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNumber: '',
+    message: '',
+    type:'CONTACT_US'
+  });
+
+  
+
+  const handleSendMessage = (e) => {
+    e.preventDefault();
+    toast.success("clicked")
+
+    const res = sendEmail(formData);
+
+    // toast.success(res)
+    
+    console.log('Form submitted:', formData);
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
   return (
     <div className="min-h-screen">
+      <Toaster/>
       <div className="mx-auto max-w-7xl px-4">
         <div className="mx-auto max-w-7xl py-12 md:py-24">
           <div className="grid items-center justify-items-center gap-x-4 gap-y-10 lg:grid-cols-2">
@@ -23,7 +45,7 @@ const Contact = () => {
                 <p className="mt-4 text-lg text-gray-600">
                   Our friendly team would love to hear from you.
                 </p>
-                <form action="" className="mt-8 space-y-4">
+                <form  className="mt-8 space-y-4">
                   <div className="grid w-full gap-y-4 md:gap-x-4 lg:grid-cols-2">
                     <div className="grid w-full  items-center gap-1.5">
                       <label
@@ -37,6 +59,9 @@ const Contact = () => {
                         type="text"
                         id="first_name"
                         placeholder="First Name"
+                        value={formData.firstName}
+                        onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+
                       />
                     </div>
                     <div className="grid w-full  items-center gap-1.5">
@@ -51,6 +76,9 @@ const Contact = () => {
                         type="text"
                         id="last_name"
                         placeholder="Last Name"
+                        value={formData.lastName}
+                        onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+
                       />
                     </div>
                   </div>
@@ -66,6 +94,9 @@ const Contact = () => {
                       type="text"
                       id="email"
                       placeholder="Email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+
                     />
                   </div>
                   <div className="grid w-full  items-center gap-1.5">
@@ -80,6 +111,9 @@ const Contact = () => {
                       type="tel"
                       id="phone_number"
                       placeholder="Phone number"
+                      value={formData.phoneNumber}
+                      onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
+
                     />
                   </div>
                   <div className="grid w-full  items-center gap-1.5">
@@ -93,12 +127,15 @@ const Contact = () => {
                       className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:text-gray-50 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
                       id="message"
                       placeholder="Leave us a message"
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       cols={3}
                     />
                   </div>
                   <button style={{backgroundColor:""}}
                     type="button"
                     className="w-full rounded-md  px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400"
+
+                    onClick={handleSendMessage}
                   >
                     Send Message
                   </button>

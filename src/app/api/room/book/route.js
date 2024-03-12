@@ -11,10 +11,16 @@ export async function POST(req) {
             'UPDATE amicolo.booking_request SET status = "completed" WHERE booking_req_id = ?;',
             [id]
         );
+            
+        if (data.changedRows > 0) {
+            // Rows were updated
 
-        return NextResponse.json({ data }, { status: 200 });
+            return NextResponse.json({ status:"success",data,msg:"Your Room has been booked Successfully!" }, { status: 200 });
+        }else{
+            return NextResponse.json({ status:"failed",data,msg:"Room Already Booked By You" }, { status: 200 });
+        }
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }

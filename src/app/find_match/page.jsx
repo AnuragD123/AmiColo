@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
+import usersData from './user_recommendation.json'; // Adjust the 
 import Roomate from '../(Components)/Roomate/Roomate'
 import axios from 'axios'
 import { GrNext, GrPrevious } from "react-icons/gr";
@@ -16,6 +17,10 @@ const FindMatch = () => {
         indexOfFirstUser,
         indexOfLastUser
     );
+
+
+    /* getting the id's of recommended users from dynamically generated .json file */
+    
 
     // Change page
     const paginate = (pageNumber) => {
@@ -57,9 +62,14 @@ const FindMatch = () => {
 
     useEffect(() => {
         const fetchUsers = async () => {
+
+            // const recommended_user_ids = Object.values(usersData);
+            // console.log(recommended_user_ids);
             try {
+                // const response = await axios.POST('/api/user/fetchusers_ml',{recommended_user_ids});
                 const response = await axios.get('/api/user/fetchusers');
                 setUsers(response.data.data);
+                console.log(response.data);
 
             } catch (error) {
                 console.error('Error fetching users:', error);
