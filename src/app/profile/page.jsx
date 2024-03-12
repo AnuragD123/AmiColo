@@ -29,10 +29,10 @@ const Profile = () => {
   }, [])
 
   return (
-    <div className='w-2/4 mx-auto mt-10 leading-10'>
+    <div className='leading-10'>
       <div className='w-full flex items-center justify-between mb-4 gap-2'>
-        <Link href={"/profile/edit"} className='w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl' >Edit Profile</Link>
-        <Link href={"/profile/preference"} className='w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl' >Your Preferences</Link>
+        <Link href={"/profile/edit"} className='w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl max-sm:text-xl' >Edit Profile</Link>
+        <Link href={"/profile/preference"} className='w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl max-sm:text-xl' >Your Preferences</Link>
       </div>
       <div>
         <div className='w-full flex items-center gap-3 mb-6'>

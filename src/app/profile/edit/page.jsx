@@ -147,17 +147,17 @@ const Edit = () => {
             wrapperClass=""
         />
     ) : (
-        <div className="w-2/4 mx-auto mt-10 leading-10">
+        <div className="leading-10">
             <Toaster />
-            <div className="w-full flex items-center justify-between mb-4 gap-2">
+            <div className="w-full flex items-center justify-between mb-4 gap-2 max-sm:flex-col">
                 <Link
                     href="/profile/edit"
-                    className="w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl">
+                    className="w-1/2 max-sm:w-full text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl max-sm:text-xl">
                     Edit Profile
                 </Link>
                 <Link
                     href="/profile/preference"
-                    className="w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl">
+                    className="w-1/2 max-sm:w-full text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl max-sm:text-xl">
                     Your Preferences
                 </Link>
             </div>
@@ -220,8 +220,8 @@ const Edit = () => {
                     </button>
                 </div>
 
-                <div className="w-full flex items-center gap-3 mb-6">
-                    <div className="w-1/2">
+                <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="fname">First Name</label>
                         <br />
                         <input
@@ -234,7 +234,7 @@ const Edit = () => {
                             }
                         />
                     </div>
-                    <div className="w-1/2">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="lname">Last Name</label>
                         <br />
                         <input
@@ -249,8 +249,8 @@ const Edit = () => {
                     </div>
                 </div>
 
-                <div className="w-full flex items-center mb-6 gap-4">
-                    <div className="w-1/2">
+                <div className="w-full flex items-center mb-6 gap-4 max-sm:flex-col">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="age">Date of Birth</label>
                         <div className="flex gap-3">
                             <input
@@ -285,7 +285,7 @@ const Edit = () => {
                             />
                         </div>
                     </div>
-                    <div className="w-1/2">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="gender">Gender</label>
                         <br />
                         <select
@@ -303,18 +303,18 @@ const Edit = () => {
                     </div>
                 </div>
 
-                <div className="w-full flex items-center gap-3 mb-6">
-                    <div className="w-1/2">
+                <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="smoker">Smoker </label>
                         <span className="text-xs text-gr">Yes/No</span>
 
                         <br />
                         <span className=" flex items-center gap-5">
-                            <button className={`px-3 py-1 rounded-xl ${form.smoker == "true" || form.smoker == true ? "bg-gray-400" : "bg-gray-300"}`} onClick={(e) => setForm({ ...form, smoker: true })}>Yes</button>
-                            <button className={`px-3 py-1 rounded-xl ${form.smoker == "false" || form.smoker == false ? "bg-gray-400" : "bg-gray-300"}`} onClick={(e) => setForm({ ...form, smoker: false })}>No</button>
+                            <button className={`px-3 py-1 rounded-xl max-sm:w-1/2 ${form.smoker == "true" || form.smoker == true ? "bg-gray-400" : "bg-gray-300"}`} onClick={(e) => setForm({ ...form, smoker: true })}>Yes</button>
+                            <button className={`px-3 py-1 rounded-xl max-sm:w-1/2 ${form.smoker == "false" || form.smoker == false ? "bg-gray-400" : "bg-gray-300"}`} onClick={(e) => setForm({ ...form, smoker: false })}>No</button>
                         </span>
                     </div>
-                    <div className="w-1/2">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="occupation">Occupation</label>
                         <br />
                         <select name="occupation" value={form.occupation} onChange={(e) => setForm({ ...form, occupation: e.target.value })} className="w-full rounded-3xl bg-gray-300">
@@ -329,8 +329,8 @@ const Edit = () => {
                     </div>
                 </div>
 
-                <div className="w-full flex items-center gap-3 mb-6">
-                    <div className="w-1/2">
+                <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="nationality">Nationality</label>
                         <br />
                         <select name="nationality" value={form.nationality} onChange={(e) => setForm({
@@ -343,7 +343,7 @@ const Edit = () => {
                             ))}
                         </select>
                     </div>
-                    <div className="w-1/2">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="bio">Bio</label>
                         <br />
                         <input
@@ -358,8 +358,8 @@ const Edit = () => {
                     </div>
                 </div>
 
-                <div className="w-full flex items-center gap-3 mb-6">
-                    <div className="w-1/2">
+                <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="bedtime">Bed Time</label>
                         <br />
                         <input
@@ -372,7 +372,7 @@ const Edit = () => {
                             }
                         />
                     </div>
-                    <div className="w-1/2">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="diet">Diet</label>
                         <br />
                         <input
@@ -387,8 +387,8 @@ const Edit = () => {
                     </div>
                 </div>
 
-                <div className="w-full flex items-center gap-3 mb-6">
-                    <div className="w-1/2">
+                <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="languages">Language</label>
                         <br />
                         <select name="languages" value={form.languages} onChange={(e) => setForm({ ...form, languages: e.target.value })} className="w-full rounded-3xl bg-gray-300">
@@ -424,7 +424,7 @@ const Edit = () => {
                         </select>
 
                     </div>
-                    <div className="w-1/2">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="education">Education</label>
                         <br />
                         <input

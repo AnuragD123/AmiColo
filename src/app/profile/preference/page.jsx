@@ -115,7 +115,6 @@ const Preference = () => {
 
     const handleSubmit = async () => {
         try {
-            console.log("Enter")
             const formData = new FormData();
             // Append form data
             formData.append("place", form.place);
@@ -144,7 +143,7 @@ const Preference = () => {
 
 
     return (
-        <div className="w-2/4 mx-auto mt-10 leading-10">
+        <div className="leading-10">
             <div className="w-full flex items-center justify-between mb-4 gap-2">
                 <Link href="/profile/edit" className="w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl">
                     Edit Profile

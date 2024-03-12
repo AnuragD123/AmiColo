@@ -5,36 +5,36 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 
 
-const Roomate = ({data}) => {
+const Roomate = ({ data }) => {
 
     /* send  a  matching request to a user */
     async function sendMatchingReq(data) {
         try {
-            const response = await axios.post('/api/user/sendmatchingreq',{to_user_id:data} );
+            const response = await axios.post('/api/user/sendmatchingreq', { to_user_id: data });
             console.log('Response:', response.data);
-            if(response.data.status==='success'){
+            if (response.data.status === 'success') {
                 toast.success(response.data.msg)
-            }else{
+            } else {
                 toast.error(response.data.msg)
             }
-        
+
         } catch (error) {
             console.error('Error sending matching request:', error);
             toast.error(error.message)
-            throw error; 
+            throw error;
         }
     }
 
     return (
 
         <div
-            className="max-w-xs bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700"
+            className="max-w-xs min-w-52 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700"
         >
             <a href="/">
                 <img
                     className="mx-auto pt-4 rounded-full center w-40 h-40 "
                     src={data?.avatar ? `/uploads/${data?.avatar}` : "/images/lady.jpg"}
-                
+
                     alt="Roommate photo"
                 />
             </a>
@@ -42,7 +42,7 @@ const Roomate = ({data}) => {
             <div className="py-2 px-5">
                 <div className="flex justify-center items-center mb-1">
                     <h5 className="text-center mb-2 mr-3 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                        {data.first_name+' '+ data.last_name} | 21M
+                        {data.first_name + ' ' + data.last_name} | 21M
                     </h5>
                     <button className="p-2 text-gray-700 dark:text-white bg-gray-200 rounded-lg hover:bg-gray-300 focus:ring-2 focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-400 dark:focus:ring-gray-400">
                         <Bookmark />
