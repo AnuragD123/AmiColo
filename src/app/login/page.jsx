@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 import { ArrowRight } from 'lucide-react'
-
+import { FacebookAuth } from "./config";
 
 const Login = () => {
 
@@ -45,7 +45,12 @@ const Login = () => {
   //         setButtonDisabled(true);
   //     }
   // }, [user]);
-
+  const FacebookAuthButtonClick = async () => {
+    const data = await FacebookAuth();
+    console.log("user login with facebook--->", data);
+    
+    
+  };
   return (
     <section>
       <Toaster />
@@ -120,7 +125,7 @@ const Login = () => {
     
               <button
                 type="button"
-
+                onClick={FacebookAuthButtonClick}
                 className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
               >
                 <span className="mr-2 inline-block">

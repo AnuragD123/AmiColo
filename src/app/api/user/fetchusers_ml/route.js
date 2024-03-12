@@ -10,10 +10,7 @@ export async function POST(req){
         const { recommended_user_ids } = reqBody;
         console.log(recommended_user_ids);
 
-        // const data = await pool.query("SELECT * FROM users WHERE id != ?", [userId]);
-
-
-        /* new api to fetch using ML ALGO */
+   
         const data = await pool.query("SELECT * FROM users WHERE id in (?)",[recommended_user_ids]);
 
         console.log(data);

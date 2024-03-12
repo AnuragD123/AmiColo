@@ -10,7 +10,7 @@ export default function AppStore({ children }) {
   const [socket, setSocket] = useState(null);
   const [user, setUser] = useState();
 
-  const allowedOrigins = "http://localhost:3001";
+  const allowedOrigins = "https://websocket.amicolo.com";
   // const allowedOrigins = process.env.Socket_URL;
   // const allowedOrigins = "https://websocket.futuregeek.tech";
 
