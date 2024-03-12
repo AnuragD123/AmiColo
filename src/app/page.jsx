@@ -1,36 +1,86 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MoveRight } from "lucide-react";
+import { HiInformationCircle } from "react-icons/hi";
+import { Alert } from "flowbite-react";
+import { Carousel } from "flowbite-react";
 
 export default function Home() {
-
     return (
         <main className="">
-            <div
-                id="room-friend-sitting-photo-and-maple-leaf"
-                className="relative"
-            >
-                <p className="hidden lg:inline z-10 absolute left-[80rem] top-36   md:text-4xl">
-                    Your <span className="text-red-600 ">New City</span>, <br />
-                    Your <span className="text-blue-600">New Home</span>.
-                </p>
-                <img
-                    className="w-[100vw] z-20"
-                    src="/images/friends.png"
-                    alt="friends sitting in a room"
-                />
-                <img
-                    className="hidden lg:inline w-[19vw] z-10 absolute top-[64rem] left-[30.5rem]"
-                    src="/images/maple.png"
-                    alt="canadian-maple-leaf"
-                />
+            <div className="relative flex flex-wrap">
+                {/* <Alert
+                    color="warning"
+                    icon={HiInformationCircle}
+                    className="text-center z-30 mt-8 lg:mt-24 lg:w-full lg:absolute lg:left-0 lg:right-0 lg:mx-auto">
+                    <span className="font-medium">Info alert!</span> Get 70% OFF
+                    on first booking
+                </Alert> */}
+                <div className="w-full lg:w-1/2 h-auto hidden lg:inline text-white cursor-pointer transform hover:scale-110 transition-transform">
+                    <Carousel
+                        leftControl="."
+                        rightControl="."
+                        className="w-full h-full object-cover">
+                        <img
+                            src="/images/room0.jpg"
+                            alt="Room 0"
+                            className="w-full h-full object-cover"
+                        />
+                        <img
+                            src="/images/room1.jpg"
+                            alt="Room 1"
+                            className="w-full h-full object-cover"
+                        />
+                        <img
+                            src="/images/room2.jpg"
+                            alt="Room 2"
+                            className="w-full h-full object-cover"
+                        />
+                        <img
+                            src="/images/room3.jpg"
+                            alt="Room 3"
+                            className="w-full h-full object-cover"
+                        />
+                        <img
+                            src="/images/room4.jpg"
+                            alt="Room 4"
+                            className="w-full h-full object-cover"
+                        />
+                    </Carousel>
+                </div>
+                <div className="w-full lg:w-1/2 h-auto cursor-pointer transform hover:scale-110 transition-transform">
+                    <img
+                        src="/images/room5.jpg"
+                        alt="Friends sitting in a room"
+                        className="w-full h-full object-cover"
+                    />
+                </div>
+                <div className="absolute inset-0 flex flex-col justify-center items-center text-center bg-black bg-opacity-50">
+                    <p className="text-lg lg:text-4xl text-white font-bold">
+                        Your <span className="text-red-600">New City</span>,{" "}
+                        <br />
+                        Your <span className="text-blue-600">
+                            New Home
+                        </span>. <br />
+                        <span className="block mt-4 lg:mt-6 text-3xl md:text-6xl lg:text-8xl">
+                            With Your{" "}
+                            <span className="text-red-600">Amicolo</span>
+                        </span>
+                    </p>
+                    <Link
+                        className="text-white focus:bg-slate-200 focus:bg-opacity-10 hover:bg-slate-200 hover:bg-opacity-10 py-2 px-4 mt-2 rounded-full flex"
+                        href={"/find_room"}>
+                        <p className="pr-2">Explore Room Near Me</p>
+                        <MoveRight />
+                    </Link>
+                </div>
             </div>
+
             <div
                 id="section-2"
-                className="relative z-30 mb-16"
-            >
+                className="relative z-30 my-16">
                 <p className="text-4xl mb-2 font-semibold text-center">
-                    We are <span className="lg:text-white">Canada’s mo</span>st
-                    Awaited Coiling Platform
+                    We are Canada’s most Awaited Coiling Platform
                 </p>
                 <div className="plus-card-content flex justify-evenly">
                     <div className="plus-card">
@@ -55,8 +105,7 @@ export default function Home() {
             </div>
             <div
                 id="section-3"
-                className="flex flex-col lg:flex-row justify-between content-center"
-            >
+                className="flex flex-col lg:flex-row justify-between content-center">
                 <img
                     className="w-[100vw] lg:w-[50vw]"
                     src="/images/find-easy.png"
@@ -110,8 +159,7 @@ export default function Home() {
             </div>
             <div
                 id="section-4"
-                className="flex flex-col-reverse lg:flex-row justify-between content-center"
-            >
+                className="flex flex-col-reverse lg:flex-row justify-between content-center">
                 <div className="content m-auto">
                     <h5 className="heading text-xl text-start mx-8 mb-3">
                         Perfect for Matches,
@@ -157,8 +205,7 @@ export default function Home() {
             </div>
             <div
                 id="section-5"
-                className="flex flex-col lg:flex-row justify-between content-center"
-            >
+                className="flex flex-col lg:flex-row justify-between content-center">
                 <img
                     className="w-[100vw] lg:w-[50vw]"
                     src="/images/bond-easy.png"
@@ -209,8 +256,62 @@ export default function Home() {
             </div>
             <div
                 id="section-6"
-                className="flex bg-gradient-to-b from-green-200 to-sky-200 my-16"
-            >
+                className="flex flex-col lg:flex-row justify-between content-center">
+                <img
+                    className="w-[100vw] lg:w-[50vw]"
+                    src="/images/mapc.png"
+                    alt="map"
+                />
+                <div className="content m-auto">
+                    <h5 className="heading text-xl text-start mx-8 mb-3">
+                        There's an Amicolo around. Always.,
+                        <br />
+                        <span className="font-bold text-2xl">
+                            More Destinations. More Ease. More Affordable.
+                        </span>
+                    </h5>
+                    <div className="content-p flex justify-around">
+                        <div className="vertical-heading text-start text-lg">
+                            <p className="my-3 mx-2 lg:mx-8">
+                                Toronto, Ontario
+                                <br />
+                                <span>Vancouver, British Columbia</span>
+                            </p>
+                            <p className="my-3 mx-2 lg:mx-8">
+                                Montreal, Quebec
+                                <br />
+                                <span>Ottawa, Ontario</span>
+                            </p>
+                        </div>
+                        <div className="vertical-heading text-start text-lg">
+                            <p className="my-3 mx-2 lg:mx-8">
+                                Calgary, Alberta
+                                <br />
+                                <span>Edmonton, Alberta</span>
+                            </p>
+                            <p className="my-3 mx-2 lg:mx-8">
+                                Quebec City, Quebec
+                                <br />
+                                <span>Halifax, Nova Scotia</span>
+                            </p>
+                        </div>
+                        <div className="vertical-heading text-start text-lg">
+                            <p className="my-3 mx-2 lg:mx-8">
+                                Winnipeg, Manitoba
+                                <br />
+                                <span>Victoria, British Columbia</span>
+                            </p>
+                            <p className="my-3 mx-2 lg:mx-8">
+                                Saskatoon, Saskatchewan <br />
+                                <span>London, Ontario</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                id="section-7"
+                className="flex bg-gradient-to-b from-green-200 to-sky-200 my-16">
                 <img
                     className="w-[50vw]"
                     src="/images/two-girl.png"
@@ -224,7 +325,9 @@ export default function Home() {
                         <h5 className="text-sm md:text-6xl lg:text-9xl font-bold">
                             Memories!
                         </h5>
-                        <Link href="https://www.youtube.com/@ColoTales" className="text-white py-2 px-6 lg:px-8 mt-4 lg:mt-6 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400">
+                        <Link
+                            href="https://www.youtube.com/@ColoTales"
+                            className="text-white py-2 px-6 lg:px-8 mt-4 lg:mt-6 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400">
                             Colo-Tales
                         </Link>
                     </div>
