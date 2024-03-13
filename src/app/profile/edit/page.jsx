@@ -29,6 +29,13 @@ const Edit = () => {
         languages: "",
         education: "",
         file: "",
+        type: "",
+        rooms: "",
+        price: "",
+        washrooms: "",
+        parking: "",
+        area: "",
+        gym: "",
     });
     const [image, setImage] = useState();
 
@@ -77,8 +84,17 @@ const Edit = () => {
             diet: user?.diet || "",
             languages: user?.languages || "",
             education: user?.education || "",
+            type: user?.type || "",
+            rooms: user?.rooms || "",
+            price: user?.price || "",
+            washrooms: user?.washrooms || "",
+            parking: user?.parking || "",
+            area: user?.area || "",
+            gym: user?.gym || "",
         });
     }, [user]);
+
+    console.log("form", form)
 
     const handleSubmit = async () => {
         try {
@@ -99,6 +115,13 @@ const Edit = () => {
             formData.append("diet", form.diet);
             formData.append("languages", form.languages);
             formData.append("education", form.education);
+            formData.append("type", form.type);
+            formData.append("rooms", form.rooms);
+            formData.append("price", form.price);
+            formData.append("washrooms", form.washrooms);
+            formData.append("parking", form.parking);
+            formData.append("area", form.area);
+            formData.append("gym", form.gym);
             // Append image data
             if (image) {
                 formData.append("file", image);
@@ -437,6 +460,97 @@ const Edit = () => {
                             }
                         />
                     </div>
+                </div>
+
+                <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
+                    <div className="w-1/2 max-sm:w-full">
+                        <label htmlFor="type">type</label>
+                        <br />
+                        <select name="type" value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+                            <option value={null}>Select type</option>
+                            <option value="4.5">4.5</option>
+                            <option value="studio">studio</option>
+                            <option value="3.5">3.5</option>
+                        </select>
+
+                    </div>
+                    <div className="w-1/2 max-sm:w-full">
+                        <label htmlFor="rooms">rooms</label>
+                        <br />
+                        <select name="rooms" value={form.rooms} onChange={(e) => setForm({ ...form, rooms: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+                            <option value={null}>rooms</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
+                    <div className="w-1/2 max-sm:w-full">
+                        <label htmlFor="price">price</label>
+                        <br />
+                        <input
+                            className="w-full rounded-3xl bg-gray-300"
+                            type="number"
+                            name="price"
+                            value={form.price}
+                            onChange={(e) =>
+                                setForm({ ...form, price: e.target.value })
+                            }
+                        />
+                    </div>
+                    <div className="w-1/2 max-sm:w-full">
+                        <label htmlFor="washrooms">washrooms</label>
+                        <br />
+                        <select name="washrooms" value={form.washrooms} onChange={(e) => setForm({ ...form, washrooms: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+                            <option value={null}>Select</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
+                    <div className="w-1/2 max-sm:w-full">
+                        <label htmlFor="parking">parking</label>
+                        <br />
+                        <select name="parking" value={form.parking} onChange={(e) => setForm({ ...form, parking: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+                            <option value={null}>Select</option>
+                            <option value={true}>Yes</option>
+                            <option value={false}>No</option>
+                        </select>
+
+                    </div>
+                    <div className="w-1/2 max-sm:w-full">
+                        <label htmlFor="area">area</label>
+                        <br />
+                        <input
+                            className="w-full rounded-3xl bg-gray-300"
+                            type="number"
+                            name="area"
+                            value={form.area}
+                            onChange={(e) =>
+                                setForm({ ...form, area: e.target.value })
+                            }
+                        />
+
+                    </div>
+                </div>
+
+                <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
+                    <div className="w-1/2 max-sm:w-full">
+                        <label htmlFor="gym">Gym</label>
+                        <br />
+                        <select name="gym" value={form.gym} onChange={(e) => setForm({ ...form, gym: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+                            <option value={null}>Select</option>
+                            <option value={true}>Yes</option>
+                            <option value={false}>No</option>
+                        </select>
+
+                    </div>
+
                 </div>
             </div>
 
