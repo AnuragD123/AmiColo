@@ -61,9 +61,9 @@ const FindMatch = () => {
     };
 
     useEffect(() => {
-
+        const id = localStorage.getItem('id');
         const triggerMLEvent=async() =>{
-            const response = await axios.get('http://89.116.49.229:5000/api2');
+            const response = await axios.post('http://89.116.49.229:5000/api2',{id});
             console.log(response);
         }
         triggerMLEvent();
