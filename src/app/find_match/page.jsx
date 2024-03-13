@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import usersData from '../../../../user_recommendation.json'; // Adjust the 
+import usersData from '../../../../../user_recommendation.json'; // Adjust the 
 import Roomate from '../(Components)/Roomate/Roomate'
 import axios from 'axios'
 import { GrNext, GrPrevious } from "react-icons/gr";
