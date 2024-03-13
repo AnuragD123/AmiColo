@@ -63,7 +63,7 @@ const FindMatch = () => {
     useEffect(() => {
 
         const triggerMLEvent=async() =>{
-            const response = await axios.get(':3000/api2');
+            const response = await axios.get('http://89.116.49.229:5000/api2');
             console.log(response);
         }
         triggerMLEvent();
