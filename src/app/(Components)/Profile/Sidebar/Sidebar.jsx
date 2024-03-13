@@ -9,7 +9,7 @@ export default function Sidebar() {
   const { user, } = useUserContext();
 
   return (
-    <aside className="flex h-full w-64 overflow-y-scroll flex-col border-r px-5 py-8 items-center font-semibold">
+    <aside className="flex h-full w-full overflow-y-scroll flex-col border-r items-center font-semibold">
       <div className='flex flex-col items-center gap-4 mb-3'>
         <Image
           className=' w-40 rounded-full'

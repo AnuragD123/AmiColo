@@ -20,7 +20,7 @@ const FindMatch = () => {
 
 
     /* getting the id's of recommended users from dynamically generated .json file */
-    
+
 
     // Change page
     const paginate = (pageNumber) => {
@@ -93,8 +93,8 @@ const FindMatch = () => {
         <>
             <Toaster />
             <div className=' flex-1 p-2 flex flex-col items-center'>
-                <p className=' w-4/5 text-center text-3xl text-white font-extrabold py-3' style={{ backgroundImage: "linear-gradient(#EF8463, #7170F5 )", clipPath: "polygon(3% 0%, 97% 0%, 100% 50%, 97% 100%, 3% 100%, 0% 50%)" }}>Find Matches</p>
-                <div className="mt-5 w-4/5 grid grid-cols-2 md:grid-cols-3 gap-4 justify-center items-center">
+                <p className='text-center w-full text-3xl text-white font-extrabold py-3' style={{ backgroundImage: "linear-gradient(#EF8463, #7170F5 )", clipPath: "polygon(3% 0%, 97% 0%, 100% 50%, 97% 100%, 3% 100%, 0% 50%)" }}>Find Matches</p>
+                <div className="mt-5 w-full grid md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center items-center">
                     {
                         currentMatch.map((user) => (
                             <Roomate key={user.id} data={user} />
@@ -106,7 +106,7 @@ const FindMatch = () => {
 
                 <div className="my-5">
                     {(users.length > postPerPage) && (
-                        <ul className="flex items-center gap-4">
+                        <ul className="flex flex-wrap items-center gap-4">
                             <button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1} className='bg-blue-600 bg-opacity-70 hover:bg-opacity-100 transition-all duration-300 ease-linear text-white p-3 rounded-full'>
                                 <GrPrevious />
                             </button>

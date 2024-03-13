@@ -29,6 +29,13 @@ const Edit = () => {
         languages: "",
         education: "",
         file: "",
+        type: "",
+        rooms: "",
+        price: "",
+        washrooms: "",
+        parking: "",
+        area: "",
+        gym: "",
     });
     const [image, setImage] = useState();
 
@@ -77,8 +84,17 @@ const Edit = () => {
             diet: user?.diet || "",
             languages: user?.languages || "",
             education: user?.education || "",
+            type: user?.type || "",
+            rooms: user?.rooms || "",
+            price: user?.price || "",
+            washrooms: user?.washrooms || "",
+            parking: user?.parking || "",
+            area: user?.area || "",
+            gym: user?.gym || "",
         });
     }, [user]);
+
+    console.log("form", form)
 
     const handleSubmit = async () => {
         try {
@@ -99,6 +115,13 @@ const Edit = () => {
             formData.append("diet", form.diet);
             formData.append("languages", form.languages);
             formData.append("education", form.education);
+            formData.append("type", form.type);
+            formData.append("rooms", form.rooms);
+            formData.append("price", form.price);
+            formData.append("washrooms", form.washrooms);
+            formData.append("parking", form.parking);
+            formData.append("area", form.area);
+            formData.append("gym", form.gym);
             // Append image data
             if (image) {
                 formData.append("file", image);
@@ -147,17 +170,17 @@ const Edit = () => {
             wrapperClass=""
         />
     ) : (
-        <div className="w-2/4 mx-auto mt-10 leading-10">
+        <div className="leading-10">
             <Toaster />
-            <div className="w-full flex items-center justify-between mb-4 gap-2">
+            <div className="w-full flex items-center justify-between mb-4 gap-2 max-sm:flex-col">
                 <Link
                     href="/profile/edit"
-                    className="w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl">
+                    className="w-1/2 max-sm:w-full text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl max-sm:text-xl">
                     Edit Profile
                 </Link>
                 <Link
                     href="/profile/preference"
-                    className="w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl">
+                    className="w-1/2 max-sm:w-full text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl max-sm:text-xl">
                     Your Preferences
                 </Link>
             </div>
@@ -220,8 +243,8 @@ const Edit = () => {
                     </button>
                 </div>
 
-                <div className="w-full flex items-center gap-3 mb-6">
-                    <div className="w-1/2">
+                <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="fname">First Name</label>
                         <br />
                         <input
@@ -234,7 +257,7 @@ const Edit = () => {
                             }
                         />
                     </div>
-                    <div className="w-1/2">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="lname">Last Name</label>
                         <br />
                         <input
@@ -249,8 +272,8 @@ const Edit = () => {
                     </div>
                 </div>
 
-                <div className="w-full flex items-center mb-6 gap-4">
-                    <div className="w-1/2">
+                <div className="w-full flex items-center mb-6 gap-4 max-sm:flex-col">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="age">Date of Birth</label>
                         <div className="flex gap-3">
                             <input
@@ -285,7 +308,7 @@ const Edit = () => {
                             />
                         </div>
                     </div>
-                    <div className="w-1/2">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="gender">Gender</label>
                         <br />
                         <select
@@ -303,18 +326,18 @@ const Edit = () => {
                     </div>
                 </div>
 
-                <div className="w-full flex items-center gap-3 mb-6">
-                    <div className="w-1/2">
+                <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="smoker">Smoker </label>
                         <span className="text-xs text-gr">Yes/No</span>
 
                         <br />
                         <span className=" flex items-center gap-5">
-                            <button className={`px-3 py-1 rounded-xl ${form.smoker == "true" || form.smoker == true ? "bg-gray-400" : "bg-gray-300"}`} onClick={(e) => setForm({ ...form, smoker: true })}>Yes</button>
-                            <button className={`px-3 py-1 rounded-xl ${form.smoker == "false" || form.smoker == false ? "bg-gray-400" : "bg-gray-300"}`} onClick={(e) => setForm({ ...form, smoker: false })}>No</button>
+                            <button className={`px-3 py-1 rounded-xl max-sm:w-1/2 ${form.smoker == "true" || form.smoker == true ? "bg-gray-400" : "bg-gray-300"}`} onClick={(e) => setForm({ ...form, smoker: true })}>Yes</button>
+                            <button className={`px-3 py-1 rounded-xl max-sm:w-1/2 ${form.smoker == "false" || form.smoker == false ? "bg-gray-400" : "bg-gray-300"}`} onClick={(e) => setForm({ ...form, smoker: false })}>No</button>
                         </span>
                     </div>
-                    <div className="w-1/2">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="occupation">Occupation</label>
                         <br />
                         <select name="occupation" value={form.occupation} onChange={(e) => setForm({ ...form, occupation: e.target.value })} className="w-full rounded-3xl bg-gray-300">
@@ -329,8 +352,8 @@ const Edit = () => {
                     </div>
                 </div>
 
-                <div className="w-full flex items-center gap-3 mb-6">
-                    <div className="w-1/2">
+                <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="nationality">Nationality</label>
                         <br />
                         <select name="nationality" value={form.nationality} onChange={(e) => setForm({
@@ -343,7 +366,7 @@ const Edit = () => {
                             ))}
                         </select>
                     </div>
-                    <div className="w-1/2">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="bio">Bio</label>
                         <br />
                         <input
@@ -358,8 +381,8 @@ const Edit = () => {
                     </div>
                 </div>
 
-                <div className="w-full flex items-center gap-3 mb-6">
-                    <div className="w-1/2">
+                <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="bedtime">Bed Time</label>
                         <br />
                         <input
@@ -372,7 +395,7 @@ const Edit = () => {
                             }
                         />
                     </div>
-                    <div className="w-1/2">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="diet">Diet</label>
                         <br />
                         <input
@@ -387,8 +410,8 @@ const Edit = () => {
                     </div>
                 </div>
 
-                <div className="w-full flex items-center gap-3 mb-6">
-                    <div className="w-1/2">
+                <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="languages">Language</label>
                         <br />
                         <select name="languages" value={form.languages} onChange={(e) => setForm({ ...form, languages: e.target.value })} className="w-full rounded-3xl bg-gray-300">
@@ -424,7 +447,7 @@ const Edit = () => {
                         </select>
 
                     </div>
-                    <div className="w-1/2">
+                    <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="education">Education</label>
                         <br />
                         <input
@@ -437,6 +460,97 @@ const Edit = () => {
                             }
                         />
                     </div>
+                </div>
+
+                <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
+                    <div className="w-1/2 max-sm:w-full">
+                        <label htmlFor="type">type</label>
+                        <br />
+                        <select name="type" value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+                            <option value={null}>Select type</option>
+                            <option value="4.5">4.5</option>
+                            <option value="studio">studio</option>
+                            <option value="3.5">3.5</option>
+                        </select>
+
+                    </div>
+                    <div className="w-1/2 max-sm:w-full">
+                        <label htmlFor="rooms">rooms</label>
+                        <br />
+                        <select name="rooms" value={form.rooms} onChange={(e) => setForm({ ...form, rooms: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+                            <option value={null}>rooms</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
+                    <div className="w-1/2 max-sm:w-full">
+                        <label htmlFor="price">price</label>
+                        <br />
+                        <input
+                            className="w-full rounded-3xl bg-gray-300"
+                            type="number"
+                            name="price"
+                            value={form.price}
+                            onChange={(e) =>
+                                setForm({ ...form, price: e.target.value })
+                            }
+                        />
+                    </div>
+                    <div className="w-1/2 max-sm:w-full">
+                        <label htmlFor="washrooms">washrooms</label>
+                        <br />
+                        <select name="washrooms" value={form.washrooms} onChange={(e) => setForm({ ...form, washrooms: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+                            <option value={null}>Select</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
+                    <div className="w-1/2 max-sm:w-full">
+                        <label htmlFor="parking">parking</label>
+                        <br />
+                        <select name="parking" value={form.parking} onChange={(e) => setForm({ ...form, parking: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+                            <option value={null}>Select</option>
+                            <option value={true}>Yes</option>
+                            <option value={false}>No</option>
+                        </select>
+
+                    </div>
+                    <div className="w-1/2 max-sm:w-full">
+                        <label htmlFor="area">area</label>
+                        <br />
+                        <input
+                            className="w-full rounded-3xl bg-gray-300"
+                            type="number"
+                            name="area"
+                            value={form.area}
+                            onChange={(e) =>
+                                setForm({ ...form, area: e.target.value })
+                            }
+                        />
+
+                    </div>
+                </div>
+
+                <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
+                    <div className="w-1/2 max-sm:w-full">
+                        <label htmlFor="gym">Gym</label>
+                        <br />
+                        <select name="gym" value={form.gym} onChange={(e) => setForm({ ...form, gym: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+                            <option value={null}>Select</option>
+                            <option value={true}>Yes</option>
+                            <option value={false}>No</option>
+                        </select>
+
+                    </div>
+
                 </div>
             </div>
 

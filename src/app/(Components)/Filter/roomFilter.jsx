@@ -31,12 +31,12 @@ const RoomFilter = () => {
                             <option value="Rk">Rk</option>
                         </select>
                     </div>
-                    <div className='flex items-center gap-3'>
-                        <span className=' w-1/2 inline-block'>
+                    <div className='flex max-sm:flex-col items-center gap-3'>
+                        <span className=' w-1/2 max-sm:w-11/12 inline-block'>
                             <label htmlFor="rooms" className="pb-2 font-bold">Rooms</label>
                             <input type="number" name='rooms' value={form.rooms} onChange={(e) => setForm({ ...form, rooms: e.target.value })} className='bg-gray-200 rounded-full outline-none w-full' />
                         </span>
-                        <span className='w-1/2 inline-block'>
+                        <span className='w-1/2 max-sm:w-11/12 inline-block'>
                             <label htmlFor="rooms" className="pb-2 font-bold">washrooms</label>
                             <input type="number" name='rooms' value={form.washrooms} onChange={(e) => setForm({ ...form, washrooms: e.target.value })} className='bg-gray-200 rounded-full outline-none w-full' />
                         </span>
@@ -47,12 +47,12 @@ const RoomFilter = () => {
                     </div>
                     <div>
                         <h4 className="pb-2 font-bold">Price</h4>
-                        <div className='flex  w-full gap-5'>
-                            <span className='flex flex-col w-1/2'>
+                        <div className='flex max-sm:flex-col w-full gap-5'>
+                            <span className='flex flex-col w-1/2 max-sm:w-11/12'>
                                 <label htmlFor="min">Min</label>
                                 <input type="number" name='min' value={form.min} onChange={(e) => setForm({ ...form, min: e.target.value })} className='bg-gray-200 rounded-full outline-none w-full' />
                             </span>
-                            <span className='flex flex-col w-1/2'>
+                            <span className='flex flex-col w-1/2 max-sm:w-11/12'>
                                 <label htmlFor="max">MAx</label>
                                 <input type="number" name='max' value={form.max} onChange={(e) => setForm({ ...form, max: e.target.value })} className='bg-gray-200 rounded-full outline-none w-full' />
                             </span>

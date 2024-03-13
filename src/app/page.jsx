@@ -62,7 +62,7 @@ export default function Home() {
                         Your <span className="text-blue-600">
                             New Home
                         </span>. <br />
-                        <span className="block mt-4 lg:mt-6 text-3xl md:text-6xl lg:text-8xl">
+                        <span className="block mt-4 lg:mt-6 text-3xl md:text-6xl lg:text-8xl ">
                             With Your{" "}
                             <span className="text-red-600">Amicolo</span>
                         </span>
@@ -84,19 +84,19 @@ export default function Home() {
                 </p>
                 <div className="plus-card-content flex justify-evenly">
                     <div className="plus-card">
-                        <p className="text-7xl text-blue-800 font-extrabold">
+                        <p className="text-7xl text-blue-800 font-extrabold max-sm:text-5xl">
                             10+
                         </p>
                         <p className="text-bold">Targeted Customers</p>
                     </div>
                     <div className="plus-card">
-                        <p className="text-7xl text-blue-800 font-extrabold">
+                        <p className="text-7xl text-blue-800 font-extrabold max-sm:text-5xl">
                             10+
                         </p>
                         <p className="text-bold">Delighted Customers</p>
                     </div>
                     <div className="plus-card">
-                        <p className="text-7xl text-blue-800 font-extrabold">
+                        <p className="text-7xl text-blue-800 font-extrabold max-sm:text-5xl">
                             5+
                         </p>
                         <p className="text-bold">Cities & Counting</p>
@@ -119,7 +119,7 @@ export default function Home() {
                             Gentle on Your Thoughts
                         </span>
                     </h5>
-                    <div className="content-p flex justify-around">
+                    <div className="content-p flex flex-wrap justify-around max-sm:justify-start">
                         <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
                                 AI Powered Roommate
@@ -168,7 +168,7 @@ export default function Home() {
                             More so for unwinding after
                         </span>
                     </h5>
-                    <div className="content-p flex justify-around">
+                    <div className="content-p flex flex-wrap justify-around max-sm:justify-start">
                         <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
                                 Personalized <br />
@@ -218,7 +218,7 @@ export default function Home() {
                             in a Lively community
                         </span>
                     </h5>
-                    <div className="content-p flex justify-around">
+                    <div className="content-p flex flex-wrap justify-around max-sm:justify-start">
                         <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
                                 Choose Your <br />
@@ -270,7 +270,7 @@ export default function Home() {
                             More Destinations. More Ease. More Affordable.
                         </span>
                     </h5>
-                    <div className="content-p flex justify-around">
+                    <div className="content-p flex flex-wrap justify-around max-sm:justify-start">
                         <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
                                 Toronto, Ontario

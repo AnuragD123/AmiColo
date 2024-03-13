@@ -29,14 +29,22 @@ export async function POST(request) {
         const diet = file.get('diet');
         const languages = file.get('languages');
         const education = file.get('education');
+        const type = file.get('type');
+        const rooms = file.get('rooms');
+        const price = file.get('price');
+        const washrooms = file.get('washrooms');
+        const parking = file.get('parking');
+        const area = file.get('area');
+        const gym = file.get('gym');
         const login = file.get('login');
+
 
         const place = file.get('place');
         const city = file.get('city');
         const food = file.get('food');
 
 
-        if (fName || lName || day || month || year || gender || smoker || occupation || nationality || bio || bedtime || diet || languages || education || city || food || login || uploadedFile) {
+        if (fName || lName || day || month || year || gender || smoker || occupation || nationality || bio || bedtime || diet || languages || education || city || food || login || uploadedFile || type || rooms || price || washrooms || parking || area || gym) {
             const whereClause = {};
             if (uploadedFile) {
                 const uniqueFilename = generateUniqueFilename(uploadedFile.name); // Function defined below
@@ -85,6 +93,21 @@ export async function POST(request) {
             }
             if (education) {
                 whereClause.education = education;
+            }
+            if (type) {
+                whereClause.type = type;
+            } if (rooms) {
+                whereClause.rooms = rooms;
+            } if (price) {
+                whereClause.price = price;
+            } if (washrooms) {
+                whereClause.washrooms = washrooms;
+            } if (parking) {
+                whereClause.parking = parking;
+            } if (area) {
+                whereClause.area = area;
+            } if (gym) {
+                whereClause.gym = gym;
             }
             if (place) {
                 whereClause.place = place;
