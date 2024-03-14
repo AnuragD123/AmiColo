@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { Country } from 'country-state-city';
+// import { Country } from 'country-state-city';
+import { country } from "@/app/profile/edit/data";
 import gluten from '@/../../public/images/gluten.jpeg'
 import vegan from '@/../../public/images/vegan.jpeg'
 import vegetarian from '@/../../public/images/vegetarian.jpeg'
@@ -19,7 +20,7 @@ import { toast, Toaster } from "react-hot-toast";
 
 // Functional component for the multipage form
 const GetStart = ({ handleSubmitForm }) => {
-    const country = Country.getAllCountries();
+    // const country = Country.getAllCountries();
     const [countryCode, setCountryCode] = useState("CA");
     const [slideNumber, setSlideNumber] = useState(0);
 
@@ -112,7 +113,7 @@ const GetStart = ({ handleSubmitForm }) => {
                         <select name="" value={form.nationality} onChange={(e) => updateForm("nationality", e.target.value)} className=" rounded-xl outline-none">
                             <option value={null}>Select Nationality</option>
                             {country.map((data, index) => (
-                                <option key={index} value={form.name}>{data.name}</option>
+                                <option key={index} value={form.nationality}>{data.nationality}</option>
                             ))}
                         </select>
                     </div>
