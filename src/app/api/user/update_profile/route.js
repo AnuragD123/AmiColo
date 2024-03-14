@@ -44,6 +44,8 @@ export async function POST(request) {
         const food = file.get('food');
 
 
+        console.log("DATA", smoker, gym, parking)
+
         if (fName || lName || day || month || year || gender || smoker || occupation || nationality || bio || bedtime || diet || languages || education || city || food || login || uploadedFile || type || rooms || price || washrooms || parking || area || gym) {
             const whereClause = {};
             if (uploadedFile) {
@@ -68,7 +70,11 @@ export async function POST(request) {
                 whereClause.gender = gender;
             }
             if (smoker) {
-                whereClause.smoker = smoker;
+                if (smoker == "true") {
+                    whereClause.smoker = true;
+                } else {
+                    whereClause.smoker = false;
+                }
             }
             if (occupation) {
                 whereClause.occupation = occupation;
@@ -103,11 +109,19 @@ export async function POST(request) {
             } if (washrooms) {
                 whereClause.washrooms = washrooms;
             } if (parking) {
-                whereClause.parking = parking;
+                if (parking == "true") {
+                    whereClause.parking = true;
+                } else {
+                    whereClause.parking = false;
+                }
             } if (area) {
                 whereClause.area = area;
             } if (gym) {
-                whereClause.gym = gym;
+                if (gym == "true") {
+                    whereClause.gym = true;
+                } else {
+                    whereClause.gym = false;
+                }
             }
             if (place) {
                 whereClause.place = place;

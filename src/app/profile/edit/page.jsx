@@ -517,7 +517,7 @@ const Edit = () => {
                         <label htmlFor="parking">parking</label>
                         <br />
                         <select name="parking" value={form.parking} onChange={(e) => setForm({ ...form, parking: e.target.value })} className="w-full rounded-3xl bg-gray-300">
-                            <option value={null}>Select</option>
+                            <option value={null}>{form.parking != "" && form.parking == 1 ? "Yes" : form.parking == 0 ? "No" : "Select"}</option>
                             <option value={true}>Yes</option>
                             <option value={false}>No</option>
                         </select>
@@ -544,7 +544,7 @@ const Edit = () => {
                         <label htmlFor="gym">Gym</label>
                         <br />
                         <select name="gym" value={form.gym} onChange={(e) => setForm({ ...form, gym: e.target.value })} className="w-full rounded-3xl bg-gray-300">
-                            <option value={null}>Select</option>
+                            <option value={null}>{form.gum != "" && form.gym == 1 ? "Yes" : form.gym == 0 ? "No" : "Select"}</option>
                             <option value={true}>Yes</option>
                             <option value={false}>No</option>
                         </select>
