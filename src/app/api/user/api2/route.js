@@ -1,5 +1,6 @@
-import { getDataFromToken } from "@/helper/getDataFromToken";
+import axios from "axios";
 import { NextResponse } from "next/server";
+import { getDataFromToken } from "@/helper/getDataFromToken";
 
 export async function POST(request) {
 	const userId = getDataFromToken(request)
