@@ -76,9 +76,9 @@ export async function POST(request) {
             if (nationality) {
                 whereClause.nationality = nationality;
             }
-            if (login) {
-                whereClause.login = true;
-            }
+            // if (login) {
+            //     whereClause.login = true;
+            // }
             if (bio) {
                 whereClause.bio = bio;
             }
@@ -107,11 +107,11 @@ export async function POST(request) {
             } if (area) {
                 whereClause.area = area;
             } if (gym) {
-                whereClause.gym = gym;
+                whereClause.Gym = gym;
             }
-            if (place) {
-                whereClause.place = place;
-            }
+            // if (place) {
+            //     whereClause.place = place;
+            // }
             if (city) {
                 whereClause.city = city;
             }
