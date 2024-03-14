@@ -6,7 +6,7 @@ const Footer = () => {
     const currentYear = new Date().getFullYear();
     return (
         <footer className="text-xl py-12 flex justify-around bg-gradient-to-b from-green-200 to-sky-200 font-light max-sm:items-start ">
-            <div className='flex justify-around max-sm:flex-wrap max-sm:justify-start max-sm:gap-5 max-sm:flex-col-reverse'>
+            <div className='flex justify-around max-sm:flex-wrap max-sm:justify-start max-sm:gap-5 max-sm:flex-col-reverse gap-16'>
                 <div className="ContactUS-StayInTouch">
                     <div
                         id="ContactUS"

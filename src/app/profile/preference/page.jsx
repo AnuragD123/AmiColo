@@ -8,16 +8,17 @@ import gluten from '../../../../public/images/gluten.jpeg'
 import vegan from '../../../../public/images/vegan.jpeg'
 import vegetarian from '../../../../public/images/vegetarian.jpeg'
 import nonvegetarian from '../../../../public/images/nonvegetarian.jpeg'
+import { toast, Toaster } from "react-hot-toast";
 
-import new_york from '../../../../public/images/newyouk.jpg'
-import london from '../../../../public/images/london.jpeg'
-import tokyo from '../../../../public/images/tokyo.jpeg'
-import dubai from '../../../../public/images/Dubai.jpeg'
+// import new_york from '../../../../public/images/newyouk.jpg'
+// import london from '../../../../public/images/london.jpeg'
+// import tokyo from '../../../../public/images/tokyo.jpeg'
+// import dubai from '../../../../public/images/Dubai.jpeg'
 
-import beach from '../../../../public/images/beach.jpg'
-import mountains from '../../../../public/images/mountains.jpeg'
-import cityscape from '../../../../public/images/cityscape.jpeg'
-import countryside from '../../../../public/images/countryside.jpeg'
+// import beach from '../../../../public/images/beach.jpg'
+// import mountains from '../../../../public/images/mountains.jpeg'
+// import cityscape from '../../../../public/images/cityscape.jpeg'
+// import countryside from '../../../../public/images/countryside.jpeg'
 
 import { useUserContext } from '@/context/context';
 
@@ -26,49 +27,51 @@ import { useUserContext } from '@/context/context';
 const Preference = () => {
     const { user, setUser } = useUserContext();
     const [form, setForm] = useState({
-        place: "",
-        food: "",
-        city: "",
+        diet: "",
+
+        // place: "",
+
+        count_friends: "",
     });
 
     useEffect(() => {
         if (user) {
             setForm({
-                place: user?.place || "",
-                food: user?.food || "",
-                city: user?.city || "",
+                // place: user?.place || "",
+                diet: user?.diet || "",
+                count_friends: user?.count_friends || "",
             })
         }
     }, [user])
 
     const prefence = [
-        {
-            heading: "What best describes your place preferences?",
-            type: "place",
-            data: [
-                {
-                    img: beach,
-                    value: "Beach"
-                },
-                {
-                    img: mountains,
-                    value: "Mountains"
-                },
-                {
-                    img: cityscape,
-                    value: "Cityscape"
-                },
-                {
-                    img: countryside,
-                    value: "Countryside"
+        // {
+        //     heading: "What best describes your place preferences?",
+        //     type: "place",
+        //     data: [
+        //         {
+        //             img: beach,
+        //             value: "Beach"
+        //         },
+        //         {
+        //             img: mountains,
+        //             value: "Mountains"
+        //         },
+        //         {
+        //             img: cityscape,
+        //             value: "Cityscape"
+        //         },
+        //         {
+        //             img: countryside,
+        //             value: "Countryside"
 
-                }
-            ]
-        },
+        //         }
+        //     ]
+        // },
         {
 
-            heading: "What best describes your food preferences?",
-            type: "food",
+            heading: "What best describes your diet preferences?",
+            type: "diet",
             data: [
                 {
                     img: vegetarian,
@@ -89,24 +92,24 @@ const Preference = () => {
             ]
         },
         {
-            heading: "What best describes your City preferences?",
-            type: "city",
+            heading: "Select your Count friends?",
+            type: "count_friends",
             data: [
                 {
-                    img: new_york,
-                    value: "Toronto"
+
+                    value: 20
                 },
                 {
-                    img: london,
-                    value: "Vancouver"
+
+                    value: 50
                 },
                 {
-                    img: tokyo,
-                    value: "Montreal"
+
+                    value: 100
                 },
                 {
-                    img: dubai,
-                    value: "Calgary"
+
+                    value: 200
                 }
             ]
         }
@@ -117,11 +120,10 @@ const Preference = () => {
         try {
             const formData = new FormData();
             // Append form data
-            formData.append("place", form.place);
-            formData.append("city", form.city);
-            formData.append("food", form.food);
+            // formData.append("place", form.place);
+            formData.append("count_friends", form.count_friends);
+            formData.append("diet", form.diet);
 
-            console.log("object", formData)
             const res = await axios.post(`/api/user/update_profile`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -131,7 +133,7 @@ const Preference = () => {
             // Handle response
             console.log(res.data);
             setUser(res.data?.getUser[0])
-            if (res.success) {
+            if (res.data.success) {
                 toast.success("Profile Update Successfully")
             }
         } catch (e) {
@@ -144,6 +146,7 @@ const Preference = () => {
 
     return (
         <div className="leading-10">
+            <Toaster />
             <div className="w-full flex items-center justify-between mb-4 gap-2">
                 <Link href="/profile/edit" className="w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl">
                     Edit Profile
@@ -168,13 +171,17 @@ const Preference = () => {
                                     key={index}
                                     onClick={() => setForm(prevForm => ({ ...prevForm, [data.type]: value.value }))}
                                 >
-                                    <Image
-                                        className="w-24 h-20  transition-all duration-300 ease-linear hover:scale-110"
-                                        src={value.img}
-                                        alt="Image"
-                                        width={96}
-                                        height={80}
-                                    />
+                                    {value.img ?
+                                        <Image
+                                            className="w-24 h-20  transition-all duration-300 ease-linear hover:scale-110"
+                                            src={value.img}
+                                            alt="Image"
+                                            width={96}
+                                            height={80}
+                                        /> :
+                                        <p className="text-5xl font-smibold py-5">{value.value}</p>
+                                    }
+
                                     {console.log("Form DATA", form?.[data.type])}
                                     {value.value === form?.[data.type] || value.value === user?.[data.type] ?
 
