@@ -106,7 +106,7 @@ const Edit = () => {
                 },
             });
             // Handle response
-            // Store user data in localStorage
+        
             localStorage.setItem('user', JSON.stringify(res.data?.getUser[0]));
             // setUser(res.data?.getUser[0]);
 

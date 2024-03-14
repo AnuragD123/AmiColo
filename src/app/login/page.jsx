@@ -25,7 +25,6 @@ const Login = () => {
       const response = await axios.post("/api/auth/login", user);
       toast.success("Login success");
       console.log("object", response.data.user)
-      // Store user data in localStorage
       localStorage.setItem('user', JSON.stringify(response.data.user[0]));
       router.push("/profile");
     } catch (error) {
