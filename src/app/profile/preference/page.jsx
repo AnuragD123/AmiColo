@@ -61,7 +61,6 @@ const Preference = () => {
                 {
                     img: countryside,
                     value: "Countryside"
-
                 }
             ]
         },
@@ -169,7 +168,7 @@ const Preference = () => {
                                     onClick={() => setForm(prevForm => ({ ...prevForm, [data.type]: value.value }))}
                                 >
                                     <Image
-                                        className="w-24 h-20  transition-all duration-300 ease-linear hover:scale-110"
+                                        className="w-24 h-20 rounded-lg  transition-all duration-300 ease-linear hover:scale-110"
                                         src={value.img}
                                         alt="Image"
                                         width={96}
