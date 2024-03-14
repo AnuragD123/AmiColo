@@ -75,9 +75,9 @@ const GetStart = ({ handleSubmitForm }) => {
 
     // Function to handle input changes and update form state
     const updateForm = (fieldName, value) => {
-        if (fieldName === "nationality") {
-            setCountryCode(value.countryCode)
-        }
+        // if (fieldName === "nationality") {
+        //     setCountryCode(value.countryCode)
+        // }
         setForm((prevForm) => ({ ...prevForm, [fieldName]: value }));
     };
 
