@@ -38,7 +38,6 @@ export async function POST(request) {
         const gym = file.get('gym');
         const login = file.get('login');
 
-
         const place = file.get('place');
         const city = file.get('city');
         const food = file.get('food');
@@ -82,9 +81,9 @@ export async function POST(request) {
             if (nationality) {
                 whereClause.nationality = nationality;
             }
-            if (login) {
-                whereClause.login = true;
-            }
+            // if (login) {
+            //     whereClause.login = true;
+            // }
             if (bio) {
                 whereClause.bio = bio;
             }
@@ -123,15 +122,15 @@ export async function POST(request) {
                     whereClause.gym = false;
                 }
             }
-            if (place) {
-                whereClause.place = place;
-            }
-            if (city) {
-                whereClause.city = city;
-            }
-            if (food) {
-                whereClause.food = food;
-            }
+            // if (place) {
+            //     whereClause.place = place;
+            // }
+            // if (city) {
+            //     whereClause.city = city;
+            // }
+            // if (food) {
+            //     whereClause.food = food;
+            // }
             await pool.query("UPDATE users SET ? WHERE id = ?", [whereClause, currentUserId]);
             const getUser = await pool.query('SELECT * FROM users WHERE id=?', currentUserId);
             return NextResponse.json({ success: true, message: 'Data update successfully', getUser });
