@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { Country } from 'country-state-city';
+// import { Country } from 'country-state-city';
+import { country } from "@/app/profile/edit/data";
 import gluten from '@/../../public/images/gluten.jpeg'
 import vegan from '@/../../public/images/vegan.jpeg'
 import vegetarian from '@/../../public/images/vegetarian.jpeg'
@@ -19,29 +20,27 @@ import { toast, Toaster } from "react-hot-toast";
 
 // Functional component for the multipage form
 const GetStart = ({ handleSubmitForm }) => {
-    const country = Country.getAllCountries();
-    const [countryCode, setCountryCode] = useState("CA");
     const [slideNumber, setSlideNumber] = useState(0);
 
-    const place = [
-        {
-            img: beach,
-            value: "Beach"
-        },
-        {
-            img: mountains,
-            value: "Mountains"
-        },
-        {
-            img: cityscape,
-            value: "Cityscape"
-        },
-        {
-            img: countryside,
-            value: "Countryside"
+    // const place = [
+    //     {
+    //         img: beach,
+    //         value: "Beach"
+    //     },
+    //     {
+    //         img: mountains,
+    //         value: "Mountains"
+    //     },
+    //     {
+    //         img: cityscape,
+    //         value: "Cityscape"
+    //     },
+    //     {
+    //         img: countryside,
+    //         value: "Countryside"
 
-        }
-    ]
+    //     }
+    // ]
 
     const food = [
         {
@@ -73,9 +72,9 @@ const GetStart = ({ handleSubmitForm }) => {
 
     // Function to handle input changes and update form state
     const updateForm = (fieldName, value) => {
-        if (fieldName === "nationality") {
-            setCountryCode(value.countryCode)
-        }
+        // if (fieldName === "nationality") {
+        //     setCountryCode(value.countryCode)
+        // }
         setForm((prevForm) => ({ ...prevForm, [fieldName]: value }));
     };
 
@@ -108,7 +107,7 @@ const GetStart = ({ handleSubmitForm }) => {
                         <select name="" value={form.nationality} onChange={(e) => updateForm("nationality", e.target.value)} className=" rounded-xl outline-none">
                             <option value={null}>Select Nationality</option>
                             {country.map((data, index) => (
-                                <option key={index} value={form.name}>{data.name}</option>
+                                <option key={index} value={data.nationality}>{data.nationality}</option>
                             ))}
                         </select>
                     </div>
@@ -154,11 +153,9 @@ const GetStart = ({ handleSubmitForm }) => {
                         <h2 className="text-2xl font-bold mb-4">What is your Occupation?</h2>
                         <select name="" value={form.occupation} onChange={(e) => updateForm("occupation", e.target.value)} className="rounded-xl outline-none">
                             <option value={null}>Select Occupation</option>
-                            <option value="student">Student</option>
-                            <option value="goverment">Goverment Servent</option>
-                            <option value="developer">Developer</option>
-                            <option value="teacher">Teacher</option>
-                            <option value="engineer">Engineer</option>
+                            <option value="student">Professional</option>
+                            <option value="goverment">Unemployed</option>
+                            <option value="developer">Student</option>
                         </select>
                     </div>
                 )}
@@ -214,8 +211,8 @@ const GetStart = ({ handleSubmitForm }) => {
                         <div className="flex items-center justify-around gap-10">
                             <select name="" value={form.bedtime} onChange={(e) => updateForm("bedtime", e.target.value)} className=" rounded-xl outline-none">
                                 <option value={null}>Select Bedtime</option>
-                                <option value="earlyriser">early riser</option>
-                                <option value="nightout">Night Out</option>
+                                <option value="earlyriser">Early Bird</option>
+                                <option value="nightout">Night Owl</option>
                             </select>
                         </div>
                     </div>

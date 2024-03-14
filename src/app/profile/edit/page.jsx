@@ -2,17 +2,19 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
-import { Country } from 'country-state-city';
+// import { Country } from 'country-state-city';
+import { country, education } from "./data";
 import { Circles, MutatingDots } from "react-loader-spinner";
 import Profile from "../../../../images/AmiColo_Profile.png";
 import Image from "next/image";
 import { useUserContext } from "@/context/context";
 import { toast, Toaster } from "react-hot-toast";
-// const baseUrl = require("http://192.168.127.176:3000");
+
 const Edit = () => {
-    const country = Country.getAllCountries();
     const { user, setUser } = useUserContext();
+
     const [loading, setLoading] = useState(false);
+    const [file, setFile] = useState();
     const [form, setForm] = useState({
         first_name: "",
         last_name: "",
@@ -28,7 +30,6 @@ const Edit = () => {
         diet: "",
         languages: "",
         education: "",
-        file: "",
         type: "",
         rooms: "",
         price: "",
@@ -42,34 +43,33 @@ const Edit = () => {
 
     useEffect(() => {
         setForm({
-            first_name: user?.first_name || "",
-            last_name: user?.last_name || "",
-            gender: user?.gender || "",
-            day: user?.dob.split("-")[2].split("T")[0] || 0,
-            month: user?.dob.split("-")[1] || 0,
-            year: user?.dob.split("-")[0] || 0,
-            bio: user?.bio || "",
-            occupation: user?.occupation || "",
-            smoker: user?.smoker || "",
-            cleanliness: user?.cleanliness || "",
-            bedtime: user?.bedtime || "",
-            diet: user?.diet || "",
-            nationality: user?.nationality || "",
-            education: user?.education || "",
-            languages: user?.languages || "",
-            type: user?.type || "",
-            rooms: user?.rooms || "",
-            price: user?.price || "",
-            washrooms: user?.washrooms || "",
-            parking: user?.parking || "",
-            area: user?.area || "",
-            Gym: user?.Gym || "",
+            first_name: form.first_name != "" ? form.first_name : user?.first_name || "",
+            last_name: form.last_name != "" ? form.last_name : user?.last_name || "",
+            gender: form.gender != "" ? form.gender : user?.gender || "",
+            day: form.day != "" ? form.day : user?.dob.split("-")[2].split("T")[0] || 0,
+            month: form.month != "" ? form.month : user?.dob.split("-")[1] || 0,
+            year: form.year != "" ? form.year : user?.dob.split("-")[0] || 0,
+            bio: form.bio != "" ? form.bio : user?.bio || "",
+            occupation: form.occupation != "" ? form.occupation : user?.occupation || "",
+            smoker: form.smoker != "" ? form.smoker : user?.smoker || "",
+            cleanliness: form.cleanliness != "" ? form.cleanliness : user?.cleanliness || "",
+            bedtime: form.bedtime != "" ? form.bedtime : user?.bedtime || "",
+            diet: form.diet != "" ? form.diet : user?.diet || "",
+            nationality: form.nationality != "" ? form.nationality : user?.nationality || "",
+            education: form.education != "" ? form.education : user?.education || "",
+            languages: form.languages != "" ? form.languages : user?.languages || "",
+            type: form.type != "" ? form.type : user?.type || "",
+            rooms: form.rooms != "" ? form.rooms : user?.rooms || "",
+            price: form.price != "" ? form.price : user?.price || "",
+            washrooms: form.washrooms != "" ? form.washrooms : user?.washrooms || "",
+            parking: form.parking != "" ? form.parking : user?.parking || "",
+            area: form.area != "" ? form.area : user?.area || "",
+            Gym: form.Gym != "" ? form.Gym : user?.Gym || "",
         });
-    }, [user]);
+    }, [user, image]);
 
-    console.log("form", form)
-
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
             setLoading(true);
             const formData = new FormData();
@@ -106,9 +106,13 @@ const Edit = () => {
                 },
             });
             // Handle response
-            setUser(res.data?.getUser[0]);
+            // Store user data in localStorage
+            localStorage.setItem('user', JSON.stringify(res.data?.getUser[0]));
+            // setUser(res.data?.getUser[0]);
+
             if (res.data.success) {
                 setLoading(false);
+
                 toast.success("Profile Update Successfully");
             }
         } catch (e) {
@@ -118,19 +122,22 @@ const Edit = () => {
     };
 
     const handleImageUpload = async (e) => {
+        e.preventDefault();
         const filedata = e.target.files[0];
         if (!filedata) {
             return;
         }
         const reader = new FileReader();
+
         reader.onload = () => {
             const imageData = reader.result;
-            setForm({ ...file, file: imageData });
+            setFile(imageData)
             setImage(filedata);
         };
         reader.readAsDataURL(filedata);
     };
-    console.log("object", form.smoker)
+
+
     return loading ? (
         <MutatingDots
             visible={true}
@@ -165,8 +172,8 @@ const Edit = () => {
                         className=" w-40 rounded-full"
                         // src={`${baseUrl}/assets/images/${form.file}`}
                         src={
-                            form.file
-                                ? form.file
+                            file
+                                ? file
                                 : user?.avatar ? `/uploads/${user?.avatar}`
                                     : Profile
                         }
@@ -292,7 +299,6 @@ const Edit = () => {
                             onChange={(e) =>
                                 setForm({ ...form, gender: e.target.value })
                             }>
-                            <option value="ratherNotSay">Rather not say</option>
                             <option value="Other">Other</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -316,11 +322,9 @@ const Edit = () => {
                         <br />
                         <select name="occupation" value={form.occupation} onChange={(e) => setForm({ ...form, occupation: e.target.value })} className="w-full rounded-3xl bg-gray-300">
                             <option value={null}>Select Occupation</option>
-                            <option value="student">Student</option>
-                            <option value="goverment">Goverment Servent</option>
-                            <option value="developer">Developer</option>
-                            <option value="teacher">Teacher</option>
-                            <option value="engineer">Engineer</option>
+                            <option value="student">Professional</option>
+                            <option value="goverment">Unemployed</option>
+                            <option value="developer">Student</option>
                         </select>
 
                     </div>
@@ -336,7 +340,8 @@ const Edit = () => {
                         })} className="w-full rounded-3xl bg-gray-300">
                             <option value={null}>Select Nationality</option>
                             {country.map((data, index) => (
-                                <option key={index} value={form.name}>{data.name}</option>
+                                // <option key={index} value={form.name}>{data.name}</option>
+                                <option key={index} value={data.nationality}>{data.nationality}</option>
                             ))}
                         </select>
                     </div>
@@ -361,22 +366,19 @@ const Edit = () => {
                         <br />
                         <select name="" value={form.bedtime} onChange={(e) => setForm({ ...form, bedtime: e.target.value })} className="w-full rounded-3xl bg-gray-300">
                             <option value={null}>Select Bedtime</option>
-                            <option value="earlyriser">early riser</option>
-                            <option value="nightout">Night Out</option>
+                            <option value="earlyriser">Early Bird</option>
+                            <option value="nightout">Night Owl</option>
                         </select>
                     </div>
                     <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="diet">Diet</label>
                         <br />
-                        <input
-                            className="w-full rounded-3xl bg-gray-300"
-                            type="text"
-                            name="diet"
-                            value={form.diet}
-                            onChange={(e) =>
-                                setForm({ ...form, diet: e.target.value })
-                            }
-                        />
+                        <select name="diet" value={form.diet} onChange={(e) => setForm({ ...form, diet: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+                            <option value={null}>Select diet</option>
+                            <option value="Non-Vegetarian">Non-Vegetarian</option>
+                            <option value="Vegan">Vegan</option>
+                            <option value="Vegetarian">Vegetarian</option>
+                        </select>
                     </div>
                 </div>
 
@@ -420,21 +422,21 @@ const Edit = () => {
                     <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="education">Education</label>
                         <br />
-                        <input
-                            className="w-full rounded-3xl bg-gray-300"
-                            type="text"
-                            name="education"
-                            value={form.education}
-                            onChange={(e) =>
-                                setForm({ ...form, education: e.target.value })
-                            }
-                        />
+                        <select name="education" value={form.education} onChange={(e) => setForm({
+                            ...form,
+                            education: e.target.value,
+                        })} className="w-full rounded-3xl bg-gray-300">
+                            <option value={null}>Select education</option>
+                            {education.map((data, index) => (
+                                <option key={index} value={data.education}>{data.education}</option>
+                            ))}
+                        </select>
                     </div>
                 </div>
 
                 <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
                     <div className="w-1/2 max-sm:w-full">
-                        <label htmlFor="type">type</label>
+                        <label htmlFor="type">Type</label>
                         <br />
                         <select name="type" value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })} className="w-full rounded-3xl bg-gray-300">
                             <option value={null}>Select type</option>
@@ -445,7 +447,7 @@ const Edit = () => {
 
                     </div>
                     <div className="w-1/2 max-sm:w-full">
-                        <label htmlFor="rooms">rooms</label>
+                        <label htmlFor="rooms">Rooms</label>
                         <br />
                         <select name="rooms" value={form.rooms} onChange={(e) => setForm({ ...form, rooms: e.target.value })} className="w-full rounded-3xl bg-gray-300">
                             <option value={null}>rooms</option>
@@ -458,7 +460,7 @@ const Edit = () => {
 
                 <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
                     <div className="w-1/2 max-sm:w-full">
-                        <label htmlFor="price">price</label>
+                        <label htmlFor="price">Price</label>
                         <br />
                         <input
                             className="w-full rounded-3xl bg-gray-300"
@@ -471,7 +473,7 @@ const Edit = () => {
                         />
                     </div>
                     <div className="w-1/2 max-sm:w-full">
-                        <label htmlFor="washrooms">washrooms</label>
+                        <label htmlFor="washrooms">Washrooms</label>
                         <br />
                         <select name="washrooms" value={form.washrooms} onChange={(e) => setForm({ ...form, washrooms: e.target.value })} className="w-full rounded-3xl bg-gray-300">
                             <option value={null}>Select</option>
@@ -484,7 +486,7 @@ const Edit = () => {
 
                 <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
                     <div className="w-1/2 max-sm:w-full">
-                        <label htmlFor="parking">parking</label>
+                        <label htmlFor="parking">Parking</label>
                         <br />
                         <select name="parking" value={form.parking} onChange={(e) => setForm({ ...form, parking: e.target.value })} className="w-full rounded-3xl bg-gray-300">
                             <option value={null}>{form.parking != "" && form.parking == 1 ? "Yes" : form.parking == 0 ? "No" : "Select"}</option>
@@ -494,7 +496,7 @@ const Edit = () => {
 
                     </div>
                     <div className="w-1/2 max-sm:w-full">
-                        <label htmlFor="area">area</label>
+                        <label htmlFor="area">Area</label>
                         <br />
                         <input
                             className="w-full rounded-3xl bg-gray-300"
@@ -527,19 +529,17 @@ const Edit = () => {
                         <select name="cleanliness" value={form.cleanliness} onChange={(e) => setForm({ ...form, cleanliness: e.target.value })} className="w-full rounded-3xl bg-gray-300">
                             <option value={null}>"Select"</option>
                             <option value="Average">Average</option>
-                            <option value="Normal">Normal</option>
-                            <option value="clean">clean</option>
+                            <option value="Messy">Messy</option>
+                            <option value="Neat">Neat</option>
                         </select>
-
                     </div>
-
                 </div>
             </div>
 
             <div className="flex justify-end mt-6">
                 <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold my-2 px-5 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
-                    onClick={handleSubmit}>
+                    onClick={(e) => handleSubmit(e)}>
                     {loading ? (
                         <Circles
                             className="p-1"

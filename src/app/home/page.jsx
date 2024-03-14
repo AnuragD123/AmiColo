@@ -67,7 +67,6 @@ const Home = () => {
         },
     ]
     const handleSubmitForm = async (data) => {
-        console.log("ENter", data)
         try {
             const formData = new FormData();
             // Append form data
@@ -75,9 +74,8 @@ const Home = () => {
             formData.append("occupation", data.occupation);
             formData.append("nationality", data.nationality);
             formData.append("languages", data.languages);
-            formData.append("food", data.food);
-            formData.append("place", data.place);
-            formData.append("city", data.city);
+            formData.append("diet", data.diet);
+            formData.append("bedtime", data.bedtime);
             formData.append("login", true);
 
             const res = await axios.post(`/api/user/update_profile`, formData, {
@@ -85,6 +83,7 @@ const Home = () => {
                     'Content-Type': 'multipart/form-data'
                 },
             });
+            console.log("res", res.data.getUser[0])
             // Handle response
             setUser(res.data?.getUser[0])
             if (res.data.success) {
@@ -136,11 +135,11 @@ const Home = () => {
                     <p className="text-base max-sm:text-xs font-medium text-slate-500">Happy Users</p>
                 </div>
                 <div className="text-center">
-                    <div className="text-5xl max-sm:text-2xl font-extrabold text-blue-700" data-count="">10+</div>
+                    <div className="text-5xl max-sm:text-2xl font-extrabold text-blue-700" data-count="">50+</div>
                     <p className="text-base max-sm:text-xs font-medium text-slate-500">Targeted Customers</p>
                 </div>
                 <div className="text-center">
-                    <div className="text-5xl max-sm:text-2xl font-extrabold text-blue-700" data-count="">10+</div>
+                    <div className="text-5xl max-sm:text-2xl font-extrabold text-blue-700" data-count="">100+</div>
                     <p className="text-base max-sm:text-xs font-medium text-slate-500">Delighted Customers</p>
                 </div>
                 <div className="text-center">

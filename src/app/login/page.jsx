@@ -14,7 +14,6 @@ const Login = () => {
   const [user, setUser] = React.useState({
     email: "",
     password: "",
-
   })
   // const [buttonDisabled, setButtonDisabled] = React.useState(false);
   // const [loading, setLoading] = React.useState(false);
@@ -23,33 +22,24 @@ const Login = () => {
   const loginHandler = async () => {
 
     try {
-      // setLoading(true);
-      console.log(user);
       const response = await axios.post("/api/auth/login", user);
-      console.log("Login success", response.data);
       toast.success("Login success");
+      console.log("object", response.data.user)
+      // Store user data in localStorage
+      localStorage.setItem('user', JSON.stringify(response.data.user[0]));
       router.push("/profile");
     } catch (error) {
-      // console.log("Login failed", error.message);
+    
       toast.error(error.response.data.error);
     }
-    //  finally{
-    // setLoading(false);
-    // }
+  
   }
 
-  // useEffect(() => {
-  //     if(user.email.length > 0 && user.password.length > 0) {
-  //         setButtonDisabled(false);
-  //     } else{
-  //         setButtonDisabled(true);
-  //     }
-  // }, [user]);
   const FacebookAuthButtonClick = async () => {
     const data = await FacebookAuth();
     console.log("user login with facebook--->", data);
-    
-    
+
+
   };
   return (
     <section>
@@ -122,7 +112,7 @@ const Login = () => {
               </div>
             </form>
             <div className="mt-3 space-y-3">
-    
+
               <button
                 type="button"
                 onClick={FacebookAuthButtonClick}

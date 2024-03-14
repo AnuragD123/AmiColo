@@ -28,9 +28,6 @@ const Preference = () => {
     const { user, setUser } = useUserContext();
     const [form, setForm] = useState({
         diet: "",
-
-        // place: "",
-
         count_friends: "",
     });
 
@@ -45,29 +42,6 @@ const Preference = () => {
     }, [user])
 
     const prefence = [
-        // {
-        //     heading: "What best describes your place preferences?",
-        //     type: "place",
-        //     data: [
-        //         {
-        //             img: beach,
-        //             value: "Beach"
-        //         },
-        //         {
-        //             img: mountains,
-        //             value: "Mountains"
-        //         },
-        //         {
-        //             img: cityscape,
-        //             value: "Cityscape"
-        //         },
-        //         {
-        //             img: countryside,
-        //             value: "Countryside"
-
-        //         }
-        //     ]
-        // },
         {
 
             heading: "What best describes your diet preferences?",

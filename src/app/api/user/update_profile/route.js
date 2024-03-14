@@ -39,7 +39,6 @@ export async function POST(request) {
         const area = file.get('area');
         const Gym = file.get('Gym');
         const login = file.get('login');
-        const place = file.get('place');
         const cleanliness = file.get('cleanliness');
         const count_friends = file.get('count_friends');
 
@@ -130,9 +129,7 @@ export async function POST(request) {
                     whereClause.Gym = false;
                 }
             }
-            if (place) {
-                whereClause.place = place;
-            }
+
             await pool.query("UPDATE users SET ? WHERE id = ?", [whereClause, currentUserId]);
             const getUser = await pool.query('SELECT * FROM users WHERE id=?', currentUserId);
             return NextResponse.json({ success: true, message: 'Data update successfully', getUser });

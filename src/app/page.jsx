@@ -85,7 +85,7 @@ export default function Home() {
                 <div className="plus-card-content flex justify-evenly">
                     <div className="plus-card">
                         <p className="text-7xl text-blue-800 font-extrabold max-sm:text-5xl">
-                            10+
+                            100+
                         </p>
                         <p className="text-bold">Targeted Customers</p>
                     </div>
@@ -122,7 +122,7 @@ export default function Home() {
                     <div className="content-p flex flex-wrap justify-around max-sm:justify-start">
                         <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
-                                AI Powered Roommate
+                                AI Powered RoomMate
                                 <br />
                                 <span>Recommendations</span>
                             </p>
@@ -256,13 +256,13 @@ export default function Home() {
             </div>
             <div
                 id="section-6"
-                className="flex flex-col lg:flex-row justify-between content-center">
+                className="flex flex-col lg:flex-row-reverse mt-[30px] justify-between content-center">
                 <img
                     className="w-[100vw] lg:w-[50vw]"
                     src="/images/mapc.png"
                     alt="map"
                 />
-                <div className="content m-auto">
+                <div className="content m-auto ">
                     <h5 className="heading text-xl text-start mx-8 mb-3">
                         There's an Amicolo around. Always.,
                         <br />
@@ -278,7 +278,7 @@ export default function Home() {
                                 <span>Vancouver, British Columbia</span>
                             </p>
                             <p className="my-3 mx-2 lg:mx-8">
-                                Montreal, Quebec
+                            Montréal, Québec
                                 <br />
                                 <span>Ottawa, Ontario</span>
                             </p>
@@ -290,7 +290,7 @@ export default function Home() {
                                 <span>Edmonton, Alberta</span>
                             </p>
                             <p className="my-3 mx-2 lg:mx-8">
-                                Quebec City, Quebec
+                            Québec City, Québec
                                 <br />
                                 <span>Halifax, Nova Scotia</span>
                             </p>
