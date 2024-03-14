@@ -18,7 +18,6 @@ export async function POST(req) {
 
 
         if (data.changedRows == 1) {
-
             const emaildata = await pool.query(`
             SELECT u.email as other_email, user1.email as main_user_email , r.price FROM match_invitation mi INNER JOIN booking_request br ON mi.booking_req_id = br.booking_req_id INNER JOIN users u ON mi.user_id = u.id INNER JOIN users user1 ON br.user_id = user1.id INNER JOIN rooms r on br.room_id = r.id WHERE user1.id = ?;
             `, [currentUserId]);
@@ -26,12 +25,17 @@ export async function POST(req) {
             const num = emaildata.length ;
             console.log("size=",num)
             if (num == 0) {
-                const current_user_email = await pool.query(`SELECT u.email, r.price FROM booking_request br INNER JOIN users u ON br.user_id=u.id INNER JOIN rooms r ON br.room_id = r.id WHERE br.user_id=?;`, [currentUserId]);
+                console.log('current user=',currentUserId);
 
-                const email = current_user_email[0].email;
-                const room_price = current_user_email[0].price;
-                console.log("email=",email)
-                console.log("price=",room_price)
+                const currentUserBookings = await pool.query(`SELECT u.id, u.email, r.price FROM booking_request br INNER JOIN users u ON br.user_id=u.id INNER JOIN rooms r ON br.room_id = r.id WHERE br.booking_req_id= ?;`, [id,'pending']);
+
+                const currentUserEmail = currentUserBookings[0].email;
+                                            
+                // console.log(currentUserEmail)
+                const email = currentUserEmail;
+                const room_price = currentUserBookings[0].price;
+                // console.log("email=",email)
+                // console.log("price=",room_price)
 
                 const others =[];
 

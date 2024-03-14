@@ -13,7 +13,7 @@ const Listing = () => {
 
     const fetchRooms = async () => {
         try {
-            const response = await axios.get('/api/room/requestroom');
+            const response = await axios.get('/api/room/fetch_booked_rooms');
             setRooms(response.data.data);
 
         } catch (error) {
