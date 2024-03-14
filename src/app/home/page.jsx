@@ -136,11 +136,11 @@ const Home = () => {
                     <p className="text-base max-sm:text-xs font-medium text-slate-500">Happy Users</p>
                 </div>
                 <div className="text-center">
-                    <div className="text-5xl max-sm:text-2xl font-extrabold text-blue-700" data-count="">10+</div>
+                    <div className="text-5xl max-sm:text-2xl font-extrabold text-blue-700" data-count="">50+</div>
                     <p className="text-base max-sm:text-xs font-medium text-slate-500">Targeted Customers</p>
                 </div>
                 <div className="text-center">
-                    <div className="text-5xl max-sm:text-2xl font-extrabold text-blue-700" data-count="">10+</div>
+                    <div className="text-5xl max-sm:text-2xl font-extrabold text-blue-700" data-count="">100+</div>
                     <p className="text-base max-sm:text-xs font-medium text-slate-500">Delighted Customers</p>
                 </div>
                 <div className="text-center">
