@@ -18,6 +18,7 @@ const Profile = () => {
         const response = await axios.get('/api/user/getdata');
         console.log(response.data.data[0]);
         setUser(response.data.data[0]);
+        localStorage.setItem('id',response.data.data[0].id);
         setUserdata(response.data.data[0]);
 
       } catch (error) {

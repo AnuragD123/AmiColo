@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import usersData from './user_recommendation.json'; // Adjust the 
+import usersData from '../../../user_recommendation.json'; // Adjust the 
 import Roomate from '../(Components)/Roomate/Roomate'
 import axios from 'axios'
 import { GrNext, GrPrevious } from "react-icons/gr";
@@ -61,8 +61,15 @@ const FindMatch = () => {
     };
 
     useEffect(() => {
+        const id = localStorage.getItem('id');
+        const triggerMLEvent=async() =>{
+            const response = await axios.post('http://89.116.49.229:5000/api2',{id});
+            console.log(response);
+        }
+        triggerMLEvent();
         const fetchUsers = async () => {
 
+            
             const recommended_user_ids = Object.values(usersData);
             console.log(recommended_user_ids);
             try {

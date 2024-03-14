@@ -18,6 +18,7 @@
     "flowbite": "^2.3.0",
     "flowbite-react": "^0.7.2",
     "js-cookie": "^3.0.5",
+    "jsonfile": "^6.1.0",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.323.0",
     "moment": "^2.30.1",
