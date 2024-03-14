@@ -63,11 +63,12 @@ const FindMatch = () => {
 	useEffect(() => {
 		const id = localStorage.getItem('id');
 		const triggerMLEvent = async () => {
-			// const response = await axios.post('http://89.116.49.229:5000/api2', { id });
-			// console.log(response);
-			const response = await axios.post('/api/user/api2')
-			console.log(response)
-			setUsers(response.data.data)
+			const response = await axios.post('https://ml.amicolo.com/api2', { id });
+			console.log(response);
+			setUsers(response.data)
+			// const response = await axios.post('/api/user/api2')
+			// console.log(response)
+			// setUsers(response.data.data)
 		}
 		triggerMLEvent();
 		// const fetchUsers = async () => {
