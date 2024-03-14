@@ -7,7 +7,7 @@ export async function GET(req) {
         const currentUser = await getDataFromToken(req);
 
         const roomData = await pool.query(
-            'SELECT * FROM booking_request b INNER JOIN rooms r ON b.room_id = r.id WHERE b.user_id = ?;',
+            'SELECT * FROM booking_request b INNER JOIN rooms r ON b.room_id = r.id WHERE b.user_id = ? and status="pending";',
             [currentUser]
         );
 
