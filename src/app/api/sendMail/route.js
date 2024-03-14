@@ -17,6 +17,39 @@ export async function POST(req) {
         Name: name,
         }));
 
+        const formatDate = () => {
+          const date = new Date();
+          const options = { day: '2-digit', month: 'long', year: 'numeric' };
+          return date.toLocaleDateString('en-US', options);
+      };
+      
+      const formattedDate = formatDate();
+      console.log(formattedDate);
+
+      const formatTime = () => {
+        const dateTime = new Date();
+        
+        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+        
+        return dateTime.toLocaleTimeString('en-US', timeOptions);
+    };
+    
+    const formattedTime = formatTime();
+    console.log(formattedTime);
+
+
+
+    const formatDueDate = () => {
+      const currentDate = new Date();
+      const dueDate = new Date(currentDate);
+      dueDate.setDate(currentDate.getDate() + 3); // Adding three days to the current date
+  
+      const options = { day: '2-digit', month: 'long', year: 'numeric' };
+      return dueDate.toLocaleDateString('en-US', options);
+  };
+  
+  const formattedDueDate = formatDueDate();
+
 
         const mailjet = Mailjet.apiConnect(
             "f3366977b75195573f95b1d43939fc6c",
@@ -29,13 +62,79 @@ export async function POST(req) {
           Messages: [
             {
               From: {
-                Email: "ami.colo.mtl@gmail.com",
+                Email: "booking@amicolo.com",
                 Name: "Next testing"
               },
               To: emails,
               Subject: " Booking Confirmation Email",
               TextPart: "",
-              HTMLPart: "Dear"+name+", your booking has been confirmed and your share is:$"+price
+              // HTMLPart: "Dear"+name+", your booking has been confirmed and your share is:$"+price
+              HTMLPart: `
+              <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Booking Confirmation</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                        }
+                        .container {
+                            max-width: 600px;
+                            margin: 0 auto;
+                            padding: 20px;
+                            border: 1px solid #ccc;
+                            border-radius: 5px;
+                        }
+                        .header {
+                            background-color: #007bff;
+                            color: #fff;
+                            padding: 10px;
+                            text-align: center;
+                            border-radius: 5px 5px 0 0;
+                        }
+                        .content {
+                            padding: 20px;
+                        }
+                        .footer {
+                            background-color: #f0f0f0;
+                            padding: 10px;
+                            text-align: center;
+                            border-radius: 0 0 5px 5px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <div class="header">
+                            <h1>Booking Confirmation</h1>
+                        </div>
+                        <div class="content">
+                            <p>Dear ${name},</p>
+                            <p>We are delighted to confirm your booking. Below are the details:</p>
+                            <ul>
+                                
+                                <li><strong>Date:</strong> ${formattedDate}</li>
+                                <li><strong>Time:</strong> ${formattedTime}</li>
+                              
+                            </ul>
+                            <p><strong>Payment Information:</strong></p>
+                            <p>Please make the payment of [Amount Due] to the following account:</p>
+                            <p>Account Name: Amicolo ADMIN</p>
+                            <p>Account Number: 899223898292</p>
+                            <p>Bank Name: [Bank Name]</p>
+                            <p>Amount Due: ${price}</p>
+                            <p>Due Date: ${formatDueDate}</p>
+                            <p>Thank you for choosing our services. Should you have any questions, feel free to contact us.</p>
+                        </div>
+                        <div class="footer">
+                            <p>Best Regards,<br>Team AmiColo</p>
+                        </div>
+                    </div>
+                </body>
+                </html>              
+              `
             }
           ]
         })
