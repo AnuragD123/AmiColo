@@ -2,15 +2,18 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
-import { Country } from 'country-state-city';
+// import { Country } from 'country-state-city';
+import { country,education } from "./data";
 import { Circles, MutatingDots } from "react-loader-spinner";
 import Profile from "../../../../images/AmiColo_Profile.png";
 import Image from "next/image";
 import { useUserContext } from "@/context/context";
 import { toast, Toaster } from "react-hot-toast";
+
+
 // const baseUrl = require("http://192.168.127.176:3000");
 const Edit = () => {
-    const country = Country.getAllCountries();
+    // const country = Country.getAllCountries();
     const { user, setUser } = useUserContext();
     const [loading, setLoading] = useState(false);
     const [form, setForm] = useState({
@@ -318,7 +321,6 @@ const Edit = () => {
                             onChange={(e) =>
                                 setForm({ ...form, gender: e.target.value })
                             }>
-                            <option value="ratherNotSay">Rather not say</option>
                             <option value="Other">Other</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -362,7 +364,8 @@ const Edit = () => {
                         })} className="w-full rounded-3xl bg-gray-300">
                             <option value={null}>Select Nationality</option>
                             {country.map((data, index) => (
-                                <option key={index} value={form.name}>{data.name}</option>
+                                // <option key={index} value={form.name}>{data.name}</option>
+                                <option key={index} value={data.nationality}>{data.nationality}</option>
                             ))}
                         </select>
                     </div>
@@ -385,28 +388,21 @@ const Edit = () => {
                     <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="bedtime">Bed Time</label>
                         <br />
-                        <input
-                            className="w-full rounded-3xl bg-gray-300"
-                            type="text"
-                            name="bedtime"
-                            value={form.bedtime}
-                            onChange={(e) =>
-                                setForm({ ...form, bedtime: e.target.value })
-                            }
-                        />
+                        <select name="bedtime" value={form.bedtime} onChange={(e) => setForm({ ...form, bedtime: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+                            <option value={null}>Select Bedtime</option>
+                            <option value="Night owl">Night Owl</option>
+                            <option value="Early Bird">Early Bird</option>
+                        </select>
                     </div>
                     <div className="w-1/2 max-sm:w-full">
                         <label htmlFor="diet">Diet</label>
                         <br />
-                        <input
-                            className="w-full rounded-3xl bg-gray-300"
-                            type="text"
-                            name="diet"
-                            value={form.diet}
-                            onChange={(e) =>
-                                setForm({ ...form, diet: e.target.value })
-                            }
-                        />
+                        <select name="diet" value={form.diet} onChange={(e) => setForm({ ...form, diet: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+                            <option value={null}>Select diet</option>
+                            <option value="Non-vegetarian">Non-vegetarian</option>
+                            <option value="Vegan">Vegan</option>
+                            <option value="Vegatarian">Vegatarian</option>
+                        </select>
                     </div>
                 </div>
 
@@ -448,23 +444,23 @@ const Edit = () => {
 
                     </div>
                     <div className="w-1/2 max-sm:w-full">
-                        <label htmlFor="education">Education</label>
+                    <label htmlFor="education">Education</label>
                         <br />
-                        <input
-                            className="w-full rounded-3xl bg-gray-300"
-                            type="text"
-                            name="education"
-                            value={form.education}
-                            onChange={(e) =>
-                                setForm({ ...form, education: e.target.value })
-                            }
-                        />
+                        <select name="education" value={form.education} onChange={(e) => setForm({
+                            ...form,
+                            education: e.target.value,
+                        })} className="w-full rounded-3xl bg-gray-300">
+                            <option value={null}>Select education</option>
+                            {education.map((data, index) => (
+                                <option key={index} value={data.education}>{data.education}</option>
+                            ))}
+                        </select>
                     </div>
                 </div>
 
                 <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
                     <div className="w-1/2 max-sm:w-full">
-                        <label htmlFor="type">type</label>
+                        <label htmlFor="type">Type</label>
                         <br />
                         <select name="type" value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })} className="w-full rounded-3xl bg-gray-300">
                             <option value={null}>Select type</option>
@@ -475,7 +471,7 @@ const Edit = () => {
 
                     </div>
                     <div className="w-1/2 max-sm:w-full">
-                        <label htmlFor="rooms">rooms</label>
+                        <label htmlFor="rooms">Rooms</label>
                         <br />
                         <select name="rooms" value={form.rooms} onChange={(e) => setForm({ ...form, rooms: e.target.value })} className="w-full rounded-3xl bg-gray-300">
                             <option value={null}>rooms</option>
@@ -488,7 +484,7 @@ const Edit = () => {
 
                 <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
                     <div className="w-1/2 max-sm:w-full">
-                        <label htmlFor="price">price</label>
+                        <label htmlFor="price">Price</label>
                         <br />
                         <input
                             className="w-full rounded-3xl bg-gray-300"
@@ -501,7 +497,7 @@ const Edit = () => {
                         />
                     </div>
                     <div className="w-1/2 max-sm:w-full">
-                        <label htmlFor="washrooms">washrooms</label>
+                        <label htmlFor="washrooms">Washrooms</label>
                         <br />
                         <select name="washrooms" value={form.washrooms} onChange={(e) => setForm({ ...form, washrooms: e.target.value })} className="w-full rounded-3xl bg-gray-300">
                             <option value={null}>Select</option>
@@ -514,17 +510,17 @@ const Edit = () => {
 
                 <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
                     <div className="w-1/2 max-sm:w-full">
-                        <label htmlFor="parking">parking</label>
+                        <label htmlFor="parking">Parking</label>
                         <br />
                         <select name="parking" value={form.parking} onChange={(e) => setForm({ ...form, parking: e.target.value })} className="w-full rounded-3xl bg-gray-300">
-                            <option value={null}>Select</option>
+                            <option value={null}>{form.parking != "" && form.parking == 1 ? "Yes" : form.parking == 0 ? "No" : "Select"}</option>
                             <option value={true}>Yes</option>
                             <option value={false}>No</option>
                         </select>
 
                     </div>
                     <div className="w-1/2 max-sm:w-full">
-                        <label htmlFor="area">area</label>
+                        <label htmlFor="area">Area</label>
                         <br />
                         <input
                             className="w-full rounded-3xl bg-gray-300"
@@ -544,7 +540,7 @@ const Edit = () => {
                         <label htmlFor="gym">Gym</label>
                         <br />
                         <select name="gym" value={form.gym} onChange={(e) => setForm({ ...form, gym: e.target.value })} className="w-full rounded-3xl bg-gray-300">
-                            <option value={null}>Select</option>
+                            <option value={null}>{form.gum != "" && form.gym == 1 ? "Yes" : form.gym == 0 ? "No" : "Select"}</option>
                             <option value={true}>Yes</option>
                             <option value={false}>No</option>
                         </select>
