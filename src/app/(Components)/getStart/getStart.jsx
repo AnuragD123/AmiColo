@@ -153,9 +153,9 @@ const GetStart = ({ handleSubmitForm }) => {
                         <h2 className="text-2xl font-bold mb-4">What is your Occupation?</h2>
                         <select name="" value={form.occupation} onChange={(e) => updateForm("occupation", e.target.value)} className="rounded-xl outline-none">
                             <option value={null}>Select Occupation</option>
-                            <option value="student">Professional</option>
-                            <option value="goverment">Unemployed</option>
-                            <option value="developer">Student</option>
+                            <option value="Professional">Professional</option>
+                            <option value="Unemployed">Unemployed</option>
+                            <option value="Student">Student</option>
                         </select>
                     </div>
                 )}
@@ -211,8 +211,8 @@ const GetStart = ({ handleSubmitForm }) => {
                         <div className="flex items-center justify-around gap-10">
                             <select name="" value={form.bedtime} onChange={(e) => updateForm("bedtime", e.target.value)} className=" rounded-xl outline-none">
                                 <option value={null}>Select Bedtime</option>
-                                <option value="earlyriser">Early Bird</option>
-                                <option value="nightout">Night Owl</option>
+                                <option value="Early Bird">Early Bird</option>
+                                <option value="Night Owl">Night Owl</option>
                             </select>
                         </div>
                     </div>

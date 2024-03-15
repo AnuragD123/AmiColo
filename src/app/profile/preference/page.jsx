@@ -49,15 +49,15 @@ const Preference = () => {
             data: [
                 {
                     img: vegetarian,
-                    value: "vegetarian"
+                    value: "Vegetarian"
                 },
                 {
                     img: nonvegetarian,
-                    value: "non-vegetarian"
+                    value: "Non-Vegetarian"
                 },
                 {
                     img: vegan,
-                    value: "vegan"
+                    value: "Vegan"
                 },
                 {
                     img: gluten,

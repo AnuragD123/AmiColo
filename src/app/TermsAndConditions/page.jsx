@@ -74,7 +74,7 @@ const TermsAndConditions = () => {
 
                         <h3 className="text-xl font-bold">Contact Us</h3>
                         <p>
-                            If you have any questions about these Terms, please contact us at: <a href="mailto:contactus@amicolo.com" className="text-blue-500">contactus@amicolo.com</a>.
+                            If you have any questions about these Terms, please contact us at: <a href="mailto:support@amicolo.com" className="text-blue-500">support@amicolo.com</a>.
                         </p>
                     </div>
                 </div>

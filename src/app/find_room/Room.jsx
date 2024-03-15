@@ -34,7 +34,7 @@ const Room = ({ key, data }) => {
 
                     <Link href={`/booking/${data.id}`}>
                         <button className="float-right rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400 text-white px-4 py-2">
-                            Book Now
+                            Visit
                         </button>
                     </Link>
                 </div>

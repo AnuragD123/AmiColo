@@ -83,7 +83,7 @@ const FAQs = () => {
 
     return (
         <div className="py-10">
-            <div className='p-5 text-center bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400' style={{transform: "skewY(-3deg)" }}>
+            <div className='p-5 text-center bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400' style={{ transform: "skewY(-3deg)" }}>
                 <p className='text-white text-5xl font-bold'>FAQs</p>
             </div>
             <section className="mx-auto max-w-7xl px-2 py-10 md:px-0">
@@ -92,9 +92,7 @@ const FAQs = () => {
                         <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
                             Frequently Asked Questions
                         </h2>
-                        <p className="mt-4 max-w-xl text-base leading-relaxed text-gray-600 lg:mx-auto">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere, assumenda
-                        </p>
+
                     </div>
                     <div className="mx-auto mt-8 max-w-3xl space-y-4 md:mt-16">
                         {faqsData.map((faq, index) => (

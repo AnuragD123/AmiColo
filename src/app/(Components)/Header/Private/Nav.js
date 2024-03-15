@@ -25,10 +25,11 @@ const Nav = () => {
             {user && (
                 <nav className="navbar fixed-top px-4 py-2 border-b border-gray-300">
                     <div className="container mx-auto flex items-center justify-between">
-                        <Link className="text-gray-800 text-3xl font-semibold no-underline" href="/home">
+                        {/* <Link className="text-gray-800 text-3xl font-semibold no-underline" href="/home">
                             AmiColo
-                        </Link>
-                        <div className="flex items-center">
+                        </Link> */}
+                        <div></div>
+                        <div>
                             <ul className={`lg:flex lg:space-x-6 ${navToggle ? "block" : "hidden"} lg:ml-auto`}>
                                 {navItems.map((item, index) => (
                                     <li key={index}>
@@ -40,16 +41,18 @@ const Nav = () => {
                                     </li>
                                 ))}
                             </ul>
+                        </div>
+                        <div className="flex items-center">
+
                             <div className="ml-4">
                                 <Link className="text-gray-800" href="/chat">
-                                    <AiOutlineMessage className="text-xl hover:text-pink-500" />
+                                    <AiOutlineMessage className="text-3xl hover:text-pink-500" />
                                 </Link>
                             </div>
                             <div className="ml-4">
                                 <Link
-                                    className={`inline-block ${
-                                        pathname === "/profile" ? "text-pink-500" : "text-gray-700"
-                                    } hover:text-pink-500`}
+                                    className={`inline-block ${pathname === "/profile" ? "text-pink-500" : "text-gray-700"
+                                        } hover:text-pink-500`}
                                     href="/profile">
                                     {user ? (
                                         <Image

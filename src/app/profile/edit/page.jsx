@@ -106,7 +106,7 @@ const Edit = () => {
                 },
             });
             // Handle response
-        
+
             localStorage.setItem('user', JSON.stringify(res.data?.getUser[0]));
             // setUser(res.data?.getUser[0]);
 
@@ -169,7 +169,7 @@ const Edit = () => {
             <div>
                 <div className="w-full flex items-center gap-3 mb-6">
                     <Image
-                        className=" w-40 rounded-full"
+                        className=" w-40 h-40 rounded-full"
                         // src={`${baseUrl}/assets/images/${form.file}`}
                         src={
                             file
@@ -313,8 +313,8 @@ const Edit = () => {
 
                         <br />
                         <span className=" flex items-center gap-5">
-                            <button className={`px-3 py-1 rounded-xl max-sm:w-1/2 ${form.smoker == "true" || form.smoker == true ? "bg-gray-400" : "bg-gray-300"}`} onClick={(e) => setForm({ ...form, smoker: true })}>Yes</button>
-                            <button className={`px-3 py-1 rounded-xl max-sm:w-1/2 ${form.smoker == "false" || form.smoker == false ? "bg-gray-400" : "bg-gray-300"}`} onClick={(e) => setForm({ ...form, smoker: false })}>No</button>
+                            <button className={`px-3 py-1 rounded-xl w-1/2 ${form.smoker == "true" || form.smoker == true ? "bg-gray-400" : "bg-gray-300"}`} onClick={(e) => setForm({ ...form, smoker: true })}>Yes</button>
+                            <button className={`px-3 py-1 rounded-xl w-1/2 ${form.smoker == "false" || form.smoker == false ? "bg-gray-400" : "bg-gray-300"}`} onClick={(e) => setForm({ ...form, smoker: false })}>No</button>
                         </span>
                     </div>
                     <div className="w-1/2 max-sm:w-full">
@@ -322,9 +322,9 @@ const Edit = () => {
                         <br />
                         <select name="occupation" value={form.occupation} onChange={(e) => setForm({ ...form, occupation: e.target.value })} className="w-full rounded-3xl bg-gray-300">
                             <option value={null}>Select Occupation</option>
-                            <option value="student">Professional</option>
-                            <option value="goverment">Unemployed</option>
-                            <option value="developer">Student</option>
+                            <option value="Professional">Professional</option>
+                            <option value="Unemployed">Unemployed</option>
+                            <option value="Student">Student</option>
                         </select>
 
                     </div>
@@ -366,20 +366,30 @@ const Edit = () => {
                         <br />
                         <select name="" value={form.bedtime} onChange={(e) => setForm({ ...form, bedtime: e.target.value })} className="w-full rounded-3xl bg-gray-300">
                             <option value={null}>Select Bedtime</option>
-                            <option value="earlyriser">Early Bird</option>
-                            <option value="nightout">Night Owl</option>
+                            <option value="Early Bird">Early Bird</option>
+                            <option value="Night Owl">Night Owl</option>
                         </select>
                     </div>
                     <div className="w-1/2 max-sm:w-full">
-                        <label htmlFor="diet">Diet</label>
+                        <label htmlFor="bedtime">Diet</label>
                         <br />
-                        <select name="diet" value={form.diet} onChange={(e) => setForm({ ...form, diet: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+                        <select name="" value={form.diet} onChange={(e) => setForm({ ...form, diet: e.target.value })} className="w-full rounded-3xl bg-gray-300">
                             <option value={null}>Select diet</option>
                             <option value="Non-Vegetarian">Non-Vegetarian</option>
                             <option value="Vegan">Vegan</option>
                             <option value="Vegetarian">Vegetarian</option>
                         </select>
                     </div>
+                    {/* <div className="w-1/2 max-sm:w-full">
+                        <label htmlFor="diet">Diet</label>
+                        <br />
+                        <select name="" value={form.bedtime} onChange={(e) => setForm({ ...form, diet: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+                            <option >Select diet</option>
+                            <option value="Non-Vegetarian">Non-Vegetarian</option>
+                            <option value="Vegan">Vegan</option>
+                            <option value="Vegetarian">Vegetarian</option>
+                        </select>
+                    </div> */}
                 </div>
 
                 <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">

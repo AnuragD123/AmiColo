@@ -243,7 +243,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {toast,Toaster} from 'react-hot-toast';
+import { toast, Toaster } from 'react-hot-toast';
 
 import Image from 'next/image';
 import Profile from '@/../../public/images/lady.jpg';
@@ -258,16 +258,16 @@ const BookingRoomPage = ({ params }) => {
     console.log(room_id);
 
     const response = await axios.post('/api/apartment/send_booking_req', { room_id, selectedMatchIds });
-    if(response.data.status==='success'){
+    if (response.data.status === 'success') {
       toast.success(response.data.msg)
       // console.log(response.data.msg);
-    }else{
+    } else {
       toast.error(response.data.msg)
 
     }
 
   }
-  const [apartmentData,SetAppartmentData] = useState([])
+  const [apartmentData, SetAppartmentData] = useState([])
   const [matchesList, setMatchesList] = useState([]);
   const [matchSearch, setMatchSearch] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -275,9 +275,9 @@ const BookingRoomPage = ({ params }) => {
 
   useEffect(() => {
 
-    const fetch_appartment_info=async()=>{
+    const fetch_appartment_info = async () => {
       const response = await axios.get(`/api/apartment/fetch_apartment_info?room_id=${params.id}`);
-      if (response.data.status==='success') {
+      if (response.data.status === 'success') {
         SetAppartmentData(response.data.room_data[0])
       }
     }
@@ -323,7 +323,7 @@ const BookingRoomPage = ({ params }) => {
 
   return (
     <div className="bg-gray-100">
-      <Toaster/>
+      <Toaster />
       <div className="max-w-full overflow-hidden">
         <Image
           alt="Apartment" className="w-full h-auto"
@@ -333,25 +333,46 @@ const BookingRoomPage = ({ params }) => {
         />
         {/* <img src={apartmentImage} /> */}
       </div>
-      <div className="container mx-auto mt-8 p-4 bg-white rounded shadow-md">
-      {apartmentData ? (
-        <>
-          <h1 className="text-2xl font-bold mb-4">{apartmentData.type}</h1>
-          <p className="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis, nunc vel auctor malesuada.</p>
-          <ul className="mt-4">
-            <li><strong>Gym:</strong> {apartmentData.gym}</li>
-            <li><strong>Rooms:</strong> {apartmentData.rooms}</li>
-            <li><strong>Washrooms:</strong> {apartmentData.washrooms}</li>
-            <li><strong>Area:</strong> {apartmentData.area}</li>
-            <li><strong>Parking:</strong> {apartmentData.parking}</li>
-            <li><strong>Price:</strong> {apartmentData.price}</li>
-            {/* <li><strong>Cluster ID:</strong> {apartmentData.cluster_id}</li> */}
-          </ul>
-        </>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
+      <div className="container mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
+        {apartmentData ? (
+          <>
+            <h1 className="text-3xl font-bold mb-4">{apartmentData.type}</h1>
+            <p className="text-gray-700 leading-relaxed">
+              Welcome to our studio, where modern living meets elegance. These spacious units offer breathtaking views and top-notch amenities.
+            </p>
+            <ul className="mt-6">
+              <li className="flex items-center mb-2">
+                <span className="w-24 font-semibold">Gym:</span>
+                <span className="text-gray-700">{apartmentData.gym ? 'Yes' : 'No'}</span>
+              </li>
+              <li className="flex items-center mb-2">
+                <span className="w-24 font-semibold">Rooms:</span>
+                <span className="text-gray-700">{apartmentData.rooms}</span>
+              </li>
+              <li className="flex items-center mb-2">
+                <span className="w-24 font-semibold">Washrooms:</span>
+                <span className="text-gray-700">{apartmentData.washrooms}</span>
+              </li>
+              <li className="flex items-center mb-2">
+                <span className="w-24 font-semibold">Area:</span>
+                <span className="text-gray-700">{apartmentData.area} sqft</span>
+              </li>
+              <li className="flex items-center mb-2">
+                <span className="w-24 font-semibold">Parking:</span>
+                <span className="text-gray-700">{apartmentData.parking ? 'Yes' : 'No'}</span>
+              </li>
+              <li className="flex items-center">
+                <span className="w-24 font-semibold">Price:</span>
+                <span className="text-gray-700">${apartmentData.price}/mo</span>
+              </li>
+              {/* Additional data points can be added here */}
+            </ul>
+          </>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
+
       <div className="container mx-auto p-8 bg-white rounded-lg shadow-md">
         <h1 className="text-4xl font-extrabold mb-6 text-gray-800">Match Search</h1>
         <div className="mb-4">

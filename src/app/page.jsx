@@ -1,21 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MoveRight } from "lucide-react";
-import { HiInformationCircle } from "react-icons/hi";
-import { Alert } from "flowbite-react";
 import { Carousel } from "flowbite-react";
-
 export default function Home() {
     return (
         <main className="">
             <div className="relative flex flex-wrap">
-                {/* <Alert
-                    color="warning"
-                    icon={HiInformationCircle}
-                    className="text-center z-30 mt-8 lg:mt-24 lg:w-full lg:absolute lg:left-0 lg:right-0 lg:mx-auto">
-                    <span className="font-medium">Info alert!</span> Get 70% OFF
-                    on first booking
-                </Alert> */}
                 <div className="w-full lg:w-1/2 h-auto hidden lg:inline text-white cursor-pointer transform hover:scale-110 transition-transform">
                     <Carousel
                         leftControl="."
@@ -56,7 +46,7 @@ export default function Home() {
                     />
                 </div>
                 <div className="absolute inset-0 flex flex-col justify-center items-center text-center bg-black bg-opacity-50">
-                    <p className="text-lg lg:text-4xl text-white font-bold">
+                    <p className="text-lg lg:text-4xl text-white font-bold" style={{ filter: "drop-shadow(2px 2px 5px #dedede97)" }}>
                         Your <span className="text-red-600">New City</span>,{" "}
                         <br />
                         Your <span className="text-blue-600">
@@ -78,7 +68,7 @@ export default function Home() {
 
             <div
                 id="section-2"
-                className="relative z-30 my-16">
+                className="relative z-30 my-16 mx-2">
                 <p className="text-4xl mb-2 font-semibold text-center">
                     We are Canada’s most Awaited Coiling Platform
                 </p>
@@ -111,15 +101,15 @@ export default function Home() {
                     src="/images/find-easy.png"
                     alt="find-and-easy"
                 />
-                <div className="content m-auto">
-                    <h5 className="heading text-xl text-start mx-8 mb-3">
+                <div className="content m-2">
+                    <h5 className="heading text-2xl font-bold  text-start mx-8 mb-3">
                         Kind to Your Wallet,
                         <br />
-                        <span className="font-bold text-2xl">
+                        <span className="text-2xl">
                             Gentle on Your Thoughts
                         </span>
                     </h5>
-                    <div className="content-p flex flex-wrap justify-around max-sm:justify-start">
+                    <div className="flex flex-wrap justify-around max-sm:justify-start">
                         <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
                                 AI Powered RoomMate
@@ -159,16 +149,16 @@ export default function Home() {
             </div>
             <div
                 id="section-4"
-                className="flex flex-col-reverse lg:flex-row justify-between content-center">
-                <div className="content m-auto">
-                    <h5 className="heading text-xl text-start mx-8 mb-3">
+                className="flex flex-col-reverse lg:flex-row justify-around max-sm:justify-start">
+                <div className="content m-2">
+                    <h5 className="heading text-2xl font-bold text-start mx-8 mb-3">
                         Perfect for Matches,
                         <br />
                         <span className="font-bold text-2xl">
                             More so for unwinding after
                         </span>
                     </h5>
-                    <div className="content-p flex flex-wrap justify-around max-sm:justify-start">
+                    <div className="flex flex-wrap justify-around max-sm:justify-start">
                         <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
                                 Personalized <br />
@@ -205,20 +195,20 @@ export default function Home() {
             </div>
             <div
                 id="section-5"
-                className="flex flex-col lg:flex-row justify-between content-center">
+                className="flex flex-col lg:flex-row justify-around max-sm:justify-start">
                 <img
                     className="w-[100vw] lg:w-[50vw]"
                     src="/images/bond-easy.png"
                     alt="bond-easy"
                 />
-                <div className="content m-auto">
-                    <h5 className="heading text-xl text-start mx-8 mb-3">
+                <div className="content m-2">
+                    <h5 className="heading text-2xl font-bold text-start mx-8 mb-3">
                         Connect and Flourish <br />
                         <span className="font-bold text-2xl">
                             in a Lively community
                         </span>
                     </h5>
-                    <div className="content-p flex flex-wrap justify-around max-sm:justify-start">
+                    <div className="flex flex-wrap justify-around max-sm:justify-start">
                         <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
                                 Choose Your <br />
@@ -256,21 +246,21 @@ export default function Home() {
             </div>
             <div
                 id="section-6"
-                className="flex flex-col lg:flex-row-reverse mt-[30px] justify-between content-center">
+                className="flex flex-col lg:flex-row-reverse mt-[30px] justify-around max-sm:justify-start">
                 <img
                     className="w-[100vw] lg:w-[50vw]"
                     src="/images/mapc.png"
                     alt="map"
                 />
-                <div className="content m-auto ">
-                    <h5 className="heading text-xl text-start mx-8 mb-3">
+                <div className="content m-2">
+                    <h5 className="heading text-2xl font-bold text-start mx-8 mb-3">
                         There's an Amicolo around. Always.,
                         <br />
                         <span className="font-bold text-2xl">
                             More Destinations. More Ease. More Affordable.
                         </span>
                     </h5>
-                    <div className="content-p flex flex-wrap justify-around max-sm:justify-start">
+                    <div className="flex flex-wrap justify-start max-lg:justify-around max-sm:justify-start">
                         <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
                                 Toronto, Ontario
@@ -278,34 +268,32 @@ export default function Home() {
                                 <span>Vancouver, British Columbia</span>
                             </p>
                             <p className="my-3 mx-2 lg:mx-8">
-                            Montréal, Québec
+
+
+                                <span>Halifax, Nova Scotia</span>
+                            </p>
+
+                        </div>
+
+                        <div className="vertical-heading text-start text-lg">
+                            <p className="my-3 mx-2 lg:mx-8">
+                                Montréal, Québec
                                 <br />
                                 <span>Ottawa, Ontario</span>
                             </p>
+
                         </div>
+
+
                         <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
                                 Calgary, Alberta
                                 <br />
                                 <span>Edmonton, Alberta</span>
                             </p>
-                            <p className="my-3 mx-2 lg:mx-8">
-                            Québec City, Québec
-                                <br />
-                                <span>Halifax, Nova Scotia</span>
-                            </p>
+
                         </div>
-                        <div className="vertical-heading text-start text-lg">
-                            <p className="my-3 mx-2 lg:mx-8">
-                                Winnipeg, Manitoba
-                                <br />
-                                <span>Victoria, British Columbia</span>
-                            </p>
-                            <p className="my-3 mx-2 lg:mx-8">
-                                Saskatoon, Saskatchewan <br />
-                                <span>London, Ontario</span>
-                            </p>
-                        </div>
+
                     </div>
                 </div>
             </div>

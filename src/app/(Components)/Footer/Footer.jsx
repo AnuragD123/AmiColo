@@ -5,7 +5,7 @@ import './FooterStyle.css';
 const Footer = () => {
     const currentYear = new Date().getFullYear();
     return (
-        <footer className="text-xl py-12 flex justify-around bg-gradient-to-b from-green-200 to-sky-200 font-light max-sm:items-start ">
+        <footer className="text-xl py-12 flex justify-around bg-gradient-to-b from-green-200 to-sky-200 font-light max-sm:items-start px-2">
             <div className='flex justify-around max-sm:flex-wrap max-sm:justify-start max-sm:gap-5 max-sm:flex-col-reverse gap-16'>
                 <div className="ContactUS-StayInTouch">
                     <div
@@ -16,7 +16,7 @@ const Footer = () => {
                         <p className='text-sm'>+1 514-586-4586</p>
                         <p className='text-sm'>info@amicolo.com</p>
                     </div>
-                    <div id="StayInTouch">
+                    <div id="StayInTouch" className='my-2'>
                         <h5 className="font-medium">Stay In Touch</h5>
                         <div className="image flex content-evenly">
                             <Link href={'https://www.instagram.com/ami.colo.mtl'}>
@@ -37,7 +37,7 @@ const Footer = () => {
                                     alt="Facebook"
                                 />
                             </Link>
-                            <Link href={'/'}>
+                            {/* <Link href={'/'}>
                                 <Image
                                     className='mr-3'
                                     width={20}
@@ -54,7 +54,7 @@ const Footer = () => {
                                     src="images/YouTube.svg"
                                     alt="YouTube"
                                 />
-                            </Link>
+                            </Link> */}
                         </div>
                     </div>
                 </div>

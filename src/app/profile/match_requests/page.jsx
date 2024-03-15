@@ -36,7 +36,7 @@ const MatchRequestsPage = () => {
     <div>
       <Toaster />
       <div className="container mx-auto mt-8">
-        <h1 className="text-3xl text-center font-bold mb-4">Match Requests</h1>
+        <h1 className=' w-4/5 text-center text-3xl text-white font-extrabold py-3 max-lg:w-11/12' style={{ backgroundImage: "linear-gradient(#EF8463, #7170F5 )", clipPath: "polygon(3% 0%, 97% 0%, 100% 50%, 97% 100%, 3% 100%, 0% 50%)" }}>Match Requests</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {matchRequests.map((user) => (

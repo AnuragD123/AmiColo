@@ -12,7 +12,7 @@ export default function Sidebar() {
     <aside className="flex h-full w-full overflow-y-scroll flex-col border-r items-center font-semibold">
       <div className='flex flex-col items-center gap-4 mb-3'>
         <Image
-          className=' w-40 rounded-full'
+          className=' w-40 h-40 rounded-full'
           src={user?.avatar ? `/uploads/${user?.avatar}` : Profile}
           width={150}
           height={150}
