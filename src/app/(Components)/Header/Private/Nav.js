@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useUserContext } from "@/context/context";
@@ -12,7 +12,14 @@ import Profile from "../../../../../images/AmiColo_Profile.png";
 
 const Nav = () => {
     const [navToggle, setNavToggle] = useState(false);
-    const { user } = useUserContext();
+    const { user, setUser } = useUserContext();
+    const localUser = localStorage.getItem("user");
+    const parsedData = JSON.parse(localUser);
+
+    useEffect(() => {
+        setUser(parsedData)
+    }, [])
+
     const navItems = [
         { label: "Home", href: "/home" },
         { label: "Find Room", href: "/find_room" },

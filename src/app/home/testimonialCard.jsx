@@ -2,12 +2,12 @@ import React from 'react'
 import Image from 'next/image'
 const TestimonialCard = ({ data }) => {
     return (
-        <div className="w-3/5 max-sm:w-full" >
+        <div className="w-4/5 max-sm:w-full" >
             <div className="">
                 <div className=" ">
-                    <div className="w-full flex flex-wrap items-center justify-around  gap-4">
+                    <div className="w-full flex flex-wrap items-start justify-around  gap-4">
                         {data.map((item, index) => (
-                            <div key={index} className="max-w-48 max-sm:w-full flex flex-col gap-4 items-center justify-center">
+                            <div key={index} className="max-w-96 max-sm:w-full flex flex-col gap-4 items-center justify-center">
                                 <Image
                                     className=''
                                     width={70}

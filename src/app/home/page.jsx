@@ -165,18 +165,18 @@ export default function Home() {
     const Reviews = [
         {
             Img: ProfileDemo,
-            name: "Jude Thorn - Designer",
-            review: "It's been so fun to work with Pavo, I've managed to integrate it properly into my business flow and it's great"
+            name: "Maria, International Student from Brazil",
+            review: "Arriving in Montreal was overwhelming, but AmiColo simplified my housing search. The platform's social media integration helped match me with a roommate who shares my love for music and Brazilian cuisine. Our home feels like a little piece of Brazil here in Canada. I couldn't be happier!"
         },
         {
             Img: ProfileDemo,
-            name: "Roy Smith - Developer",
-            review: "We were so focused on launching as many campaigns as possible that we've forgotten to target our loyal customers"
+            name: "Jake, Canadian Graduate Student",
+            review: "As a grad student, I needed a quiet, study-friendly environment. Thanks to Ami Colo, I found a roommate with similar academic goals and schedules. Our shared respect for study times and mutual support during exams has been invaluable. Ami Colo really understood what I was looking for."
         },
         {
             Img: ProfileDemo,
-            name: "Marsha Singer - Marketer",
-            review: "I've been searching for a tool like Pavo for so long. I love the reports it generates and the amazing high accuracy"
+            name: "Anika, Young Professional from India",
+            review: "Moving to Montreal for work was exciting yet daunting. AmiColo's user-friendly platform connected me with a roommate who not only became a great friend but also introduced me to the city's culture and social scene. Finding a compatible roommate has made my transition to Canadian life seamless and fun."
         },
     ]
 
@@ -279,7 +279,7 @@ export default function Home() {
                 id="section-2"
                 className="relative z-30 my-16 mx-2">
                 <p className="text-4xl mb-2 font-semibold text-center">
-                    We are Canada’s most Awaited Coiling Platform
+                    We are Canada’s most Awaited Co - Living Platform
                 </p>
                 <div className="plus-card-content flex justify-evenly">
                     <div className="plus-card">
@@ -534,7 +534,7 @@ export default function Home() {
             {/* Testimonial */}
             <div className="slider-1 py-32 bg-gray">
                 <div className="w-full flex flex-col items-center justify-center px-4">
-                    <h2 className="mb-12 text-center text-4xl font-bold lg:max-w-xl lg:mx-auto">What do users think about AmiColo</h2>
+                    <h2 className="mb-12 text-center text-4xl font-bold  lg:mx-auto">What do users think about AmiColo</h2>
                     <TestimonialCard data={Reviews} />
                 </div>
             </div>

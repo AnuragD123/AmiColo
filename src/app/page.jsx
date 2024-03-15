@@ -70,7 +70,7 @@ export default function Home() {
                 id="section-2"
                 className="relative z-30 my-16 mx-2">
                 <p className="text-4xl mb-2 font-semibold text-center">
-                    We are Canada’s most Awaited Coiling Platform
+                    We are Canada’s most Awaited Co - Living Platform
                 </p>
                 <div className="plus-card-content flex justify-evenly">
                     <div className="plus-card">
@@ -109,7 +109,7 @@ export default function Home() {
                             Gentle on Your Thoughts
                         </span>
                     </h5>
-                    <div className="flex flex-wrap justify-around max-sm:justify-start">
+                    <div className="flex flex-wrap justify-start max-lg:justify-around max-sm:justify-start">
                         <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
                                 AI Powered RoomMate
@@ -158,7 +158,7 @@ export default function Home() {
                             More so for unwinding after
                         </span>
                     </h5>
-                    <div className="flex flex-wrap justify-around max-sm:justify-start">
+                    <div className="flex flex-wrap justify-start max-lg:justify-around max-sm:justify-start">
                         <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
                                 Personalized <br />
@@ -169,7 +169,7 @@ export default function Home() {
                                 <span>Environment</span>
                             </p>
                         </div>
-                        <div className="vertical-heading text-start">
+                        <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
                                 App Based Issue <br />
                                 <span>Resolution</span>
@@ -179,7 +179,7 @@ export default function Home() {
                                 <span>Internet</span>
                             </p>
                         </div>
-                        <div className="vertical-heading">
+                        <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
                                 Hassle Free <br />
                                 <span>Payments</span>
@@ -208,11 +208,11 @@ export default function Home() {
                             in a Lively community
                         </span>
                     </h5>
-                    <div className="flex flex-wrap justify-around max-sm:justify-start">
+                    <div className="flex flex-wrap justify-start max-lg:justify-around max-sm:justify-start">
                         <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
                                 Choose Your <br />
-                                <span>Coving Mates</span>
+                                <span>Coliving Mates</span>
                             </p>
                             <p className="my-3 mx-2 lg:mx-8">
                                 Events, Celebrations <br />
@@ -231,10 +231,7 @@ export default function Home() {
                             </p>
                         </div>
                         <div className="vertical-heading text-start text-lg">
-                            <p className="my-3 mx-2 lg:mx-8">
-                                Choose Your <br />
-                                <span>Coving Mates</span>
-                            </p>
+
                             <p className="my-3 mx-2 lg:mx-8">
                                 Career
                                 <br />
