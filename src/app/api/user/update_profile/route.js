@@ -2,12 +2,11 @@ import { getDataFromToken } from "@/helper/getDataFromToken";
 import { writeFile } from "fs/promises";
 import { pool } from "@/dbConfig/dbConfig";
 import { NextResponse } from "next/server";
+import { getSignatureData } from "@/helper/getSignature";
 
 export async function POST(request) {
   try {
     const currentUserId = getDataFromToken(request);
-
-    console.log("SDFSADF", currentUserId);
 
     const maxSize = 1024 * 1024 * 5; // 5 MB limit
     const file = await request.formData();
@@ -68,15 +67,27 @@ export async function POST(request) {
     ) {
       const whereClause = {};
       if (uploadedFile) {
-        const uniqueFilename = generateUniqueFilename(uploadedFile.name); // Function defined below
-        const path = `./public/uploads/${uniqueFilename}`;
+        // const uniqueFilename = generateUniqueFilename(uploadedFile.name); // Function defined below
+        const { uploadURL, apiKey, signature, timestamp } = getSignatureData();
+        const formData = new FormData();
+        formData.append("file", uploadedFile);
+        formData.append("api_key", apiKey);
+        formData.append("timestamp", timestamp);
+        formData.append("signature", signature);
+        const response = await fetch(uploadURL, {
+          method: "POST",
+          body: formData,
+        }).then((res) => res.json());
+        const imageUrl = response.secure_url;
+
+        // const path = `./public/uploads/${uniqueFilename}`;
         // const path = `../../../../../public/uploads/${uniqueFilename}`;//part from rooot directoy
 
         // Write the file to the server:
-        const bytes = await uploadedFile.arrayBuffer();
-        const buffer = Buffer.from(bytes);
-        await writeFile(path, buffer);
-        whereClause.avatar = uniqueFilename;
+        // const bytes = await uploadedFile.arrayBuffer();
+        // const buffer = Buffer.from(bytes);
+        // await writeFile(path, buffer);
+        whereClause.avatar = imageUrl;
       }
       if (first_name) {
         whereClause.first_name = first_name;

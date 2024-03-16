@@ -176,13 +176,7 @@ const Edit = () => {
         <div className="w-full flex items-center gap-3 mb-6">
           <img
             className=" w-40 h-40 rounded-full"
-            src={
-              file
-                ? file
-                : user?.avatar
-                ? `${process.env.NEXT_PUBLIC_URL}/uploads/${user?.avatar}`
-                : Profile
-            }
+            src={file ? file : user?.avatar ? user?.avatar : Profile}
             width={150}
             height={150}
             alt="Picture of the author"
