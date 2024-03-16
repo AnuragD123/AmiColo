@@ -13,11 +13,14 @@ import Profile from "../../../../../images/AmiColo_Profile.png";
 const Nav = () => {
     const [navToggle, setNavToggle] = useState(false);
     const { user, setUser } = useUserContext();
-    const localUser = localStorage.getItem("user");
-    const parsedData = JSON.parse(localUser);
 
     useEffect(() => {
-        setUser(parsedData)
+        // Check if localStorage is available (client-side)
+        if (typeof window !== 'undefined') {
+            const localUser = localStorage.getItem("user");
+            const parsedData = JSON.parse(localUser);
+            setUser(parsedData);
+        }
     }, [])
 
     const navItems = [

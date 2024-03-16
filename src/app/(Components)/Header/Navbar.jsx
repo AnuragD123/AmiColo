@@ -33,10 +33,12 @@ const Navbar = () => {
 
             if (response.data.success) {
                 // Logout successful, redirect to login page
+
                 setUser();
                 localStorage.removeItem('user');
                 toast.success(response.data.message);
                 router.push('/login');
+                window.location.reload();
             } else {
                 // Handle logout failure
                 toast.error('Logout failed');
