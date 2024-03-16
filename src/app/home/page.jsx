@@ -266,6 +266,7 @@ export default function Home() {
                             <span className="text-red-600">Amicolo</span>
                         </span>
                     </p>
+                    {/* <p className="text-lg lg:text-xl text-white font-bold">This is a dummy web page plz not booking a room</p> */}
                     <Link
                         className="text-white focus:bg-slate-200 focus:bg-opacity-10 hover:bg-slate-200 hover:bg-opacity-10 py-2 px-4 mt-2 rounded-full flex"
                         href={"/find_room"}>
@@ -318,7 +319,7 @@ export default function Home() {
                             Gentle on Your Thoughts
                         </span>
                     </h5>
-                    <div className="flex flex-wrap justify-around max-sm:justify-start">
+                    <div className="flex flex-wrap justify-start max-lg:justify-around max-sm:justify-start">
                         <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
                                 AI Powered RoomMate
@@ -344,12 +345,12 @@ export default function Home() {
                         </div>
                         <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
-                                AmiColo Community
+                                Live Roommate
                                 <br />
-                                <span>Recommends</span>
+                                <span>Chat</span>
                             </p>
                             <p className="my-3 mx-2 lg:mx-8">
-                                Housekeeping <br />
+                                AmiColo Community <br />
                                 <span>Membership</span>
                             </p>
                         </div>
@@ -441,13 +442,12 @@ export default function Home() {
                         </div>
                         <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
-                                Choose Your <br />
-                                <span>Coving Mates</span>
-                            </p>
-                            <p className="my-3 mx-2 lg:mx-8">
                                 Career
                                 <br />
                                 <span>Fairs</span>
+                            </p>
+                            <p className="my-3 mx-2 lg:mx-8">
+                                Get Mentored
                             </p>
                         </div>
                     </div>
@@ -536,6 +536,13 @@ export default function Home() {
                 <div className="w-full flex flex-col items-center justify-center px-4">
                     <h2 className="mb-12 text-center text-4xl font-bold  lg:mx-auto">What do users think about AmiColo</h2>
                     <TestimonialCard data={Reviews} />
+                    <Link
+                        href="https://amicolo.almaconnect.com?via=share&via_token=65d56113d42580000fe0154e&invited_at=1710575299"
+                        target='_blank'
+                        className="text-white py-2 px-6 lg:px-8 mt-4 lg:mt-6 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400">
+                        Join AmiColo Community Page
+                    </Link>
+                    <p className='pt-2'> Please signup using the same email address used on AmiColo website.</p>
                 </div>
             </div>
         </main>

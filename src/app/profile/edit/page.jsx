@@ -170,14 +170,12 @@ const Edit = () => {
                 <div className="w-full flex items-center gap-3 mb-6">
                     <Image
                         className=" w-40 h-40 rounded-full"
-                        // src={`${baseUrl}/assets/images/${form.file}`}
                         src={
                             file
                                 ? file
                                 : user?.avatar ? `/uploads/${user?.avatar}`
                                     : Profile
                         }
-                        // src={form.file || Profile}
                         width={150}
                         height={150}
                         alt="Picture of the author"

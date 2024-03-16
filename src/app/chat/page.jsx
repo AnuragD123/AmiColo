@@ -1,9 +1,10 @@
 'use client'
+import { useRouter } from 'next/navigation';
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image'
 import { IoSearchOutline, IoArrowBackCircleOutline } from 'react-icons/io5';
 import { FiSend } from 'react-icons/fi';
-import Router from 'next/router';
+
 import { MdAttachFile } from 'react-icons/md';
 import profile from '../../../images/AmiColo_Profile.png';
 import { useUserContext } from '@/context/context';
@@ -11,6 +12,7 @@ import axios from 'axios';
 import moment from 'moment/moment';
 
 const Chat = () => {
+    const router = useRouter()
     const scrollToBottom = () => {
         if (scrollRef.current) {
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -259,7 +261,7 @@ const Chat = () => {
                 <>
                     <div className='sideBox p-5 bg-blue-50 flex flex-col' style={{ height: 'inherit' }}>
                         <div className='flex items-center gap-2'>
-                            <IoArrowBackCircleOutline className='text-3xl text-gray-500' onClick={() => Router.back()} />
+                            <IoArrowBackCircleOutline className='text-3xl text-gray-500' onClick={() => router.back()} />
                             <Image
                                 className='w-10 h-10 rounded-full cursor-pointer'
                                 src={localuser?.avatar ? `/uploads/${localuser?.avatar}` : profile}

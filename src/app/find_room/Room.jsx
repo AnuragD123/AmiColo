@@ -1,4 +1,5 @@
-import React from 'react';
+// 'use client'
+// import React, { useEffect, useState } from 'react'
 import Link from 'next/link';
 import {
     Star,
@@ -7,11 +8,23 @@ import {
 import axios from 'axios';
 
 const Room = ({ key, data }) => {
+    // const [showAlert, setShowAlert] = useState(false);
+
+    // const handleVisitButtonClick = () => {
+    //     setShowAlert(true);
+    // };
 
     return (
         <div
             className="w-full bg-white  rounded-lg shadow-md  hover:bg-gray-100  dark:bg-gray-800 dark:hover:bg-gray-700 flex flex-col md:flex-row"
         >
+            {/* {showAlert ?
+                <div className='fixed top-0 left-0 w-screen h-screen bg-black flex items-center justify-center'>
+                    <div className='bg-white w-3/4 h-56'>
+                        <h1 className=''>Hello</h1>
+                        <button onClick={() => setShowAlert(false)}>Close</button>
+                    </div>
+                </div> : null} */}
             <img
                 className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
                 src="/images/room.jpg"
@@ -33,7 +46,9 @@ const Room = ({ key, data }) => {
                 <div className='w-full'>
 
                     <Link href={`/booking/${data.id}`}>
-                        <button className="float-right rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400 text-white px-4 py-2">
+                        <button className="float-right rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400 text-white px-4 py-2"
+                        // onClick={handleVisitButtonClick} // Pass function reference here
+                        >
                             Visit
                         </button>
                     </Link>

@@ -46,7 +46,7 @@ const Profile = () => {
     });
   }, [user]);
 
-  console.log("object", user)
+  console.log("object", form)
 
   return (
     <div className='leading-10'>
@@ -75,13 +75,13 @@ const Profile = () => {
           <div className='w-1/2'>
             <label htmlFor="dob">Date of Birth</label>
             <div className='flex gap-3'>
-              <input disabled value={"25"} className='w-2/6 rounded-3xl bg-gray-300' placeholder='day' type="number" name='age'
+              <input disabled value={form.day} className='w-2/6 rounded-3xl bg-gray-300' placeholder='day' type="number" name='age'
                 onChange={(e) => setForm({ ...form, day: e.target.value })}
               />
-              <input disabled value={"02"} className='w-2/6 rounded-3xl bg-gray-300' placeholder='month' type="number" name='age'
+              <input disabled value={form.month} className='w-2/6 rounded-3xl bg-gray-300' placeholder='month' type="number" name='age'
                 onChange={(e) => setForm({ ...form, month: e.target.value })}
               />
-              <input disabled value={"2024"} className='w-2/6 rounded-3xl bg-gray-300' placeholder='year' type="number" name='age'
+              <input disabled value={form.year} className='w-2/6 rounded-3xl bg-gray-300' placeholder='year' type="number" name='age'
                 onChange={(e) => setForm({ ...form, year: e.target.value })}
               />
             </div>

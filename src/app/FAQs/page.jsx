@@ -14,10 +14,10 @@ const Accordion = ({ title, content }) => {
         <div className="cursor-pointer rounded-md border border-gray-400 shadow-lg transition-all duration-400 ease-in-out">
             <button
                 type="button"
-                className="flex w-full items-center justify-between px-4 py-5 sm:p-6"
+                className="flex w-full  justify-between px-4 py-5 sm:p-6"
                 onClick={toggleAccordion}
             >
-                <span className="flex text-lg font-semibold text-black">{title}</span>
+                <span className="flex text-lg text-start font-semibold text-black">{title}</span>
                 {isOpen ? (
                     <ChevronUp className="h-5 w-5 text-gray-500" />
                 ) : (

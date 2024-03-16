@@ -1,32 +1,29 @@
 'use client'
+import React, { useState } from 'react'
+import axios from 'axios'
+import { toast, Toaster } from 'react-hot-toast'
 
-import React, {useState} from 'react'
-import { sendEmail } from '@/helper/sendMail'
-
-import {toast,Toaster} from 'react-hot-toast'
 const Contact = () => {
-
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    email: '',
+    userEmail: "",
+    email: 'info@amicolo.com',
     phoneNumber: '',
     message: '',
-    type:'CONTACT_US'
+    heading: 'CONTACT US',
+    type: 'contact'
   });
 
-  
 
-  const handleSendMessage = (e) => {
+
+  const handleSendMessage = async (e) => {
     e.preventDefault();
-    toast.success("clicked")
-
-    const res = sendEmail(formData);
-
-    // toast.success(res)
-    
-    console.log('Form submitted:', formData);
+    const { data } = await axios.post('/api/contactUsEmail', { formData });
+    if (data.ApiRes) {
+      toast.success("Email Sent")
+    }
   };
 
   const toggleMenu = () => {
@@ -34,7 +31,7 @@ const Contact = () => {
   }
   return (
     <div className="min-h-screen">
-      <Toaster/>
+      <Toaster />
       <div className="mx-auto max-w-7xl px-4">
         <div className="mx-auto max-w-7xl py-12 md:py-24">
           <div className="grid items-center justify-items-center gap-x-4 gap-y-10 lg:grid-cols-2">
@@ -45,7 +42,7 @@ const Contact = () => {
                 <p className="mt-4 text-lg text-gray-600">
                   Our friendly team would love to hear from you.
                 </p>
-                <form  className="mt-8 space-y-4">
+                <form className="mt-8 space-y-4">
                   <div className="grid w-full gap-y-4 md:gap-x-4 lg:grid-cols-2">
                     <div className="grid w-full  items-center gap-1.5">
                       <label
@@ -94,8 +91,8 @@ const Contact = () => {
                       type="text"
                       id="email"
                       placeholder="Email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      value={formData.userEmail}
+                      onChange={(e) => setFormData({ ...formData, userEmail: e.target.value })}
 
                     />
                   </div>
@@ -131,10 +128,9 @@ const Contact = () => {
                       cols={3}
                     />
                   </div>
-                  <button style={{backgroundColor:""}}
+                  <button style={{ backgroundColor: "" }}
                     type="button"
                     className="w-full rounded-md  px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black bg-gradient-to-r from-indigo-500 via-purple-500 to-orange-400"
-
                     onClick={handleSendMessage}
                   >
                     Send Message
@@ -150,7 +146,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      
+
 
 
     </div>
