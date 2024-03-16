@@ -6,6 +6,7 @@ import Footer from "./(Components)/Footer/Footer";
 import Nav from "./(Components)/Header/Private/Nav";
 import AppStore from "@/context/context"
 import SubChild from "./subChild";
+import CopyrightFooter from "./(Components)/CopyrightFooter/CopyrightFooter";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,6 +30,7 @@ export default function RootLayout({ children }) {
 
 
           <Footer />
+          <CopyrightFooter/>
         </AppStore>
 
         {/* Navbar Common to All Pages */}

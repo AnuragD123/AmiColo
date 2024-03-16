@@ -48,6 +48,22 @@ export async function POST(req) {
             return dueDate.toLocaleDateString('en-US', options);
         };
 
+
+        function generateBookingId(length) {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let bookingId = '';
+          
+            for (let i = 0; i < length; i++) {
+              const randomIndex = Math.floor(Math.random() * characters.length);
+              bookingId += characters.charAt(randomIndex);
+            }
+          
+            return bookingId;
+          }
+
+
+          const bookingID = generateBookingId(6);
+
         const formattedDueDate = formatDueDate();
 
 
@@ -63,7 +79,7 @@ export async function POST(req) {
                     {
                         From: {
                             Email: "booking@amicolo.com",
-                            Name: "Next testing"
+                            Name: "AmiColo"
                         },
                         To: emails,
                         Subject: " Booking Confirmation Email",
@@ -115,6 +131,7 @@ export async function POST(req) {
                             <p>We are delighted to confirm your booking. Below are the details:</p>
                             <ul>
                                 
+                                <li><strong>Booking ID:</strong> ${bookingID}</li>
                                 <li><strong>Date:</strong> ${formattedDate}</li>
                                 <li><strong>Time:</strong> ${formattedTime}</li>
                               
@@ -125,8 +142,15 @@ export async function POST(req) {
                             <p>Account Number: 899223898292</p>
                             <p>Bank Name: [Bank Name]</p>
                             <p>Amount Due: ${price}</p>
-                            <p>Due Date: ${formatDueDate}</p>
-                            <p>Thank you for choosing our services. Should you have any questions, feel free to contact us.</p>
+                            <p>Due Date: ${formattedDueDate}</p>
+                            <div className="py-4">
+                            <p className="text-base">
+                              Thank you for choosing our services. Should you have any questions, feel free to contact us.
+                            </p>
+                            <p className="text-red-500 font-bold">
+                              <span className="font-bold">Note:</span> Please do not make any payments as this is a dummy booking as AmiColo services are not live yet. Please do not plan anything based on this booking. If there are any kinds of losses faced by the customer based on this booking, the customer is solely responsible for it.
+                            </p>
+                          </div>
                         </div>
                         <div class="footer">
                             <p>Best Regards,<br>Team AmiColo</p>

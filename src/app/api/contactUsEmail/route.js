@@ -8,7 +8,7 @@ export async function POST(req) {
   try {
     const reqBody = await req.json();
     const { formData } = reqBody;
-    console.log("BODY DATA", reqBody)
+    // console.log("BODY DATA", reqBody)
     const name = 'AmiColo User';
 
     const emails = [{
@@ -29,7 +29,7 @@ export async function POST(req) {
           {
             From: {
               Email: "noreply@amicolo.com",
-              Name: "Next testing"
+              Name: "AmiColo"
             },
             To: emails,
             // To: "support@amicolo.com",
@@ -52,12 +52,14 @@ export async function POST(req) {
                       <h1>${formData.heading}</h1>
                     </div>
                     <div class="content">
-                      <p>Dear ${formData.firstName} ${formData.lastName},</p>
-                      <p>Our team work on your query we will connect you soon:</p>
-                      <p>Email: ${formData.userEmail}</p>
-                      <p>Number: ${formData.phoneNumber}</p>
-                      <p>Messages: ${formData.message}</p>
-                      <p>Thank you for choosing our services. Should you have any questions, feel free to contact us.</p>
+                      <p><b>Dear Support Team</b>,</p><br><br>
+                      <p>Kindly address the following query:</p>
+
+                      <p><b>Name:</b> ${formData.firstName} ${formData.lastName}</p>
+                      <p><b>Email:</b> ${formData.userEmail}</p>
+                      <p><b>Phone Number:</b> ${formData.phoneNumber}</p>
+                      <p><b>Message:</b> ${formData.message}</p><br><br>
+                      <p><b>Thank you!</b></p>
                     </div>
                     <div class="footer">
                       <p>Best Regards,<br>Team AmiColo</p>
@@ -82,12 +84,18 @@ export async function POST(req) {
                   <div class="header">
                     <h1>${formData.heading}</h1>
                   </div>
-                  <div class="content">
-                    <p>Dear ${formData.firstName} ${formData.lastName},</p>
-                    <p>Our team will work on your query: ${formData.message}. We will connect with you soon.</p>
 
-                    <p>Thank you for choosing our services. Should you have any questions, feel free to contact us.</p>
-                  </div>
+                  <div class="content">
+                      <p><b>Dear Support Team</b>,</p><br><br>
+                      <p>Kindly address the following issue:</p>
+
+                      <p><b>User ID:</b> ${formData.idNunmber} ${formData.lastName}</p>
+                      <p><b>Name:</b> ${formData.firstName} ${formData.lastName}</p>
+                      <p><b>Issue Type:</b> ${formData.issue}</p><br><br>
+                      <p><b>Issue Details:</b> ${formData.message}</p><br><br>
+                      <p><b>Thank you!</b></p>
+                    </div>
+
                   <div class="footer">
                     <p>Best Regards,<br>Team AmiColo <br>support@amicolo.com</p>
                   </div>
