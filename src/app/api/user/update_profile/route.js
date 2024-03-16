@@ -50,6 +50,8 @@ export async function POST(request) {
             if (uploadedFile) {
                 const uniqueFilename = generateUniqueFilename(uploadedFile.name); // Function defined below
                 const path = `./public/uploads/${uniqueFilename}`;
+                // const path = `../../../../../public/uploads/${uniqueFilename}`;//part from rooot directoy
+
                 // Write the file to the server:
                 const bytes = await uploadedFile.arrayBuffer();
                 const buffer = Buffer.from(bytes);

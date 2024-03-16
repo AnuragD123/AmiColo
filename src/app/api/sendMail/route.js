@@ -7,69 +7,69 @@ const Mailjet = require('node-mailjet');
 export async function POST(req) {
     try {
         const reqBody = await req.json();
-        const { mainUserEmail,otherEmails,price } = reqBody;
+        const { mainUserEmail, otherEmails, price } = reqBody;
 
         const name = 'AmiColo User';
         otherEmails.push(mainUserEmail);
 
         const emails = otherEmails.map(email => ({
-        Email: email,
-        Name: name,
+            Email: email,
+            Name: name,
         }));
 
         const formatDate = () => {
-          const date = new Date();
-          const options = { day: '2-digit', month: 'long', year: 'numeric' };
-          return date.toLocaleDateString('en-US', options);
-      };
-      
-      const formattedDate = formatDate();
-      console.log(formattedDate);
+            const date = new Date();
+            const options = { day: '2-digit', month: 'long', year: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        };
 
-      const formatTime = () => {
-        const dateTime = new Date();
-        
-        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-        
-        return dateTime.toLocaleTimeString('en-US', timeOptions);
-    };
-    
-    const formattedTime = formatTime();
-    console.log(formattedTime);
+        const formattedDate = formatDate();
+        console.log(formattedDate);
+
+        const formatTime = () => {
+            const dateTime = new Date();
+
+            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+
+            return dateTime.toLocaleTimeString('en-US', timeOptions);
+        };
+
+        const formattedTime = formatTime();
+        console.log(formattedTime);
 
 
 
-    const formatDueDate = () => {
-      const currentDate = new Date();
-      const dueDate = new Date(currentDate);
-      dueDate.setDate(currentDate.getDate() + 3); // Adding three days to the current date
-  
-      const options = { day: '2-digit', month: 'long', year: 'numeric' };
-      return dueDate.toLocaleDateString('en-US', options);
-  };
-  
-  const formattedDueDate = formatDueDate();
+        const formatDueDate = () => {
+            const currentDate = new Date();
+            const dueDate = new Date(currentDate);
+            dueDate.setDate(currentDate.getDate() + 3); // Adding three days to the current date
+
+            const options = { day: '2-digit', month: 'long', year: 'numeric' };
+            return dueDate.toLocaleDateString('en-US', options);
+        };
+
+        const formattedDueDate = formatDueDate();
 
 
         const mailjet = Mailjet.apiConnect(
             "f3366977b75195573f95b1d43939fc6c",
             "729f795c0f09fe6ddd72ecf6cd6b1683",
         );
-          
+
         const request = mailjet
-        .post('send', { version: 'v3.1' })
-        .request({
-          Messages: [
-            {
-              From: {
-                Email: "booking@amicolo.com",
-                Name: "Next testing"
-              },
-              To: emails,
-              Subject: " Booking Confirmation Email",
-              TextPart: "",
-              // HTMLPart: "Dear"+name+", your booking has been confirmed and your share is:$"+price
-              HTMLPart: `
+            .post('send', { version: 'v3.1' })
+            .request({
+                Messages: [
+                    {
+                        From: {
+                            Email: "booking@amicolo.com",
+                            Name: "Next testing"
+                        },
+                        To: emails,
+                        Subject: " Booking Confirmation Email",
+                        TextPart: "",
+                        // HTMLPart: "Dear"+name+", your booking has been confirmed and your share is:$"+price
+                        HTMLPart: `
               <!DOCTYPE html>
                 <html lang="en">
                 <head>
@@ -135,11 +135,11 @@ export async function POST(req) {
                 </body>
                 </html>              
               `
-            }
-          ]
-        })
-    
-        return NextResponse.json({message:"Mail Sent Successfully",response:request}, {status:200})
+                    }
+                ]
+            })
+
+        return NextResponse.json({ message: "Mail Sent Successfully", response: request }, { status: 200 })
     } catch (error) {
         // console.log(error);
         return NextResponse.json({ error: error.message }, { status: 500 });

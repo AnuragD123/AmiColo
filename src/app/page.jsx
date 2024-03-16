@@ -135,12 +135,12 @@ export default function Home() {
                         </div>
                         <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
-                                AmiColo Community
+                                Live Roommate
                                 <br />
-                                <span>Recommends</span>
+                                <span>Chat</span>
                             </p>
                             <p className="my-3 mx-2 lg:mx-8">
-                                Housekeeping <br />
+                                AmiColo Community <br />
                                 <span>Membership</span>
                             </p>
                         </div>
@@ -231,11 +231,13 @@ export default function Home() {
                             </p>
                         </div>
                         <div className="vertical-heading text-start text-lg">
-
                             <p className="my-3 mx-2 lg:mx-8">
                                 Career
                                 <br />
                                 <span>Fairs</span>
+                            </p>
+                            <p className="my-3 mx-2 lg:mx-8">
+                                Get Mentored
                             </p>
                         </div>
                     </div>
