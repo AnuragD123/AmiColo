@@ -14,7 +14,7 @@ export async function GET(req) {
 
     // Check if there is an existing match request
     const room_data = await pool.query(
-      "SELECT * FROM rooms WHERE id = ?",
+      "SELECT * FROM room_images INNER JOIN rooms ON room_images.room_id = rooms.id where rooms.id=?;",
       [room_id]
     );
     console.log("*************", room_data);

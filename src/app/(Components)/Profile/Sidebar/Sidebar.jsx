@@ -7,6 +7,7 @@ import { useUserContext } from '@/context/context';
 
 export default function Sidebar() {
   const { user, } = useUserContext();
+  // console.log(user.avatar);
 
   return (
     <aside className="flex h-full w-full overflow-y-scroll flex-col border-r items-center font-semibold">
@@ -34,7 +35,7 @@ export default function Sidebar() {
           {/* <li> <Link href="/profile/booking" >My Booking</Link></li> */}
           <li> <Link href="/profile/improve_matches" >Improve Matches</Link></li>
           <li> <Link href="/profile/report" >Report Issue</Link></li>
-          <li> <Link href="/profile/orderreceiept" >Order Receipts</Link></li>
+          {/* <li> <Link href="/profile/orderreceiept" >Order Receipts</Link></li> */}
           <li> <Link href="/profile/saved_rooms" >Saved Listings</Link></li>
         </ul>
       </div>

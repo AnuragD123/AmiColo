@@ -1,6 +1,7 @@
 import { pool } from "@/dbConfig/dbConfig";
 import { NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
+import axios from "axios";
 // import { sendEmail } from "@/helpers/mailer";
 
 
@@ -28,9 +29,9 @@ export async function POST(req) {
 
         console.log(savedUser);
 
-        //send verification email
+        /*API CALL TO RE-Train the User Recommendation ML Model on each user registration */
+        axios.get('https://ml.amicolo.com/api');
 
-        // await sendEmail({email, emailType: "VERIFY", userId: savedUser._id})
 
         return NextResponse.json({
             message: "User created successfully",
