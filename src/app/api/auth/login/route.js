@@ -14,7 +14,7 @@ export async function POST(req) {
         // return NextResponse.json({ msg: 'chalra' }, { status: 200 });
 
 
-        const users = await pool.query("SELECT * FROM users WHERE email=?",[email]);
+        const users = await pool.query("SELECT * FROM users WHERE email=?", [email]);
         console.log(users);
 
         const user = users[0];
@@ -41,12 +41,14 @@ export async function POST(req) {
 
         // Create token
         const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET, { expiresIn: '1d' });
-
         // Set the response
+
         const response = NextResponse.json({
             message: 'Login successful',
             success: true,
+            user: users
         });
+
 
         // Set the token in a cookie
         response.cookies.set('token', token, {

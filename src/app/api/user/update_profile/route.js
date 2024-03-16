@@ -12,22 +12,24 @@ export async function POST(request) {
 
         console.log("SDFSADF", currentUserId)
 
+
+
         const maxSize = 1024 * 1024 * 5; // 5 MB limit
         const file = await request.formData();
+        const nationality = file.get('nationality');
+        const languages = file.get('languages');
+        const occupation = file.get('occupation');
+        const diet = file.get('diet');
+        const bedtime = file.get('bedtime');
+        const smoker = file.get('smoker');
         const uploadedFile = file.get('file');
-        const fName = file.get('fName');
-        const lName = file.get('lName');
+        const first_name = file.get('first_name');
+        const last_name = file.get('last_name');
         const day = file.get('day');
         const month = file.get('month');
         const year = file.get('year');
         const gender = file.get('gender');
-        const smoker = file.get('smoker');
-        const occupation = file.get('occupation');
-        const nationality = file.get('nationality');
         const bio = file.get('bio');
-        const bedtime = file.get('bedtime');
-        const diet = file.get('diet');
-        const languages = file.get('languages');
         const education = file.get('education');
         const type = file.get('type');
         const rooms = file.get('rooms');
@@ -35,17 +37,15 @@ export async function POST(request) {
         const washrooms = file.get('washrooms');
         const parking = file.get('parking');
         const area = file.get('area');
-        const gym = file.get('gym');
+        const Gym = file.get('Gym');
         const login = file.get('login');
-
-        const place = file.get('place');
-        const city = file.get('city');
-        const food = file.get('food');
+        const cleanliness = file.get('cleanliness');
+        const count_friends = file.get('count_friends');
 
 
-        console.log("DATA", smoker, gym, parking)
+        console.log("DATA", smoker, Gym, parking)
 
-        if (fName || lName || day || month || year || gender || smoker || occupation || nationality || bio || bedtime || diet || languages || education || city || food || login || uploadedFile || type || rooms || price || washrooms || parking || area || gym) {
+        if (first_name || last_name || day || month || year || gender || smoker || cleanliness || count_friends || occupation || nationality || bio || bedtime || diet || languages || education || login || uploadedFile || type || rooms || price || washrooms || parking || area || Gym) {
             const whereClause = {};
             if (uploadedFile) {
                 const uniqueFilename = generateUniqueFilename(uploadedFile.name); // Function defined below
@@ -56,11 +56,11 @@ export async function POST(request) {
                 await writeFile(path, buffer);
                 whereClause.avatar = uniqueFilename;
             }
-            if (fName) {
-                whereClause.first_name = fName;
+            if (first_name) {
+                whereClause.first_name = first_name;
             }
-            if (lName) {
-                whereClause.last_name = lName;
+            if (last_name) {
+                whereClause.last_name = last_name;
             }
             if (day && month && year) {
                 whereClause.dob = year + "-" + month + "-" + day;
@@ -81,9 +81,9 @@ export async function POST(request) {
             if (nationality) {
                 whereClause.nationality = nationality;
             }
-            // if (login) {
-            //     whereClause.login = true;
-            // }
+            if (login) {
+                whereClause.login = true;
+            }
             if (bio) {
                 whereClause.bio = bio;
             }
@@ -95,6 +95,12 @@ export async function POST(request) {
             }
             if (languages) {
                 whereClause.languages = languages;
+            }
+            if (cleanliness) {
+                whereClause.cleanliness = cleanliness;
+            }
+            if (count_friends) {
+                whereClause.count_friends = count_friends;
             }
             if (education) {
                 whereClause.education = education;
@@ -115,18 +121,15 @@ export async function POST(request) {
                 }
             } if (area) {
                 whereClause.area = area;
-            } if (gym) {
-                whereClause.Gym = gym;
+            } if (Gym) {
+                if (Gym == "true") {
+
+                    whereClause.Gym = true;
+                } else {
+                    whereClause.Gym = false;
+                }
             }
-            // if (place) {
-            //     whereClause.place = place;
-            // }
-            if (city) {
-                whereClause.city = city;
-            }
-            if (food) {
-                whereClause.food = food;
-            }
+
             await pool.query("UPDATE users SET ? WHERE id = ?", [whereClause, currentUserId]);
             const getUser = await pool.query('SELECT * FROM users WHERE id=?', currentUserId);
             return NextResponse.json({ success: true, message: 'Data update successfully', getUser });

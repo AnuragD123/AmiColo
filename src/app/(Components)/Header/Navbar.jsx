@@ -11,23 +11,10 @@ import { Toaster, toast } from "react-hot-toast";
 import Cookies from "js-cookie";
 
 const Navbar = () => {
-
     const { user, setUser } = useUserContext();
     const router = useRouter();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const token = Cookies.get('token'); // this is always giving undefined
-    useEffect(() => {
-        const getData = async () => {
-            try {
-                const response = await axios.get('/api/user/getdata');
-                setUser(response?.data?.data[0]);
-
-            } catch (error) {
-                console.log(error.message)
-            }
-        }
-        getData();
-    }, [])
 
     useEffect(() => {
         console.log("token =>", token);
@@ -46,9 +33,12 @@ const Navbar = () => {
 
             if (response.data.success) {
                 // Logout successful, redirect to login page
+
                 setUser();
+                localStorage.removeItem('user');
                 toast.success(response.data.message);
                 router.push('/login');
+                window.location.reload();
             } else {
                 // Handle logout failure
                 toast.error('Logout failed');

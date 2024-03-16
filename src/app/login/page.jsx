@@ -7,11 +7,11 @@ import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 import { ArrowRight } from 'lucide-react'
 import { FacebookAuth } from "./config";
-
+import { useUserContext } from "@/context/context";
 const Login = () => {
-
+  const { user, setUser } = useUserContext();
   const router = useRouter();
-  const [user, setUser] = React.useState({
+  const [form, setForm] = React.useState({
     email: "",
     password: "",
   })
@@ -22,33 +22,24 @@ const Login = () => {
   const loginHandler = async () => {
 
     try {
-      // setLoading(true);
-      console.log(user);
-      const response = await axios.post("/api/auth/login", user);
-      console.log("Login success", response.data);
+      const response = await axios.post("/api/auth/login", form);
       toast.success("Login success");
+      console.log("object", response.data.user)
+      localStorage.setItem('user', JSON.stringify(response.data.user[0]));
+      setUser(response.data.user[0])
       router.push("/profile");
     } catch (error) {
-      // console.log("Login failed", error.message);
+
       toast.error(error.response.data.error);
     }
-    //  finally{
-    // setLoading(false);
-    // }
+
   }
 
-  // useEffect(() => {
-  //     if(user.email.length > 0 && user.password.length > 0) {
-  //         setButtonDisabled(false);
-  //     } else{
-  //         setButtonDisabled(true);
-  //     }
-  // }, [user]);
   const FacebookAuthButtonClick = async () => {
     const data = await FacebookAuth();
     console.log("user login with facebook--->", data);
-    
-    
+
+
   };
   return (
     <section>
@@ -78,8 +69,8 @@ const Login = () => {
                     <input
                       className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                       type="email"
-                      onChange={(e) => setUser({ ...user, email: e.target.value })}
-                      value={user.email}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      value={form.email}
                       placeholder="Email"
                     ></input>
                   </div>
@@ -103,8 +94,8 @@ const Login = () => {
                     <input
                       className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                       type="password"
-                      value={user.password}
-                      onChange={(e) => setUser({ ...user, password: e.target.value })}
+                      value={form.password}
+                      onChange={(e) => setForm({ ...form, password: e.target.value })}
                       placeholder="Password"
                     ></input>
                   </div>
@@ -121,7 +112,7 @@ const Login = () => {
               </div>
             </form>
             <div className="mt-3 space-y-3">
-    
+
               <button
                 type="button"
                 onClick={FacebookAuthButtonClick}

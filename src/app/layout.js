@@ -1,9 +1,11 @@
+
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./(Components)/Header/Navbar";
 import Footer from "./(Components)/Footer/Footer";
 import Nav from "./(Components)/Header/Private/Nav";
 import AppStore from "@/context/context"
+import SubChild from "./subChild";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,6 +15,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -21,23 +24,17 @@ export default function RootLayout({ children }) {
 
           <Navbar />
           <Nav />
-
+          <SubChild
+            data={children}
+          />
           {/* All the other pages gets displayed here */}
-          {children}
+
 
           <Footer />
         </AppStore>
 
         {/* Navbar Common to All Pages */}
-        <script
-          src="https://app.wonderchat.io/scripts/wonderchat.js"
-          data-name="wonderchat"
-          data-address="app.wonderchat.io"
-          data-id="clsvcjdfl002zlg22aajxm3e0"
-          data-widget-size="normal"
-          data-widget-button-size="normal"
-          defer
-        ></script>
+
       </body>
 
     </html>

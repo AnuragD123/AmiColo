@@ -5,7 +5,7 @@ import { IoSearchOutline, IoArrowBackCircleOutline } from 'react-icons/io5';
 import { FiSend } from 'react-icons/fi';
 import Router from 'next/router';
 import { MdAttachFile } from 'react-icons/md';
-import profile from '../../../images/profileDemo.png';
+import profile from '../../../images/AmiColo_Profile.png';
 import { useUserContext } from '@/context/context';
 import axios from 'axios';
 import moment from 'moment/moment';

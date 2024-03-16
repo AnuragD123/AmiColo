@@ -7,12 +7,14 @@ const UserContext = createContext();
 
 // Making the function which will wrap the whole app using Context Provider
 export default function AppStore({ children }) {
+  // const localUSer = localStorage.getItem("user")
+  // console.log("object",loc)
   const [socket, setSocket] = useState(null);
   const [user, setUser] = useState();
 
-  const allowedOrigins = "https://websocket.amicolo.com";
+  // const allowedOrigins = "https://websocket.amicolo.com";
   // const allowedOrigins = process.env.Socket_URL;
-  // const allowedOrigins = "https://websocket.futuregeek.tech";
+  const allowedOrigins = "http://localhost:3001";
 
   console.log("Soc", allowedOrigins)
   useEffect(() => setSocket(io(allowedOrigins)), []);

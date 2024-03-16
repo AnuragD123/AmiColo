@@ -1,9 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ThumbsDown, ThumbsUp, Bookmark } from 'lucide-react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-
+import Profile from '@/../../images/AmiColo_Profile.png'
+import profile from '../../../../images/AmiColo_Profile.png';
 
 const Roomate = ({ data }) => {
 
@@ -31,12 +33,19 @@ const Roomate = ({ data }) => {
             className="max-w-xs min-w-52 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700"
         >
             <a href="/">
-                <img
+                <Image
+                    className="mx-auto pt-4 rounded-full center w-40 h-40 "
+                    src={data?.avatar ? `/uploads/${data?.avatar}` : profile}
+                    alt="Roommate photo"
+                    width={150}
+                    height={150}
+                />
+
+                {/* <img
                     className="mx-auto pt-4 rounded-full center w-40 h-40 "
                     src={data?.avatar ? `/uploads/${data?.avatar}` : "/images/lady.jpg"}
-
                     alt="Roommate photo"
-                />
+                /> */}
             </a>
 
             <div className="py-2 px-5">
@@ -44,9 +53,9 @@ const Roomate = ({ data }) => {
                     <h5 className="text-center mb-2 mr-3 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                         {data.first_name + ' ' + data.last_name} | 21M
                     </h5>
-                    <button className="p-2 text-gray-700 dark:text-white bg-gray-200 rounded-lg hover:bg-gray-300 focus:ring-2 focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-400 dark:focus:ring-gray-400">
+                    {/* <button className="p-2 text-gray-700 dark:text-white bg-gray-200 rounded-lg hover:bg-gray-300 focus:ring-2 focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-400 dark:focus:ring-gray-400">
                         <Bookmark />
-                    </button>
+                    </button> */}
                 </div>
                 <p className="text-justify mb-3 font-normal text-gray-700 dark:text-gray-400">
                     Adventurer at heart 🌄 | Foodie by choice 🍜 | Storyteller 📖 | Finding joy in the little things | Chasing dreams and sunsets 🌅

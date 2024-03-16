@@ -20,29 +20,27 @@ import { toast, Toaster } from "react-hot-toast";
 
 // Functional component for the multipage form
 const GetStart = ({ handleSubmitForm }) => {
-    // const country = Country.getAllCountries();
-    const [countryCode, setCountryCode] = useState("CA");
     const [slideNumber, setSlideNumber] = useState(0);
 
-    const place = [
-        {
-            img: beach,
-            value: "Beach"
-        },
-        {
-            img: mountains,
-            value: "Mountains"
-        },
-        {
-            img: cityscape,
-            value: "Cityscape"
-        },
-        {
-            img: countryside,
-            value: "Countryside"
+    // const place = [
+    //     {
+    //         img: beach,
+    //         value: "Beach"
+    //     },
+    //     {
+    //         img: mountains,
+    //         value: "Mountains"
+    //     },
+    //     {
+    //         img: cityscape,
+    //         value: "Cityscape"
+    //     },
+    //     {
+    //         img: countryside,
+    //         value: "Countryside"
 
-        }
-    ]
+    //     }
+    // ]
 
     const food = [
         {
@@ -65,12 +63,11 @@ const GetStart = ({ handleSubmitForm }) => {
 
     const [form, setForm] = useState({
         nationality: null,
-        language: null,
+        languages: null,
         occupation: null,
         smoker: null,
-        food: null,
-        place: null,
-        city: null,
+        diet: null,
+        bedtime: null,
     });
 
     // Function to handle input changes and update form state
@@ -90,17 +87,14 @@ const GetStart = ({ handleSubmitForm }) => {
 
     // Function to handle moving to the next page
     const handleNext = () => {
-
-        if (slideNumber < 6) {
+        if (slideNumber < 5) {
             setSlideNumber((prevSlideNumber) => prevSlideNumber + 1);
-        } else if (slideNumber === 6 && form.nationality != null && form.language != null && form.occupation != null && form.smoker != null && form.food != null && form.place != null && form.city != null) {
+        } else if (slideNumber === 5 && form.nationality != null && form.languages != null && form.occupation != null && form.smoker != null && form.diet != null && form.bedtime != null) {
             handleSubmitForm(form)
         } else {
             toast.error("fill all field")
         }
     };
-
-    console.log(form)
 
     // Render the form based on the current slide number
     return (
@@ -113,7 +107,7 @@ const GetStart = ({ handleSubmitForm }) => {
                         <select name="" value={form.nationality} onChange={(e) => updateForm("nationality", e.target.value)} className=" rounded-xl outline-none">
                             <option value={null}>Select Nationality</option>
                             {country.map((data, index) => (
-                                <option key={index} value={form.nationality}>{data.nationality}</option>
+                                <option key={index} value={data.nationality}>{data.nationality}</option>
                             ))}
                         </select>
                     </div>
@@ -121,7 +115,7 @@ const GetStart = ({ handleSubmitForm }) => {
                 {slideNumber === 1 && (
                     <div className="flex flex-col item-center gap-5 max-sm:w-full">
                         <h2 className="text-2xl font-bold mb-4">Could you share with us your language preference?</h2>
-                        <select name="" value={form.language} onChange={(e) => updateForm("language", e.target.value)} className=" rounded-xl outline-none">
+                        <select name="" value={form.languages} onChange={(e) => updateForm("languages", e.target.value)} className=" rounded-xl outline-none">
                             <option value={null}>Select Language</option>
                             <option value="english">English</option>
                             <option value="spanish">Spanish</option>
@@ -159,11 +153,9 @@ const GetStart = ({ handleSubmitForm }) => {
                         <h2 className="text-2xl font-bold mb-4">What is your Occupation?</h2>
                         <select name="" value={form.occupation} onChange={(e) => updateForm("occupation", e.target.value)} className="rounded-xl outline-none">
                             <option value={null}>Select Occupation</option>
-                            <option value="student">Student</option>
-                            <option value="goverment">Goverment Servent</option>
-                            <option value="developer">Developer</option>
-                            <option value="teacher">Teacher</option>
-                            <option value="engineer">Engineer</option>
+                            <option value="Professional">Professional</option>
+                            <option value="Unemployed">Unemployed</option>
+                            <option value="Student">Student</option>
                         </select>
                     </div>
                 )}
@@ -193,7 +185,7 @@ const GetStart = ({ handleSubmitForm }) => {
                                 <span
                                     className="flex flex-col items-center gap-3 "
                                     key={index}
-                                    onClick={() => updateForm("food", data.value)}>
+                                    onClick={() => updateForm("diet", data.value)}>
                                     <Image
                                         className="w-28 h-24 transition-all duration-300 ease-linear hover:scale-110"
                                         src={data.img}
@@ -201,10 +193,10 @@ const GetStart = ({ handleSubmitForm }) => {
                                         width={96}
                                         height={80}
                                     />
-                                    {form.food === data.value ?
+                                    {form.diet === data.value ?
 
-                                        <FaHeart className={`${form.food === data.value ? "fill-red-700" : ""} text-xl transition-all duration-300 ease-linear hover:text-2xl`} /> :
-                                        <FaRegHeart className={`${form.food === data.value ? "fill-red-700" : ""}  transition-all duration-300 ease-linear hover:text-2xl`} />
+                                        <FaHeart className={`${form.diet === data.value ? "fill-red-700" : ""} text-xl transition-all duration-300 ease-linear hover:text-2xl`} /> :
+                                        <FaRegHeart className={`${form.diet === data.value ? "fill-red-700" : ""}  transition-all duration-300 ease-linear hover:text-2xl`} />
                                     }
                                 </span>
                             ))}
@@ -214,40 +206,23 @@ const GetStart = ({ handleSubmitForm }) => {
                 )}
                 {slideNumber === 5 && (
                     <div className="flex flex-col item-center gap-5 max-sm:w-full">
-                        <h2 className="text-2xl font-bold mb-4">What is your preferred type of Place?</h2>
+                        <h2 className="text-2xl font-bold mb-4">What is your Bedtime?</h2>
                         {/* <label>Place:</label> */}
                         <div className="flex items-center justify-around gap-10">
-                            {place.map((data, index) => (
-                                <span
-                                    className="flex flex-col items-center gap-3 "
-                                    key={index}
-                                    onClick={() => updateForm("place", data.value)}>
-                                    <Image
-                                        className="w-28 h-24 transition-all duration-300 ease-linear hover:scale-110"
-                                        src={data.img}
-                                        alt="Image"
-                                        width={96}
-                                        height={80}
-                                    />
-                                    {form.place === data.value ?
-
-                                        <FaHeart className={`${form.place === data.value ? "fill-red-700" : ""} text-xl transition-all duration-300 ease-linear hover:text-2xl`} /> :
-                                        <FaRegHeart className={`${form.place === data.value ? "fill-red-700" : ""}  transition-all duration-300 ease-linear hover:text-2xl`} />
-                                    }
-                                </span>
-                            ))}
+                            <select name="" value={form.bedtime} onChange={(e) => updateForm("bedtime", e.target.value)} className=" rounded-xl outline-none">
+                                <option value={null}>Select Bedtime</option>
+                                <option value="Early Bird">Early Bird</option>
+                                <option value="Night Owl">Night Owl</option>
+                            </select>
                         </div>
                     </div>
                 )}
-                {slideNumber === 6 && (
+                {/* {slideNumber === 6 && (
                     <div className="flex flex-col item-center gap-5 max-sm:w-full">
                         <h2 className="text-2xl font-bold mb-4">Which City do you reside in?</h2>
-                        {/* <label>City:</label> */}
+                     
                         <select name="" value={form.city} onChange={(e) => updateForm("city", e.target.value)} className=" rounded-xl outline-none">
-                            {/* <option value={null}>Select Language</option>
-                            {City.getCitiesOfCountry(countryCode).map((data, index) => (
-                                <option key={index} value={data.code}>{data.name}</option>
-                            ))} */}
+                           
                             <option value={null}>Select City</option>
                             <option value="toronto">Toronto</option>
                             <option value="vancouver">Vancouver</option>
@@ -256,15 +231,15 @@ const GetStart = ({ handleSubmitForm }) => {
                             <option value="ottawa">Ottawa</option>
                         </select>
                     </div>
-                )}
+                )} */}
 
                 {/* Prev and Next buttons */}
                 <div className="flex justify-between mt-10 w-full">
                     <button onClick={handlePrev} disabled={slideNumber === 0} className=' float-right text-center text-3xl text-white font-extrabold py-3 pl-5 pr-10' style={{ backgroundImage: "linear-gradient(#EF8463, #7170F5 )", clipPath: slideNumber != 0 ? "polygon(10% 0%, 90% 0%, 75% 50%, 90% 100%, 10% 100%, 0% 50%)" : "" }}>
                         Prev
                     </button>
-                    <button onClick={handleNext} disabled={slideNumber === 7} className=' float-right text-center text-3xl text-white font-extrabold py-3 pr-5 pl-10' style={{ backgroundImage: "linear-gradient(#EF8463, #7170F5 )", clipPath: slideNumber != 6 ? "polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 25% 50%)" : "" }}>
-                        {slideNumber === 6 ? "Finish" : "Next"}
+                    <button onClick={handleNext} disabled={slideNumber === 6} className=' float-right text-center text-3xl text-white font-extrabold py-3 pr-5 pl-10' style={{ backgroundImage: "linear-gradient(#EF8463, #7170F5 )", clipPath: slideNumber != 5 ? "polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 25% 50%)" : "" }}>
+                        {slideNumber === 5 ? "Finish" : "Next"}
                     </button>
                 </div>
             </div>
