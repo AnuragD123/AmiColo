@@ -7,6 +7,7 @@ import { useUserContext } from '@/context/context';
 
 export default function Sidebar() {
   const { user, } = useUserContext();
+  // console.log(user.avatar);
 
   return (
     <aside className="flex h-full w-full overflow-y-scroll flex-col border-r items-center font-semibold">
