@@ -19,9 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-
         <AppStore>
-
           <Navbar />
           <Nav />
           <SubChild
@@ -36,7 +34,6 @@ export default function RootLayout({ children }) {
         {/* Navbar Common to All Pages */}
 
       </body>
-
     </html>
   );
 }
