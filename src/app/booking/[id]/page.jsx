@@ -247,8 +247,19 @@ import { toast, Toaster } from 'react-hot-toast';
 
 import Image from 'next/image';
 import Profile from '@/../../public/images/lady.jpg';
+
 import Apartment from '@/../../public/images/apartment.png';
 const apartmentImage = 'https://via.placeholder.com/1200x600/3366cc/ffffff?text=Apartment';
+
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 const BookingRoomPage = ({ params }) => {
 
@@ -272,6 +283,7 @@ const BookingRoomPage = ({ params }) => {
   const [matchSearch, setMatchSearch] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedMatchIds, setSelectedMatchIds] = useState([]);
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
 
@@ -279,6 +291,8 @@ const BookingRoomPage = ({ params }) => {
       const response = await axios.get(`/api/apartment/fetch_apartment_info?room_id=${params.id}`);
       if (response.data.status === 'success') {
         SetAppartmentData(response.data.room_data[0])
+        setImages(response.data.room_data);
+
       }
     }
     fetch_appartment_info();
@@ -320,25 +334,70 @@ const BookingRoomPage = ({ params }) => {
     }
     setSearchQuery('');
   };
-
+  console.log("images=", images);
   return (
     <div className="bg-gray-100">
       <Toaster />
-      <div className="max-w-full overflow-hidden">
-        <Image
+      <div className="container mx-auto overflow-hidden">
+        {/* <Image
           alt="Apartment" className="w-full h-auto"
           src={Apartment}
         // width={50}
         // height={50}
-        />
+        /> */}
+
+
+
+        {/* Image slider */}
+
+        <div className="images-container mx-auto mt-5 w-2/3">
+          <Swiper className='relative'
+            // install Swiper modules
+            modules={[Navigation, Pagination, Scrollbar, A11y]}
+            spaceBetween={50}
+            slidesPerView={1}
+            navigation
+            pagination={{ clickable: true }}
+            scrollbar={{ draggable: true }}
+            onSwiper={(swiper) => console.log(swiper)}
+            onSlideChange={() => console.log('slide change')}
+          >
+
+            {
+              images.map((data, index) => (
+                <SwiperSlide key={index}>
+                  <img
+                    src={`/images/rooms/${data.url}`}
+                    className='object-cover'
+                    alt="Picture of the author"
+                  />
+
+
+                </SwiperSlide>
+              ))
+            }
+
+          </Swiper>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
         {/* <img src={apartmentImage} /> */}
       </div>
       <div className="container mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
         {apartmentData ? (
           <>
-            <h1 className="text-3xl font-bold mb-4">{apartmentData.type}</h1>
+            <h1 className="text-3xl font-bold mb-4"> Apartment Type: {apartmentData.type}</h1>
             <p className="text-gray-700 leading-relaxed">
-              Welcome to our studio, where modern living meets elegance. These spacious units offer breathtaking views and top-notch amenities.
+              Welcome to our {apartmentData.type} Apartment, where modern living meets elegance. These spacious units offer breathtaking views and top-notch amenities.
             </p>
             <ul className="mt-6">
               <li className="flex items-center mb-2">

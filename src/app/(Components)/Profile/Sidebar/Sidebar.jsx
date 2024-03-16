@@ -35,7 +35,7 @@ export default function Sidebar() {
           {/* <li> <Link href="/profile/booking" >My Booking</Link></li> */}
           <li> <Link href="/profile/improve_matches" >Improve Matches</Link></li>
           <li> <Link href="/profile/report" >Report Issue</Link></li>
-          <li> <Link href="/profile/orderreceiept" >Order Receipts</Link></li>
+          {/* <li> <Link href="/profile/orderreceiept" >Order Receipts</Link></li> */}
           <li> <Link href="/profile/saved_rooms" >Saved Listings</Link></li>
         </ul>
       </div>

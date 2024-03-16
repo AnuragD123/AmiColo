@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 
 const PrivacyPolicy = () => {
@@ -56,8 +57,21 @@ const PrivacyPolicy = () => {
                         <p>By providing a clear and straightforward process for users to delete their accounts and associated data, AmiColo reaffirms its commitment to user privacy and data protection.</p>
                     </div>
 
+
                 </div>
             </section>
+
+            <div className="container mx-auto text-center">
+                <a target='_blank' href="https://0skia22ddis.typeform.com/to/EYwvpVce">
+
+                    <button class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Data Deletion Form
+                    </button>
+                </a>
+
+            </div>
+
+
         </div>
     );
 };
