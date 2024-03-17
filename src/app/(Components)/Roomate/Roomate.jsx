@@ -35,7 +35,7 @@ const Roomate = ({ data }) => {
             <a href="/">
                 <Image
                     className="mx-auto pt-4 rounded-full center w-40 h-40 "
-                    src={data?.avatar ? `/uploads/${data?.avatar}` : profile}
+                    src={data?.avatar ? `${data?.avatar}` : profile}
                     alt="Roommate photo"
                     width={150}
                     height={150}
