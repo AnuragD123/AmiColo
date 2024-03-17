@@ -293,7 +293,7 @@ const Edit = () => {
         <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
           <div className="w-1/2 max-sm:w-full">
             <label htmlFor="smoker">Smoker </label>
-            <span className="text-xs text-gr">Yes/No</span>
+         
 
             <br />
             <span className=" flex items-center gap-5">

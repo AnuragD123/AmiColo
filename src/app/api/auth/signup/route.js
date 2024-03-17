@@ -30,7 +30,7 @@ export async function POST(req) {
         console.log(savedUser);
 
         /*API CALL TO RE-Train the User Recommendation ML Model on each user registration */
-        axios.get('https://ml.amicolo.com/api');
+        axios.get('https://ml.amicolo.com/api1');
 
 
         return NextResponse.json({
