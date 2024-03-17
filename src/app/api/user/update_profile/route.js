@@ -7,7 +7,6 @@ import { getSignatureData } from "@/helper/getSignature";
 export async function POST(request) {
   try {
     const currentUserId = getDataFromToken(request);
-
     const maxSize = 1024 * 1024 * 5; // 5 MB limit
     const file = await request.formData();
     const nationality = file.get("nationality");
@@ -36,7 +35,7 @@ export async function POST(request) {
     const cleanliness = file.get("cleanliness");
     const count_friends = file.get("count_friends");
 
-    console.log("DATA", smoker, Gym, parking);
+    console.log("DATA", cleanliness, count_friends, bedtime, diet, languages);
 
     if (
       first_name ||
