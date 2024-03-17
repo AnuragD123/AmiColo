@@ -58,8 +58,19 @@ const Roomate = ({ data }) => {
                     </button> */}
                 </div>
                 <p className="text-justify mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    Adventurer at heart 🌄 | Foodie by choice 🍜 | Storyteller 📖 | Finding joy in the little things | Chasing dreams and sunsets 🌅
+                    {/* Adventurer at heart 🌄 | Foodie by choice 🍜 | Storyteller 📖 | Finding joy in the little things | Chasing dreams and sunsets 🌅 */}
+                    {data.bio}
                 </p>
+                <ul className='grid grid-cols-2 justify-between gap-5'>
+                    <li>Gender: {data.gender}</li>
+                    <li>Diet: {data.diet}</li>
+                    <li>Occupation: {data.occupation}</li>
+                    <li>Education: {data.education}</li>
+                    <li>Smoker: {data.smoker}</li>
+                    <li>Cleanliness: {data.cleanliness}</li>
+                    <li>Bedtime: {data.bedtime}</li>
+                    <li>Languages: {data.languages}</li>
+                </ul>
 
                 <div className="flex justify-center space-x-4">
                     <button className="flex items-center justify-center w-10 h-10 text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-2 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
