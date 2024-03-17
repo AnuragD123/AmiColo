@@ -61,7 +61,9 @@ const FindMatch = () => {
 	};
 
 	useEffect(() => {
-		const id = localStorage.getItem('id');
+		const user = localStorage.getItem('user');
+		const id = JSON.parse(user).id
+
 		const triggerMLEvent = async () => {
 			const response = await axios.post('https://ml.amicolo.com/api2', { id });
 			console.log(response);
