@@ -50,7 +50,7 @@ const closeModal3 = () => {
                     <div className='text-center flex items-center py-4 rounded-2xl px-4' style={{ backgroundImage: "linear-gradient(to right, #FF6AC0, #FFD75F )" }}>
                         <FaRegFileLines className=' text-xl' />
                         <span className='w-full text-center text-3xl font-semibold'>
-                            Take Quize 1
+                            Take Quiz 1
                         </span>
 
                     </div>
@@ -60,7 +60,7 @@ const closeModal3 = () => {
                     <div className='text-center flex items-center py-4 rounded-2xl px-4' style={{ backgroundImage: "linear-gradient(to right, #FFF6AF, #FFABF7 )" }}>
                         <FaRegFileLines className=' text-xl' />
                         <span className='w-full text-center text-3xl font-semibold'>
-                            Take Quize 2
+                            Take Quiz 2
                         </span>
 
                     </div>
@@ -70,7 +70,7 @@ const closeModal3 = () => {
                     <div className='text-center flex items-center py-4 rounded-2xl px-4' style={{ backgroundImage: "linear-gradient(to right, #0FC0DD, #FBDE5C )" }}>
                         <FaRegFileLines className=' text-xl' />
                         <span className='w-full text-center text-3xl font-semibold'>
-                            Take Quize 3
+                            Take Quiz 3
                         </span>
 
                     </div>
