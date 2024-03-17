@@ -104,7 +104,7 @@ const GetStart = ({ handleSubmitForm }) => {
 
   // Render the form based on the current slide number
   return (
-    <div className="fixed top-0 left-0 w-full h-screen bg-black bg-opacity-70 flex items-center justify-center">
+    <div className="fixed top-0 left-0 w-full h-screen bg-black bg-opacity-70 flex items-center justify-center" style={{zIndex:100}}>
       <Toaster />
       <div className="bg-white w-1/2 h-1/2 max-lg:w-3/4 max-md:w-4/5 max-sm:w-11/12 rounded-2xl p-8 text-center flex flex-col items-center justify-center pb-8">
         {slideNumber === 0 && (
