@@ -51,7 +51,7 @@ const Roomate = ({ data }) => {
             <div className="py-2 px-5">
                 <div className="flex justify-center items-center mb-1">
                     <h5 className="text-center mb-2 mr-3 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                        {data.first_name + ' ' + data.last_name} | 21M
+                        {data?.first_name + ' ' + data?.last_name} | 21M
                     </h5>
                     {/* <button className="p-2 text-gray-700 dark:text-white bg-gray-200 rounded-lg hover:bg-gray-300 focus:ring-2 focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-400 dark:focus:ring-gray-400">
                         <Bookmark />
@@ -59,29 +59,35 @@ const Roomate = ({ data }) => {
                 </div>
                 <p className="text-justify mb-3 font-normal text-gray-700 dark:text-gray-400">
                     {/* Adventurer at heart 🌄 | Foodie by choice 🍜 | Storyteller 📖 | Finding joy in the little things | Chasing dreams and sunsets 🌅 */}
-                    {data.bio}
+                    {data?.bio}
                 </p>
-                <ul className='grid grid-cols-2 justify-between gap-5'>
-                    <li>Gender: {data.gender}</li>
-                    <li>Diet: {data.diet}</li>
-                    <li>Occupation: {data.occupation}</li>
-                    <li>Education: {data.education}</li>
-                    <li>Smoker: {data.smoker}</li>
-                    <li>Cleanliness: {data.cleanliness}</li>
-                    <li>Bedtime: {data.bedtime}</li>
-                    <li>Languages: {data.languages}</li>
+                <ul className='grid grid-cols-2 justify-between gap-2'>
+                    <li><strong>Gender:</strong>{data?.gender}</li>
+
+                    <li className="text-justify text-sm font-normal text-gray-500"><strong className="text-black">Diet:</strong> {data?.diet}</li>
+                    <li className="text-justify text-sm font-normal text-gray-500"><strong className="text-black">Occupation:</strong> {data?.occupation}</li>
+                    <li className="text-justify text-sm font-normal text-gray-500"><strong className="text-black">Education:</strong> {data?.education}</li>
+                    <li className="text-justify text-sm font-normal text-gray-500"><strong className="text-black">Smoker:</strong> {data?.smoker == 1 ? "Yes" : "No"}</li>
+                    <li className="text-justify text-sm font-normal text-gray-500"><strong className="text-black">Cleanliness:</strong> {data?.cleanliness}</li>
+                    <li className="text-justify text-sm font-normal text-gray-500"><strong className="text-black">Bedtime:</strong> {data?.bedtime}</li>
+                    <li className="text-justify text-sm font-normal text-gray-500"><strong className="text-black">Languages:</strong> {data?.languages}</li>
                 </ul>
 
-                <div className="flex justify-center space-x-4">
+                {/* <div className="flex justify-center space-x-4">
                     <button className="flex items-center justify-center w-10 h-10 text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-2 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <ThumbsUp className="w-5 h-5" onClick={() => sendMatchingReq(data.id)} />
                     </button>
                     <button className="flex items-center justify-center w-10 h-10 text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-2 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <ThumbsDown className="w-5 h-5" />
                     </button>
+                </div> */}
+                <div>
+                    <button onClick={() => sendMatchingReq(data.id)} className="flex items-center justify-center mt-5 w-full h-10 text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-2 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Add Match
+                    </button>
                 </div>
             </div>
-        </div>
+        </div >
 
     );
 };

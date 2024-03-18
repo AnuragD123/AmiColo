@@ -10,7 +10,7 @@ export const sendEmail = async (emailData) => {
         // create a hased token
         // const hashedToken = await bcryptjs.hash(userId.toString(), 10)
 
-       
+
         const transport = nodemailer.createTransport({
             host: 'smtp.hostinger.com', // Replace with your Hostinger SMTP server
             port: 465, // Standard SMTP port (you might need to use 465 or other ports depending on your Hostinger setup)

@@ -75,6 +75,8 @@ const Edit = () => {
     });
   }, [user, image]);
 
+  console.log("DATA", form)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -115,7 +117,7 @@ const Edit = () => {
       // Handle response
 
       localStorage.setItem("user", JSON.stringify(res.data?.getUser[0]));
-      // setUser(res.data?.getUser[0]);
+      setUser(res.data?.getUser[0]);
 
       if (res.data.success) {
         setLoading(false);
@@ -298,21 +300,19 @@ const Edit = () => {
             <br />
             <span className=" flex items-center gap-5">
               <button
-                className={`px-3 py-1 rounded-xl w-1/2 ${
-                  form.smoker == "true" || form.smoker == true
-                    ? "bg-gray-400"
-                    : "bg-gray-300"
-                }`}
+                className={`px-3 py-1 rounded-xl w-1/2 ${form.smoker == "true" || form.smoker == true
+                  ? "bg-gray-400"
+                  : "bg-gray-300"
+                  }`}
                 onClick={(e) => setForm({ ...form, smoker: true })}
               >
                 Yes
               </button>
               <button
-                className={`px-3 py-1 rounded-xl w-1/2 ${
-                  form.smoker == "false" || form.smoker == false
-                    ? "bg-gray-400"
-                    : "bg-gray-300"
-                }`}
+                className={`px-3 py-1 rounded-xl w-1/2 ${form.smoker == "false" || form.smoker == false
+                  ? "bg-gray-400"
+                  : "bg-gray-300"
+                  }`}
                 onClick={(e) => setForm({ ...form, smoker: false })}
               >
                 No
@@ -546,19 +546,13 @@ const Edit = () => {
             <br />
             <select
               name="parking"
-              value={form.parking}
-              onChange={(e) => setForm({ ...form, parking: e.target.value })}
+              value={form.parking == 1 ? "Yes" : form.parking == 0 ? "No" : ""}
+              onChange={(e) => setForm({ ...form, parking: e.target.value == "Yes" ? true : e.target.value == "No" ? false : Null })}
               className="w-full rounded-3xl bg-gray-300"
             >
-              <option value={null}>
-                {form.parking != "" && form.parking == 1
-                  ? "Yes"
-                  : form.parking == 0
-                  ? "No"
-                  : "Select"}
-              </option>
-              <option value={true}>Yes</option>
-              <option value={false}>No</option>
+              <option value={null}>Select</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
             </select>
           </div>
           <div className="w-1/2 max-sm:w-full">
@@ -580,37 +574,13 @@ const Edit = () => {
             <br />
             <select
               name="Gym"
-              value={form.Gym}
-              onChange={(e) => setForm({ ...form, Gym: e.target.value })}
+              value={form.Gym == 1 ? "Yes" : form.Gym == 0 ? "No" : ""}
+              onChange={(e) => setForm({ ...form, Gym: e.target.value == "Yes" ? true : e.target.value == "No" ? false : Null })}
               className="w-full rounded-3xl bg-gray-300"
             >
-              <option value={null}>
-                {form.gum != "" && form.Gym == 1
-                  ? "Yes"
-                  : form.Gym == 0
-                  ? "No"
-                  : "Select"}
-              </option>
-              <option value={true}>Yes</option>
-              <option value={false}>No</option>
-            </select>
-          </div>
-
-          <div className="w-1/2 max-sm:w-full">
-            <label htmlFor="cleanliness">Cleanliness</label>
-            <br />
-            <select
-              name="cleanliness"
-              value={form.cleanliness}
-              onChange={(e) =>
-                setForm({ ...form, cleanliness: e.target.value })
-              }
-              className="w-full rounded-3xl bg-gray-300"
-            >
-              <option value={null}>"Select"</option>
-              <option value="Average">Average</option>
-              <option value="Messy">Messy</option>
-              <option value="Neat">Neat</option>
+              <option value={null}>Select</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
             </select>
           </div>
         </div>
