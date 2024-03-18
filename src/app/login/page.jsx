@@ -1,55 +1,55 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
-import { ArrowRight } from 'lucide-react'
-import { FacebookAuth } from "./config";
+import { ArrowRight } from "lucide-react";
 import { useUserContext } from "@/context/context";
+import { signInWithPopup } from "firebase/auth";
+import { auth, facebook } from "@/helper/firebase";
 const Login = () => {
   const { user, setUser } = useUserContext();
   const router = useRouter();
   const [form, setForm] = React.useState({
     email: "",
     password: "",
-  })
-  // const [buttonDisabled, setButtonDisabled] = React.useState(false);
-  // const [loading, setLoading] = React.useState(false);
-
+  });
 
   const loginHandler = async () => {
-
     try {
       const response = await axios.post("/api/auth/login", form);
       toast.success("Login success");
-      console.log("object", response.data.user)
-      localStorage.setItem('user', JSON.stringify(response.data.user[0]));
-      setUser(response.data.user[0])
+      console.log("object", response.data.user);
+      localStorage.setItem("user", JSON.stringify(response.data.user[0]));
+      setUser(response.data.user[0]);
       router.push("/profile");
     } catch (error) {
-
       toast.error(error.response.data.error);
     }
-
-  }
-
-  const FacebookAuthButtonClick = async () => {
-    const data = await FacebookAuth();
-    console.log("user login with facebook--->", data);
-
-
   };
+
+  const handleFacebookLogin = async (response) => {
+    try {
+      const result = await signInWithPopup(auth, facebook);
+      console.log("result", result);
+    } catch (e) {
+      console.log(`login error ${e}`);
+    }
+  };
+
   return (
     <section>
       <Toaster />
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
           <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
-            <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">Sign in</h2>
+            <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">
+              Sign in
+            </h2>
             <p className="mt-2 text-sm text-gray-600">
-              Don&apos;t have an account?{' '}
+              Don&apos;t have an account?{" "}
               <Link
                 href="/signup"
                 title=""
@@ -61,15 +61,20 @@ const Login = () => {
             <form action="#" method="POST" className="mt-8">
               <div className="space-y-5">
                 <div>
-                  <label htmlFor="" className="text-base font-medium text-gray-900">
-                    {' '}
-                    Email address{' '}
+                  <label
+                    htmlFor=""
+                    className="text-base font-medium text-gray-900"
+                  >
+                    {" "}
+                    Email address{" "}
                   </label>
                   <div className="mt-2">
                     <input
                       className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                       type="email"
-                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, email: e.target.value })
+                      }
                       value={form.email}
                       placeholder="Email"
                     ></input>
@@ -77,9 +82,12 @@ const Login = () => {
                 </div>
                 <div>
                   <div className="flex items-center justify-between">
-                    <label htmlFor="" className="text-base font-medium text-gray-900">
-                      {' '}
-                      Password{' '}
+                    <label
+                      htmlFor=""
+                      className="text-base font-medium text-gray-900"
+                    >
+                      {" "}
+                      Password{" "}
                     </label>
                     {/* <a
                       href="#"
@@ -95,7 +103,9 @@ const Login = () => {
                       className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                       type="password"
                       value={form.password}
-                      onChange={(e) => setForm({ ...form, password: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, password: e.target.value })
+                      }
                       placeholder="Password"
                     ></input>
                   </div>
@@ -111,11 +121,11 @@ const Login = () => {
                 </div>
               </div>
             </form>
-            <div className="mt-3 space-y-3">
 
+            <div className="mt-3 space-y-3">
               <button
                 type="button"
-                onClick={FacebookAuthButtonClick}
+                onClick={handleFacebookLogin}
                 className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
               >
                 <span className="mr-2 inline-block">
@@ -142,7 +152,7 @@ const Login = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default Login;

@@ -75,7 +75,7 @@ const Edit = () => {
     });
   }, [user, image]);
 
-  console.log("DATA", form)
+  console.log("DATA", form);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -114,16 +114,15 @@ const Edit = () => {
           "Content-Type": "multipart/form-data",
         },
       });
+
       // Handle response
-
-      localStorage.setItem("user", JSON.stringify(res.data?.getUser[0]));
-      setUser(res.data?.getUser[0]);
-
       if (res.data.success) {
         setLoading(false);
         setUser(res.data?.getUser[0]);
         toast.success("Profile Update Successfully");
       }
+      localStorage.setItem("user", JSON.stringify(res.data?.getUser[0]));
+      setUser(res.data?.getUser[0]);
     } catch (e) {
       // Handle errors here
       console.error(e);
@@ -160,7 +159,6 @@ const Edit = () => {
     />
   ) : (
     <div className="leading-10">
-      <Toaster />
       <div className="w-full flex items-center justify-between mb-4 gap-2 max-sm:flex-col">
         <Link
           href="/profile/edit"
@@ -295,24 +293,25 @@ const Edit = () => {
         <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
           <div className="w-1/2 max-sm:w-full">
             <label htmlFor="smoker">Smoker </label>
-         
 
             <br />
             <span className=" flex items-center gap-5">
               <button
-                className={`px-3 py-1 rounded-xl w-1/2 ${form.smoker == "true" || form.smoker == true
-                  ? "bg-gray-400"
-                  : "bg-gray-300"
-                  }`}
+                className={`px-3 py-1 rounded-xl w-1/2 ${
+                  form.smoker == "true" || form.smoker == true
+                    ? "bg-gray-400"
+                    : "bg-gray-300"
+                }`}
                 onClick={(e) => setForm({ ...form, smoker: true })}
               >
                 Yes
               </button>
               <button
-                className={`px-3 py-1 rounded-xl w-1/2 ${form.smoker == "false" || form.smoker == false
-                  ? "bg-gray-400"
-                  : "bg-gray-300"
-                  }`}
+                className={`px-3 py-1 rounded-xl w-1/2 ${
+                  form.smoker == "false" || form.smoker == false
+                    ? "bg-gray-400"
+                    : "bg-gray-300"
+                }`}
                 onClick={(e) => setForm({ ...form, smoker: false })}
               >
                 No
@@ -412,7 +411,7 @@ const Edit = () => {
                             <option value="Vegan">Vegan</option>
                             <option value="Vegetarian">Vegetarian</option>
                         </select>
-                    </div> */}
+                      </div> */}
         </div>
 
         <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
@@ -547,7 +546,17 @@ const Edit = () => {
             <select
               name="parking"
               value={form.parking == 1 ? "Yes" : form.parking == 0 ? "No" : ""}
-              onChange={(e) => setForm({ ...form, parking: e.target.value == "Yes" ? true : e.target.value == "No" ? false : Null })}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  parking:
+                    e.target.value == "Yes"
+                      ? true
+                      : e.target.value == "No"
+                      ? false
+                      : Null,
+                })
+              }
               className="w-full rounded-3xl bg-gray-300"
             >
               <option value={null}>Select</option>
@@ -575,12 +584,39 @@ const Edit = () => {
             <select
               name="Gym"
               value={form.Gym == 1 ? "Yes" : form.Gym == 0 ? "No" : ""}
-              onChange={(e) => setForm({ ...form, Gym: e.target.value == "Yes" ? true : e.target.value == "No" ? false : Null })}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  Gym:
+                    e.target.value == "Yes"
+                      ? true
+                      : e.target.value == "No"
+                      ? false
+                      : Null,
+                })
+              }
               className="w-full rounded-3xl bg-gray-300"
             >
               <option value={null}>Select</option>
               <option value="Yes">Yes</option>
               <option value="No">No</option>
+            </select>
+          </div>
+          <div className="w-1/2 max-sm:w-full">
+            <label htmlFor="cleanliness">Cleanliness</label>
+            <br />
+            <select
+              name="cleanliness"
+              value={form.cleanliness}
+              onChange={(e) =>
+                setForm({ ...form, cleanliness: e.target.value })
+              }
+              className="w-full rounded-3xl bg-gray-300"
+            >
+              <option value={null}>Select</option>
+              <option value="Average">Average</option>
+              <option value="Messy">Messy</option>
+              <option value="Neat">Neat</option>
             </select>
           </div>
         </div>
