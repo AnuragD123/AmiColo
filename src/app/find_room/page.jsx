@@ -58,8 +58,8 @@ const Listing = () => {
         const response = await axios.post("https://ml.amicolo.com/api4", {
           id,
         });
-        // console.log(response.data.data);
-        setRooms(response.data.data);
+        console.log(response.data);
+        setRooms(response.data);
       } catch (error) {
         console.error("Error fetching rooms:", error);
       }
