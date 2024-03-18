@@ -99,7 +99,6 @@ const Profile = () => {
         <div className='w-full flex items-center gap-3 mb-6'>
           <div className="w-1/2 max-sm:w-full">
             <label htmlFor="smoker">Smoker </label>
-            <span className="text-xs text-gr">Yes/No</span>
 
             <br />
             <span className=" flex items-center gap-5">
@@ -110,7 +109,7 @@ const Profile = () => {
           <div className='w-1/2'>
             <label htmlFor="occupation">Occupation</label>
             <br />
-            <select name="occupation" value={form.occupation} onChange={(e) => setForm({ ...form, occupation: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+            <select disabled name="occupation" value={form.occupation} onChange={(e) => setForm({ ...form, occupation: e.target.value })} className="w-full rounded-3xl bg-gray-300">
               <option value={null}>Select Occupation</option>
               <option value="Professional">Professional</option>
               <option value="Unemployed">Unemployed</option>
@@ -140,7 +139,7 @@ const Profile = () => {
           <div className='w-1/2'>
             <label htmlFor="bTime">Bed Time</label>
             <br />
-            <select name="" value={form.bedtime} onChange={(e) => setForm({ ...form, bedtime: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+            <select disabled name="" value={form.bedtime} onChange={(e) => setForm({ ...form, bedtime: e.target.value })} className="w-full rounded-3xl bg-gray-300">
               <option value={null}>Select Bedtime</option>
               <option value="Early Bird">Early Bird</option>
               <option value="Night Owl">Night Owl</option>
@@ -149,7 +148,7 @@ const Profile = () => {
           <div className='w-1/2'>
             <label htmlFor="diet">Diet</label>
             <br />
-            <select name="" value={form.diet} onChange={(e) => setForm({ ...form, diet: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+            <select disabled name="" value={form.diet} onChange={(e) => setForm({ ...form, diet: e.target.value })} className="w-full rounded-3xl bg-gray-300">
               <option value={null}>Select diet</option>
               <option value="Non-Vegetarian">Non-Vegetarian</option>
               <option value="Vegan">Vegan</option>
@@ -162,7 +161,7 @@ const Profile = () => {
           <div className='w-1/2'>
             <label htmlFor="school">Language</label>
             <br />
-            <select name="languages" value={form.languages} onChange={(e) => setForm({ ...form, languages: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+            <select disabled name="languages" value={form.languages} onChange={(e) => setForm({ ...form, languages: e.target.value })} className="w-full rounded-3xl bg-gray-300">
               <option value={null}>Select Language</option>
               <option value="english">English</option>
               <option value="spanish">Spanish</option>
@@ -206,7 +205,7 @@ const Profile = () => {
         <div className="w-1/2 max-sm:w-full">
           <label htmlFor="cleanliness">Cleanliness</label>
           <br />
-          <select name="cleanliness" value={form.cleanliness} onChange={(e) => setForm({ ...form, cleanliness: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+          <select disabled name="cleanliness" value={form.cleanliness} onChange={(e) => setForm({ ...form, cleanliness: e.target.value })} className="w-full rounded-3xl bg-gray-300">
             <option value={null}>"Select"</option>
             <option value="Average">Average</option>
             <option value="Messy">Messy</option>

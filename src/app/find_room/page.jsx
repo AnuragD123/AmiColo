@@ -53,13 +53,13 @@ const Listing = () => {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const response = await axios.get("/api/room/fetchroom");
+        // const response = await axios.get("/api/room/fetchroom");
         const id = localStorage.getItem("id");
-        // const response = await axios.post("https://ml.amicolo.com/api4", {
-        //   id,
-        // });
-        // console.log(response.data.data);
-        setRooms(response.data.data);
+        const response = await axios.post("https://ml.amicolo.com/api4", {
+          id,
+        });
+        console.log(response.data);
+        setRooms(response.data);
       } catch (error) {
         console.error("Error fetching rooms:", error);
       }

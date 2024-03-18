@@ -13,6 +13,8 @@ import { toast, Toaster } from "react-hot-toast";
 const Edit = () => {
   const { user, setUser } = useUserContext();
 
+  console.log("user", user);
+
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState();
   const [form, setForm] = useState({
@@ -119,7 +121,7 @@ const Edit = () => {
 
       if (res.data.success) {
         setLoading(false);
-
+        setUser(res.data?.getUser[0]);
         toast.success("Profile Update Successfully");
       }
     } catch (e) {
@@ -176,7 +178,7 @@ const Edit = () => {
 
       <div>
         <div className="w-full flex items-center gap-3 mb-6">
-          <img
+          <Image
             className=" w-40 h-40 rounded-full"
             src={file ? file : user?.avatar ? user?.avatar : Profile}
             width={150}
@@ -293,7 +295,7 @@ const Edit = () => {
         <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
           <div className="w-1/2 max-sm:w-full">
             <label htmlFor="smoker">Smoker </label>
-            <span className="text-xs text-gr">Yes/No</span>
+         
 
             <br />
             <span className=" flex items-center gap-5">
