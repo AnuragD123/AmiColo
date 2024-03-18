@@ -263,7 +263,6 @@ import "swiper/css/scrollbar";
 const BookingRoomPage = ({ params }) => {
   const handleBookingReq = async () => {
     const room_id = params.id;
-    console.log(room_id);
 
     const response = await axios.post("/api/apartment/send_booking_req", {
       room_id,
@@ -271,7 +270,6 @@ const BookingRoomPage = ({ params }) => {
     });
     if (response.data.status === "success") {
       toast.success(response.data.msg);
-      // console.log(response.data.msg);
     } else {
       toast.error(response.data.msg);
     }
@@ -294,6 +292,7 @@ const BookingRoomPage = ({ params }) => {
       }
     };
     fetch_appartment_info();
+
     const fetchMatches = async () => {
       try {
         const response = await axios.get("/api/user/fetch_all_matches");
@@ -307,6 +306,7 @@ const BookingRoomPage = ({ params }) => {
     fetchMatches();
   }, []);
 
+  const user = JSON.parse(localStorage.getItem("user"))
   const handleSearch = (event) => {
     const query = event.target.value.toLowerCase();
     setSearchQuery(query);
@@ -337,7 +337,6 @@ const BookingRoomPage = ({ params }) => {
     }
     setSearchQuery("");
   };
-  console.log("images=", images);
   return (
     <div className="bg-gray-100">
       <Toaster />
