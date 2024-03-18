@@ -102,7 +102,7 @@ function Modal2({ isOpen, onClose }) {
                 </div>
                 {/* Question 1: Nutrition/Plant-Based Diet */}
 
-                {data1.map((question, index) => (
+                {data2.map((question, index) => (
                   <div key={index} className="question mb-4">
                     <p className="font-semibold">
                       {index + 1}. {question.question}
