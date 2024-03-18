@@ -153,7 +153,9 @@ import React, { useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import axios from 'axios';
-import ProfileDemo from '../../../images/AmiColo_Profile.png';
+import testimonial1 from '../../../images/testimonial1.jpg';
+import testimonial2 from '../../../images/testimonial2.jpg';
+import testimonial3 from '../../../images/testimonial3.jpg';
 import Card from './card';
 import { MoveRight } from "lucide-react";
 import { Carousel } from "flowbite-react";
@@ -164,17 +166,17 @@ import GetStart from '../(Components)/getStart/getStart';
 export default function Home() {
     const Reviews = [
         {
-            Img: ProfileDemo,
-            name: "Maria, International Student from Brazil",
+            Img: testimonial1,
+            name: "Jake, International Student from Brazil",
             review: "Arriving in Montreal was overwhelming, but AmiColo simplified my housing search. The platform's social media integration helped match me with a roommate who shares my love for music and Brazilian cuisine. Our home feels like a little piece of Brazil here in Canada. I couldn't be happier!"
         },
         {
-            Img: ProfileDemo,
-            name: "Jake, Canadian Graduate Student",
+            Img: testimonial2,
+            name: "farzan, Canadian Graduate Student",
             review: "As a grad student, I needed a quiet, study-friendly environment. Thanks to Ami Colo, I found a roommate with similar academic goals and schedules. Our shared respect for study times and mutual support during exams has been invaluable. Ami Colo really understood what I was looking for."
         },
         {
-            Img: ProfileDemo,
+            Img: testimonial3,
             name: "Anika, Young Professional from India",
             review: "Moving to Montreal for work was exciting yet daunting. AmiColo's user-friendly platform connected me with a roommate who not only became a great friend but also introduced me to the city's culture and social scene. Finding a compatible roommate has made my transition to Canadian life seamless and fun."
         },
@@ -263,7 +265,7 @@ export default function Home() {
                         </span>. <br />
                         <span className="block mt-4 lg:mt-6 text-3xl md:text-6xl lg:text-8xl ">
                             With Your{" "}
-                            <span className="text-red-600">Amicolo</span>
+                            <span className="text-red-600">AmiColo</span>
                         </span>
                     </p>
                     {/* <p className="text-lg lg:text-xl text-white font-bold">This is a dummy web page plz not booking a room</p> */}
@@ -379,7 +381,7 @@ export default function Home() {
                                 <span>Environment</span>
                             </p>
                         </div>
-                        <div className="vertical-heading text-start">
+                        <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
                                 App Based Issue <br />
                                 <span>Resolution</span>
@@ -389,7 +391,7 @@ export default function Home() {
                                 <span>Internet</span>
                             </p>
                         </div>
-                        <div className="vertical-heading">
+                        <div className="vertical-heading text-start text-lg">
                             <p className="my-3 mx-2 lg:mx-8">
                                 Hassle Free <br />
                                 <span>Payments</span>

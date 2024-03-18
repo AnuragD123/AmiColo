@@ -9,7 +9,7 @@ const TestimonialCard = ({ data }) => {
                         {data.map((item, index) => (
                             <div key={index} className="max-w-96 max-sm:w-full flex flex-col gap-4 items-center justify-center">
                                 <Image
-                                    className=''
+                                    className=' rounded-full'
                                     width={70}
                                     height={70}
                                     src={item.Img}

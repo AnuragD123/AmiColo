@@ -54,7 +54,7 @@ export default function Home() {
                         </span>. <br />
                         <span className="block mt-4 lg:mt-6 text-3xl md:text-6xl lg:text-8xl ">
                             With Your{" "}
-                            <span className="text-red-600">Amicolo</span>
+                            <span className="text-red-600">AmiColo</span>
                         </span>
                     </p>
                     <Link

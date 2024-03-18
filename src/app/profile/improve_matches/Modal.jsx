@@ -8,38 +8,6 @@ function Modal({ isOpen, onClose }) {
         // Add more keys for each question
     });
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //       setLoading(true);
-    //       const formData = new FormData();
-    //       // Append form data
-    //       formData.append("cleanliness", form.cleanliness);
-    //       // Append image data
-    //       if (image) {
-    //         formData.append("file", image);
-    //       }
-    //       const res = await axios.post(`/api/user/update_profile`, formData, {
-    //         headers: {
-    //           "Content-Type": "multipart/form-data",
-    //         },
-    //       });
-    //       // Handle response
-
-    //       localStorage.setItem("user", JSON.stringify(res.data?.getUser[0]));
-    //       // setUser(res.data?.getUser[0]);
-
-    //       if (res.data.success) {
-    //         setLoading(false);
-
-    //         toast.success("Profile Update Successfully");
-    //       }
-    //     } catch (e) {
-    //       // Handle errors here
-    //       console.error(e);
-    //     }
-    //   };
-
     const handleOptionChange = (question, value) => {
         setSelectedOptions(prevState => ({
             ...prevState,

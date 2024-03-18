@@ -15,11 +15,17 @@ const Nav = () => {
   const { user, setUser } = useUserContext();
 
   useEffect(() => {
-    // Check if localStorage is available (client-side)
     if (typeof window !== "undefined") {
       const localUser = localStorage.getItem("user");
-      const parsedData = JSON.parse(localUser);
-      setUser(parsedData);
+      if (localUser !== null) {
+        try {
+          const parsedData = JSON.parse(localUser);
+          setUser(parsedData);
+        } catch (error) {
+          console.error("Error parsing user data:", error);
+          // Handle parsing error, e.g., set default user data
+        }
+      }
     }
   }, []);
 
@@ -41,9 +47,8 @@ const Nav = () => {
             <div></div>
             <div>
               <ul
-                className={`lg:flex lg:space-x-6 ${
-                  navToggle ? "block" : "hidden"
-                } lg:ml-auto`}
+                className={`lg:flex lg:space-x-6 ${navToggle ? "block" : "hidden"
+                  } lg:ml-auto`}
               >
                 {navItems.map((item, index) => (
                   <li key={index}>
@@ -65,9 +70,8 @@ const Nav = () => {
               </div>
               <div className="ml-4">
                 <Link
-                  className={`inline-block ${
-                    pathname === "/profile" ? "text-pink-500" : "text-gray-700"
-                  } hover:text-pink-500`}
+                  className={`inline-block ${pathname === "/profile" ? "text-pink-500" : "text-gray-700"
+                    } hover:text-pink-500`}
                   href="/profile"
                 >
                   {user ? (
