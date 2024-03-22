@@ -33,7 +33,20 @@ const Login = () => {
   const handleFacebookLogin = async (response) => {
     try {
       const result = await signInWithPopup(auth, facebook);
-      console.log("result", result);
+      const { user } = result;
+      const { displayName, photoURL } = user;
+      try {
+        const response = await axios.post("/api/auth/login/facebook", {
+          username: displayName,
+          avatar: photoURL,
+        });
+        toast.success("Login success");
+        localStorage.setItem("user", JSON.stringify(response.data.user[0]));
+        setUser(response.data.user[0]);
+        router.push("/profile");
+      } catch (error) {
+        toast.error(error.response.data.error);
+      }
     } catch (e) {
       console.log(`login error ${e}`);
     }

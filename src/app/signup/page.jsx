@@ -1,7 +1,7 @@
-'use client'
-import { useState } from 'react'
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react'
+"use client";
+import { useState } from "react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
@@ -9,10 +9,7 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-
 const Signup = () => {
-
-
   const router = useRouter();
   const [user, setUser] = useState({
     first_name: "",
@@ -21,7 +18,7 @@ const Signup = () => {
     email: "",
     password: "",
     gender: "",
-  })
+  });
 
   const handleSignup = async () => {
     try {
@@ -29,10 +26,8 @@ const Signup = () => {
       const response = await axios.post("/api/auth/signup", user);
       // console.log("Signup success", response.data);
       toast.success(response.data.message);
-      
 
       router.push("/login");
-
     } catch (error) {
       console.log("Signup failed", error.message);
 
@@ -41,7 +36,7 @@ const Signup = () => {
     // finally {
     //     setLoading(false);
     // }
-  }
+  };
 
   // useEffect(() => {
   //   if(user.email.length > 0 && user.password.length > 0 && user.username.length > 0) {
@@ -51,16 +46,17 @@ const Signup = () => {
   //   }
   // }, [user]);
 
-
   return (
     <section>
       <Toaster />
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
           <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
-            <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">Sign up</h2>
+            <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">
+              Sign up
+            </h2>
             <p className="mt-2 text-base text-gray-600">
-              Already have an account?{' '}
+              Already have an account?{" "}
               <Link
                 href="/login"
                 title=""
@@ -74,7 +70,10 @@ const Signup = () => {
                 <div className="grid grid-cols-2 gap-4">
                   {/* First Name */}
                   <div>
-                    <label htmlFor="first_name" className="text-base font-medium text-gray-900">
+                    <label
+                      htmlFor="first_name"
+                      className="text-base font-medium text-gray-900"
+                    >
                       First Name
                     </label>
                     <div className="mt-2">
@@ -84,13 +83,18 @@ const Signup = () => {
                         placeholder="First Name"
                         id="first_name"
                         value={user.first_name}
-                        onChange={(e) => setUser({ ...user, first_name: e.target.value })}
+                        onChange={(e) =>
+                          setUser({ ...user, first_name: e.target.value })
+                        }
                       ></input>
                     </div>
                   </div>
                   {/* Last Name */}
                   <div>
-                    <label htmlFor="last_name" className="text-base font-medium text-gray-900">
+                    <label
+                      htmlFor="last_name"
+                      className="text-base font-medium text-gray-900"
+                    >
                       Last Name
                     </label>
                     <div className="mt-2">
@@ -100,7 +104,9 @@ const Signup = () => {
                         placeholder="Last Name"
                         id="last_name"
                         value={user.last_name}
-                        onChange={(e) => setUser({ ...user, last_name: e.target.value })}
+                        onChange={(e) =>
+                          setUser({ ...user, last_name: e.target.value })
+                        }
                       ></input>
                     </div>
                   </div>
@@ -109,7 +115,10 @@ const Signup = () => {
                 <div className="grid grid-cols-2 gap-4">
                   {/* Date of Birth */}
                   <div>
-                    <label htmlFor="date" className="text-base font-medium text-gray-900">
+                    <label
+                      htmlFor="date"
+                      className="text-base font-medium text-gray-900"
+                    >
                       Date of Birth
                     </label>
                     <div className="mt-2">
@@ -122,7 +131,10 @@ const Signup = () => {
                   </div>
                   {/* Gender */}
                   <div>
-                    <label htmlFor="gender" className="text-base font-medium text-gray-900">
+                    <label
+                      htmlFor="gender"
+                      className="text-base font-medium text-gray-900"
+                    >
                       Gender
                     </label>
                     <div className="mt-2">
@@ -130,9 +142,13 @@ const Signup = () => {
                         className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                         id="gender"
                         value={user.gender}
-                        onChange={(e) => setUser({ ...user, gender: e.target.value })}
+                        onChange={(e) =>
+                          setUser({ ...user, gender: e.target.value })
+                        }
                       >
-                        <option value="" disabled>Select Gender</option>
+                        <option value="" disabled>
+                          Select Gender
+                        </option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                         <option value="other">Other</option>
@@ -141,9 +157,12 @@ const Signup = () => {
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="email" className="text-base font-medium text-gray-900">
-                    {' '}
-                    Email address{' '}
+                  <label
+                    htmlFor="email"
+                    className="text-base font-medium text-gray-900"
+                  >
+                    {" "}
+                    Email address{" "}
                   </label>
                   <div className="mt-2">
                     <input
@@ -152,15 +171,20 @@ const Signup = () => {
                       placeholder="Email"
                       id="email"
                       value={user.email}
-                      onChange={(e) => setUser({ ...user, email: e.target.value })}
+                      onChange={(e) =>
+                        setUser({ ...user, email: e.target.value })
+                      }
                     ></input>
                   </div>
                 </div>
                 <div>
                   <div className="flex items-center justify-between">
-                    <label htmlFor="password" className="text-base font-medium text-gray-900">
-                      {' '}
-                      Password{' '}
+                    <label
+                      htmlFor="password"
+                      className="text-base font-medium text-gray-900"
+                    >
+                      {" "}
+                      Password{" "}
                     </label>
                   </div>
                   <div className="mt-2">
@@ -169,9 +193,10 @@ const Signup = () => {
                       type="password"
                       placeholder="Password"
                       id="password"
-
                       value={user.password}
-                      onChange={(e) => setUser({ ...user, password: e.target.value })}
+                      onChange={(e) =>
+                        setUser({ ...user, password: e.target.value })
+                      }
                     ></input>
                   </div>
                 </div>
@@ -186,7 +211,7 @@ const Signup = () => {
                 </div>
               </div>
             </form>
-            <div className="mt-3 space-y-3">
+            {/* <div className="mt-3 space-y-3">
 
               <button
                 type="button"
@@ -204,7 +229,7 @@ const Signup = () => {
                 </span>
                 Sign up with Facebook
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="h-full w-full">
@@ -216,7 +241,7 @@ const Signup = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default Signup;
