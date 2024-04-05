@@ -21,7 +21,7 @@ export async function POST(req) {
       const first_name = username.split(" ")[0];
       const last_name = username.split(" ")[1];
       const dob = "2001-01-01";
-      const gender = "male";
+      const gender = "Male";
 
       //hash password
       const salt = await bcryptjs.genSalt(10);
