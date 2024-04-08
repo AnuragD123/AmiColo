@@ -49,67 +49,128 @@ const Profile = () => {
   console.log("object", form)
 
   return (
-    <div className='leading-10'>
-      <div className='w-full flex items-center justify-between mb-4 gap-2'>
-        <Link href={"/profile/edit"} className='w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl max-sm:text-xl' >Edit Profile</Link>
-        <Link href={"/profile/preference"} className='w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl max-sm:text-xl' >Your Preferences</Link>
+    <div className="leading-10">
+      <div className="w-full flex items-center justify-between mb-4 gap-2">
+        <Link
+          href={"/profile/edit"}
+          className="w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl max-sm:text-xl"
+        >
+          Edit Profile
+        </Link>
+        <Link
+          href={"/profile/preference"}
+          className="w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl max-sm:text-xl"
+        >
+          Your Preferences
+        </Link>
       </div>
       <div className="mb-3">
-        <div className='w-full flex items-center gap-3 mb-6'>
-          <div className='w-1/2'>
+        <div className="w-full flex items-center gap-3 mb-6">
+          <div className="w-1/2">
             <label htmlFor="fname">First Name</label>
             <br />
-            <input disabled value={form.first_name} className='w-full rounded-3xl bg-gray-300' type="text"
+            <input
+              disabled
+              value={form.first_name}
+              className="w-full rounded-3xl bg-gray-300"
+              type="text"
             />
           </div>
-          <div className='w-1/2'>
+          <div className="w-1/2">
             <label htmlFor="lname">Last Name</label>
             <br />
-            <input disabled value={form.last_name} className='w-full rounded-3xl bg-gray-300' type="text" name='lname'
-
+            <input
+              disabled
+              value={form.last_name}
+              className="w-full rounded-3xl bg-gray-300"
+              type="text"
+              name="lname"
             />
           </div>
         </div>
 
-        <div className='w-full flex items-center mb-6 gap-4'>
-          <div className='w-1/2'>
+        <div className="w-full flex items-center mb-6 gap-4">
+          <div className="w-1/2">
             <label htmlFor="dob">Date of Birth</label>
-            <div className='flex gap-3'>
-              <input disabled value={form.day} className='w-2/6 rounded-3xl bg-gray-300' placeholder='day' type="number" name='age'
+            <div className="flex gap-3">
+              <input
+                disabled
+                value={form.day}
+                className="w-2/6 rounded-3xl bg-gray-300"
+                placeholder="day"
+                type="number"
+                name="age"
                 onChange={(e) => setForm({ ...form, day: e.target.value })}
               />
-              <input disabled value={form.month} className='w-2/6 rounded-3xl bg-gray-300' placeholder='month' type="number" name='age'
+              <input
+                disabled
+                value={form.month}
+                className="w-2/6 rounded-3xl bg-gray-300"
+                placeholder="month"
+                type="number"
+                name="age"
                 onChange={(e) => setForm({ ...form, month: e.target.value })}
               />
-              <input disabled value={form.year} className='w-2/6 rounded-3xl bg-gray-300' placeholder='year' type="number" name='age'
+              <input
+                disabled
+                value={form.year}
+                className="w-2/6 rounded-3xl bg-gray-300"
+                placeholder="year"
+                type="number"
+                name="age"
                 onChange={(e) => setForm({ ...form, year: e.target.value })}
               />
             </div>
-
           </div>
-          <div className='w-1/2'>
+          <div className="w-1/2">
             <label htmlFor="gender">Gender</label>
             <br />
-            <input disabled value={form.gender} className='w-full rounded-3xl bg-gray-300' type="text" name='gender'
+            <input
+              disabled
+              value={form.gender}
+              className="w-full rounded-3xl bg-gray-300"
+              type="text"
+              name="gender"
             />
-
           </div>
         </div>
 
-        <div className='w-full flex items-center gap-3 mb-6'>
+        <div className="w-full flex items-center gap-3 mb-6">
           <div className="w-1/2 max-sm:w-full">
             <label htmlFor="smoker">Smoker </label>
 
             <br />
             <span className=" flex items-center gap-5">
-              <button className={`px-3 py-1 rounded-xl w-1/2 ${form.smoker == "true" || form.smoker == true ? "bg-gray-400" : "bg-gray-300"}`} >Yes</button>
-              <button className={`px-3 py-1 rounded-xl w-1/2 ${form.smoker == "false" || form.smoker == false ? "bg-gray-400" : "bg-gray-300"}`} >No</button>
+              <button
+                className={`px-3 py-1 rounded-xl w-1/2 ${
+                  form.smoker == "true" || form.smoker == true
+                    ? "bg-gray-300 border-2 border-gray-400"
+                    : "bg-gray-300"
+                }`}
+              >
+                Yes
+              </button>
+              <button
+                className={`px-3 py-1 rounded-xl w-1/2 ${
+                  form.smoker == "false" || form.smoker == false
+                    ? "bg-gray-300 border-2 border-gray-400"
+                    : "bg-gray-300"
+                }`}
+              >
+                No
+              </button>
             </span>
           </div>
-          <div className='w-1/2'>
+          <div className="w-1/2">
             <label htmlFor="occupation">Occupation</label>
             <br />
-            <select disabled name="occupation" value={form.occupation} onChange={(e) => setForm({ ...form, occupation: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+            <select
+              disabled
+              name="occupation"
+              value={form.occupation}
+              onChange={(e) => setForm({ ...form, occupation: e.target.value })}
+              className="w-full rounded-3xl bg-gray-300"
+            >
               <option value={null}>Select Occupation</option>
               <option value="Professional">Professional</option>
               <option value="Unemployed">Unemployed</option>
@@ -118,37 +179,61 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className='w-full flex items-center gap-3 mb-6'>
-          <div className='w-1/2'>
+        <div className="w-full flex items-center gap-3 mb-6">
+          <div className="w-1/2">
             <label htmlFor="school">Nationality</label>
             <br />
-            <input disabled value={form.nationality} className='w-full rounded-3xl bg-gray-300' type="text" name='nationality'
-              onChange={(e) => setForm({ ...form, nationality: e.target.value })}
+            <input
+              disabled
+              value={form.nationality}
+              className="w-full rounded-3xl bg-gray-300"
+              type="text"
+              name="nationality"
+              onChange={(e) =>
+                setForm({ ...form, nationality: e.target.value })
+              }
             />
           </div>
-          <div className='w-1/2'>
+          <div className="w-1/2">
             <label htmlFor="bio">bio</label>
             <br />
-            <input disabled value={form.bio} className='w-full rounded-3xl bg-gray-300' type="text" name='bio'
+            <input
+              disabled
+              value={form.bio}
+              className="w-full rounded-3xl bg-gray-300"
+              type="text"
+              name="bio"
               onChange={(e) => setForm({ ...form, bio: e.target.value })}
             />
           </div>
         </div>
 
-        <div className='w-full flex items-center gap-3 mb-6'>
-          <div className='w-1/2'>
+        <div className="w-full flex items-center gap-3 mb-6">
+          <div className="w-1/2">
             <label htmlFor="bTime">Bed Time</label>
             <br />
-            <select disabled name="" value={form.bedtime} onChange={(e) => setForm({ ...form, bedtime: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+            <select
+              disabled
+              name=""
+              value={form.bedtime}
+              onChange={(e) => setForm({ ...form, bedtime: e.target.value })}
+              className="w-full rounded-3xl bg-gray-300"
+            >
               <option value={null}>Select Bedtime</option>
               <option value="Early Bird">Early Bird</option>
               <option value="Night Owl">Night Owl</option>
             </select>
           </div>
-          <div className='w-1/2'>
+          <div className="w-1/2">
             <label htmlFor="diet">Diet</label>
             <br />
-            <select disabled name="" value={form.diet} onChange={(e) => setForm({ ...form, diet: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+            <select
+              disabled
+              name=""
+              value={form.diet}
+              onChange={(e) => setForm({ ...form, diet: e.target.value })}
+              className="w-full rounded-3xl bg-gray-300"
+            >
               <option value={null}>Select diet</option>
               <option value="Non-Vegetarian">Non-Vegetarian</option>
               <option value="Vegan">Vegan</option>
@@ -157,11 +242,17 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className='w-full flex items-center gap-3 mb-6'>
-          <div className='w-1/2'>
+        <div className="w-full flex items-center gap-3 mb-6">
+          <div className="w-1/2">
             <label htmlFor="school">Language</label>
             <br />
-            <select disabled name="languages" value={form.languages} onChange={(e) => setForm({ ...form, languages: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+            <select
+              disabled
+              name="languages"
+              value={form.languages}
+              onChange={(e) => setForm({ ...form, languages: e.target.value })}
+              className="w-full rounded-3xl bg-gray-300"
+            >
               <option value={null}>Select Language</option>
               <option value="english">English</option>
               <option value="spanish">Spanish</option>
@@ -193,19 +284,29 @@ const Profile = () => {
               <option value="swahili">Swahili</option>
             </select>
           </div>
-          <div className='w-1/2'>
+          <div className="w-1/2">
             <label htmlFor="education">Education</label>
             <br />
-            <input disabled value={form.education} className='w-full rounded-3xl bg-gray-300' type="text" name='education'
+            <input
+              disabled
+              value={form.education}
+              className="w-full rounded-3xl bg-gray-300"
+              type="text"
+              name="education"
               onChange={(e) => setForm({ ...form, education: e.target.value })}
             />
           </div>
-
         </div>
         <div className="w-1/2 max-sm:w-full">
           <label htmlFor="cleanliness">Cleanliness</label>
           <br />
-          <select disabled name="cleanliness" value={form.cleanliness} onChange={(e) => setForm({ ...form, cleanliness: e.target.value })} className="w-full rounded-3xl bg-gray-300">
+          <select
+            disabled
+            name="cleanliness"
+            value={form.cleanliness}
+            onChange={(e) => setForm({ ...form, cleanliness: e.target.value })}
+            className="w-full rounded-3xl bg-gray-300"
+          >
             <option value={null}>"Select"</option>
             <option value="Average">Average</option>
             <option value="Messy">Messy</option>
@@ -214,7 +315,7 @@ const Profile = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default Profile

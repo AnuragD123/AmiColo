@@ -75,7 +75,6 @@ const Edit = () => {
     });
   }, [user, image]);
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -300,8 +299,8 @@ const Edit = () => {
               <button
                 className={`px-3 py-1 rounded-xl w-1/2 ${
                   form.smoker == "true" || form.smoker == true
-                    ? "bg-gray-400"
-                    : "bg-gray-300"
+                    ? "bg-gray-300 border-2 border-gray-400"
+                    : "bg-gray-300 "
                 }`}
                 onClick={(e) => setForm({ ...form, smoker: true })}
               >
@@ -310,8 +309,8 @@ const Edit = () => {
               <button
                 className={`px-3 py-1 rounded-xl w-1/2 ${
                   form.smoker == "false" || form.smoker == false
-                    ? "bg-gray-400"
-                    : "bg-gray-300"
+                    ? "bg-gray-300 border-2 border-gray-400"
+                    : "bg-gray-300 "
                 }`}
                 onClick={(e) => setForm({ ...form, smoker: false })}
               >
