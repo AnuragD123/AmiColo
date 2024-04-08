@@ -34,6 +34,7 @@ export async function POST(request) {
     const login = file.get("login");
     const cleanliness = file.get("cleanliness");
     const count_friends = file.get("count_friends");
+    const pet = file.get("pet");
 
     console.log("DATA", cleanliness, count_friends, bedtime, diet, languages);
 
@@ -62,7 +63,8 @@ export async function POST(request) {
       washrooms ||
       parking ||
       area ||
-      Gym
+      Gym ||
+      pet
     ) {
       const whereClause = {};
       if (uploadedFile) {
@@ -107,6 +109,14 @@ export async function POST(request) {
           whereClause.smoker = false;
         }
       }
+      if (pet) {
+        if (pet == "true") {
+          whereClause.pet = true;
+        } else {
+          whereClause.pet = false;
+        }
+      }
+
       if (occupation) {
         whereClause.occupation = occupation;
       }

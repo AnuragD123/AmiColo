@@ -46,7 +46,7 @@ const Profile = () => {
     });
   }, [user]);
 
-  console.log("object", form)
+  
 
   return (
     <div className="leading-10">

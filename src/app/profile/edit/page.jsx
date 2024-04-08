@@ -8,12 +8,14 @@ import { Circles, MutatingDots } from "react-loader-spinner";
 import Profile from "../../../../images/AmiColo_Profile.png";
 import Image from "next/image";
 import { useUserContext } from "@/context/context";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
+import { usePathname } from "next/navigation";
 
 const Edit = () => {
   const { user, setUser } = useUserContext();
+  const [tab, setTab] = useState("");
 
-  console.log("user", user);
+  const pathname = usePathname();
 
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState();
@@ -40,6 +42,7 @@ const Edit = () => {
     area: "",
     Gym: "",
     cleanliness: "",
+    pet: "",
   });
   const [image, setImage] = useState();
 
@@ -72,6 +75,7 @@ const Edit = () => {
       parking: form.parking != "" ? form.parking : user?.parking || "",
       area: form.area != "" ? form.area : user?.area || "",
       Gym: form.Gym != "" ? form.Gym : user?.Gym || "",
+      pet: form.pet != "" ? form.pet : user?.pet || "",
     });
   }, [user, image]);
 
@@ -103,6 +107,7 @@ const Edit = () => {
       formData.append("area", form.area);
       formData.append("Gym", form.Gym);
       formData.append("cleanliness", form.cleanliness);
+      formData.append("pet", form.pet);
       // Append image data
       if (image) {
         formData.append("file", image);
@@ -143,6 +148,15 @@ const Edit = () => {
     reader.readAsDataURL(filedata);
   };
 
+  useEffect(() => {
+    const tab = pathname?.split("/")?.[2];
+    if (tab === "preference") {
+      setTab("preference");
+    } else {
+      setTab("edit");
+    }
+  }, [pathname]);
+
   return loading ? (
     <MutatingDots
       visible={true}
@@ -157,16 +171,24 @@ const Edit = () => {
     />
   ) : (
     <div className="leading-10">
-      <div className="w-full flex items-center justify-between mb-4 gap-2 max-sm:flex-col">
+      <div className="w-full flex items-center justify-between mb-4 gap-2">
         <Link
           href="/profile/edit"
-          className="w-1/2 max-sm:w-full text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl max-sm:text-xl"
+          className="w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl"
+          style={{
+            backgroundColor: tab === "edit" ? "#2563EB" : "",
+            color: tab === "edit" ? "#fff" : "",
+          }}
         >
           Edit Profile
         </Link>
         <Link
           href="/profile/preference"
-          className="w-1/2 max-sm:w-full text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl max-sm:text-xl"
+          className="w-1/2 text-center bg-gray-300 text-2xl font-bold px-3 py-2 rounded-3xl"
+          style={{
+            backgroundColor: tab === "preference" ? "#2563EB" : "",
+            color: tab === "preference" ? "#fff" : "",
+          }}
         >
           Your Preferences
         </Link>
@@ -513,7 +535,7 @@ const Edit = () => {
         </div>
 
         <div className="w-full flex items-center gap-3 mb-6 max-sm:flex-col">
-          <div className="w-1/2 max-sm:w-full">
+          {/* <div className="w-1/2 max-sm:w-full">
             <label htmlFor="price">Price</label>
             <br />
             <input
@@ -524,6 +546,25 @@ const Edit = () => {
               value={form.price}
               onChange={(e) => setForm({ ...form, price: e.target.value })}
             />
+
+
+
+          </div> */}
+          <div className="w-1/2 max-sm:w-full">
+            <label htmlFor="price">Price</label>
+            <br />
+            <select
+              name=""
+              value={form.price}
+              onChange={(e) => setForm({ ...form, price: e.target.value })}
+              className="w-full rounded-3xl bg-gray-300"
+            >
+              <option value={null}>Select Price</option>
+              <option value="800 - 1000">800 - 1000</option>
+              <option value="1001 - 1500">1001 - 1500</option>
+              <option value="1501 - 2000">1501 - 2000</option>
+              <option value="2000+">2000+</option>
+            </select>
           </div>
           <div className="w-1/2 max-sm:w-full">
             <label htmlFor="washrooms">Washrooms</label>
@@ -622,6 +663,34 @@ const Edit = () => {
               <option value="Neat">Neat</option>
             </select>
           </div>
+        </div>
+
+        <div className="w-1/2 max-sm:w-full">
+          <label htmlFor="pet">Pet Friendly </label>
+
+          <br />
+          <span className=" flex items-center gap-5">
+            <button
+              className={`px-3 py-1 rounded-xl w-1/2 ${
+                form.pet == "true" || form.pet == true
+                  ? "bg-gray-300 border-2 border-gray-400"
+                  : "bg-gray-300 "
+              }`}
+              onClick={(e) => setForm({ ...form, pet: true })}
+            >
+              Yes
+            </button>
+            <button
+              className={`px-3 py-1 rounded-xl w-1/2 ${
+                form.pet == "false" || form.pet == false
+                  ? "bg-gray-300 border-2 border-gray-400"
+                  : "bg-gray-300 "
+              }`}
+              onClick={(e) => setForm({ ...form, pet: false })}
+            >
+              No
+            </button>
+          </span>
         </div>
       </div>
 
