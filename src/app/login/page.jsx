@@ -102,14 +102,13 @@ const Login = () => {
                       {" "}
                       Password{" "}
                     </label>
-                    {/* <a
-                      href="#"
-                      title=""
+                    <Link
+                      href={"/forgot-password"}
                       className="text-sm font-semibold text-black hover:underline"
                     >
-                      {' '}
-                      Forgot password?{' '}
-                    </a> */}
+                      {" "}
+                      Forgot password?{" "}
+                    </Link>
                   </div>
                   <div className="mt-2">
                     <input

@@ -6,7 +6,6 @@ export const country = [
   { id: 5, nationality: "American" },
   { id: 6, nationality: "Canadian" },
   { id: 7, nationality: "Brazilian" },
-  { id: 8, nationality: "Other" },
   { id: 9, nationality: "Sri Lankan" },
   { id: 10, nationality: "Pakistani" },
   { id: 11, nationality: "Bangladeshi" },

@@ -13,6 +13,8 @@ export const metadata = {
   title: "AmiColo",
   description:
     "AmiColo is a potential startup based out of Concordia University, Montreal, Quebec. It is a web application tailored for students in Montreal, aiming to simplify their housing journey. Many students new to the city face challenges like navigating the local housing market, finding compatible roommates, and accessing reliable neighborhood information. In essence, AmiColo isn't just an application; it's a community platform designed to ease the transition of students in Montreal, ensuring they find suitable housing and build lasting connections.",
+  // add favicon
+  icons: "images/amicolo-logo.png",
 };
 
 export default function RootLayout({ children }) {

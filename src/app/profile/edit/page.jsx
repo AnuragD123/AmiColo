@@ -75,7 +75,6 @@ const Edit = () => {
     });
   }, [user, image]);
 
-  console.log("DATA", form);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -226,6 +225,7 @@ const Edit = () => {
             <input
               className="w-full rounded-3xl bg-gray-300"
               type="text"
+              placeholder="First Name"
               name="first_name"
               value={form.first_name}
               onChange={(e) => setForm({ ...form, first_name: e.target.value })}
@@ -237,6 +237,7 @@ const Edit = () => {
             <input
               className="w-full rounded-3xl bg-gray-300"
               type="text"
+              placeholder="Last Name"
               name="last_name"
               value={form.last_name}
               onChange={(e) => setForm({ ...form, last_name: e.target.value })}
@@ -366,6 +367,7 @@ const Edit = () => {
               className="w-full rounded-3xl bg-gray-300"
               type="text"
               name="bio"
+              placeholder="Bio"
               value={form.bio}
               onChange={(e) => setForm({ ...form, bio: e.target.value })}
             />
@@ -519,6 +521,7 @@ const Edit = () => {
               className="w-full rounded-3xl bg-gray-300"
               type="number"
               name="price"
+              placeholder="Price"
               value={form.price}
               onChange={(e) => setForm({ ...form, price: e.target.value })}
             />
@@ -571,6 +574,7 @@ const Edit = () => {
               className="w-full rounded-3xl bg-gray-300"
               type="number"
               name="area"
+              placeholder="Area in sqft"
               value={form.area}
               onChange={(e) => setForm({ ...form, area: e.target.value })}
             />
