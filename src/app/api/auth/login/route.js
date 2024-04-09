@@ -4,7 +4,6 @@ import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export async function POST(req) {
-
     try {
         // Get request body
         const reqBody = await req.json();

@@ -54,7 +54,11 @@ const Listing = () => {
     const fetchRooms = async () => {
       try {
         // const response = await axios.get("/api/room/fetchroom");
-        const id = localStorage.getItem("id");
+        let id = localStorage.getItem("id");
+        if (!id) {
+          id = JSON.parse(localStorage.getItem("user") || "{}")?.id
+          if (!id) throw new Error("")
+        }
         const response = await axios.post("https://ml.amicolo.com/api4", {
           id,
         });
