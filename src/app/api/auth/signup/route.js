@@ -2,6 +2,7 @@ import { pool } from "@/dbConfig/dbConfig";
 import { NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 import axios from "axios";
+import jwt from "jsonwebtoken"
 // import { sendEmail } from "@/helpers/mailer";
 
 export async function POST(req) {
@@ -12,9 +13,7 @@ export async function POST(req) {
     console.log(reqBody);
 
     //check if user already exists
-    const users = await pool.query("SELECT * FROM users WHERE email=?", {
-      email,
-    });
+    const users = await pool.query("SELECT * FROM users WHERE email = ?", { email });
     console.log("USER", users);
     if (users.length === 1) {
       return NextResponse.json(
@@ -28,7 +27,7 @@ export async function POST(req) {
     const hashedPassword = await bcryptjs.hash(password, salt);
 
     const savedUser = await pool.query(
-      "INSERT INTO users (first_name,last_name,email, password,dob,gender) VALUES (?, ?,?,?,?,?)",
+      "INSERT INTO users (first_name,last_name,email, password,dob,gender) VALUES (?, ?, ?, ?, ?, ?)",
       [first_name, last_name, email, hashedPassword, dob, gender]
     );
 
