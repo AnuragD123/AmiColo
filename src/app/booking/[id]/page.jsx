@@ -1,11 +1,9 @@
 "use client";
 
-
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
-
+import { clusterMapper } from "./data";
 import Image from "next/image";
 import Profile from "@/../../public/images/lady.jpg";
 
@@ -43,7 +41,7 @@ const BookingRoomPage = ({ params }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedMatchIds, setSelectedMatchIds] = useState([]);
   const [images, setImages] = useState([]);
-  
+
   useEffect(() => {
     const fetch_appartment_info = async () => {
       const response = await axios.get(
@@ -275,7 +273,7 @@ const BookingRoomPage = ({ params }) => {
           src="//maps.google.com/maps?q=53.3381768,-6.2613077&z=15&output=embed"></iframe> */}
 
         <iframe
-          src="https://www.google.com/maps/d/embed?mid=1x7oYYlsyPPhC1xW3X3rwW5Ibr-7kDNw&ehbc=2E312F&noprof=1"
+          src={clusterMapper?.[apartmentData?.cluster_id]?.mapSrc}
           className="w-full my-10  bottom-1 border-solid border-black"
           height="450"
           loading="lazy"
