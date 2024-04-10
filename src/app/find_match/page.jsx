@@ -103,7 +103,7 @@ const FindMatch = () => {
         </p>
         <div className="mt-5 w-full grid md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center items-center">
           {currentMatch.map((user) => (
-            <Roomate key={user.id} data={handleSanitizeData(data)} />
+            <Roomate key={user.id} data={handleSanitizeData(user)} />
           ))}
         </div>
 
