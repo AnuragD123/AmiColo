@@ -1,31 +1,33 @@
-'use client'
+"use client";
 import Link from "next/link";
-import Preference from "./preference/page"
-import { useState, useEffect } from "react"
+import Preference from "./preference/page";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useUserContext } from '@/context/context';
+import { useUserContext } from "@/context/context";
 
 const Profile = () => {
-
-
-  const [form, setForm] = useState({ fName: "", lName: "", day: 0, month: 0, year: 0, gender: "", smoker: "", occupation: "", cleanliness: "", nationality: "", bio: "", bedtime: "", diet: "", languages: "", education: "", });
-  const [Preferences, setPreferences] = useState(false)
+  const [form, setForm] = useState({
+    fName: "",
+    lName: "",
+    day: 0,
+    month: 0,
+    year: 0,
+    gender: "",
+    smoker: "",
+    occupation: "",
+    cleanliness: "",
+    nationality: "",
+    bio: "",
+    bedtime: "",
+    diet: "",
+    languages: "",
+    education: "",
+    pet: "",
+  });
+  const [Preferences, setPreferences] = useState(false);
   const { user, setUser } = useUserContext();
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const response = await axios.get('/api/user/getdata');
-  //       console.log(response.data.data[0]);
-  //       setUser(response.data.data[0]);
-  //       localStorage.setItem('id',response.data.data[0].id);
-  //       setUserdata(response.data.data[0]);
+  console.log(user);
 
-  //     } catch (error) {
-  //       console.log(error.message)
-  //     }
-  //   }
-  //   getData();
-  // }, [])
   useEffect(() => {
     setForm({
       first_name: user?.first_name || "",
@@ -43,10 +45,9 @@ const Profile = () => {
       nationality: user?.nationality || "",
       education: user?.education || "",
       languages: user?.languages || "",
+      pet: user?.pet || "",
     });
   }, [user]);
-
-  
 
   return (
     <div className="leading-10">
@@ -297,25 +298,44 @@ const Profile = () => {
             />
           </div>
         </div>
-        <div className="w-1/2 max-sm:w-full">
-          <label htmlFor="cleanliness">Cleanliness</label>
-          <br />
-          <select
-            disabled
-            name="cleanliness"
-            value={form.cleanliness}
-            onChange={(e) => setForm({ ...form, cleanliness: e.target.value })}
-            className="w-full rounded-3xl bg-gray-300"
-          >
-            <option value={null}>"Select"</option>
-            <option value="Average">Average</option>
-            <option value="Messy">Messy</option>
-            <option value="Neat">Neat</option>
-          </select>
+        <div className="w-full flex items-center gap-3 mb-6">
+          <div className="w-1/2 max-sm:w-full">
+            <label htmlFor="cleanliness">Cleanliness</label>
+            <br />
+            <select
+              disabled
+              name="cleanliness"
+              value={form.cleanliness}
+              onChange={(e) =>
+                setForm({ ...form, cleanliness: e.target.value })
+              }
+              className="w-full rounded-3xl bg-gray-300"
+            >
+              <option value={null}>"Select"</option>
+              <option value="Average">Average</option>
+              <option value="Messy">Messy</option>
+              <option value="Neat">Neat</option>
+            </select>
+          </div>
+          <div className="w-1/2 max-sm:w-full">
+            <label htmlFor="pet">Pet Friendly</label>
+            <br />
+            <select
+              disabled
+              name="pet"
+              value={form.pet}
+              onChange={(e) => setForm({ ...form, pet: e.target.value })}
+              className="w-full rounded-3xl bg-gray-300"
+            >
+              <option value={null}>Not Set</option>
+              <option value={1}>Yes</option>
+              <option value={0}>No</option>
+            </select>
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default Profile
+export default Profile;

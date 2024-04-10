@@ -5,6 +5,8 @@ import Roomate from "../(Components)/Roomate/Roomate";
 import axios from "axios";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import { toast, Toaster } from "react-hot-toast";
+import { handleSanitizeData } from "@/helper";
+
 const FindMatch = () => {
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,8 +15,6 @@ const FindMatch = () => {
   const indexOfLastUser = currentPage * postPerPage;
   const indexOfFirstUser = indexOfLastUser - postPerPage;
   const currentMatch = users.slice(indexOfFirstUser, indexOfLastUser);
-
-  console.log(users);
 
   /* getting the id's of recommended users from dynamically generated .json file */
 
@@ -103,7 +103,7 @@ const FindMatch = () => {
         </p>
         <div className="mt-5 w-full grid md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center items-center">
           {currentMatch.map((user) => (
-            <Roomate key={user.id} data={user} />
+            <Roomate key={user.id} data={handleSanitizeData(data)} />
           ))}
         </div>
 

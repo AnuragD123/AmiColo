@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ThumbsDown, ThumbsUp, Bookmark } from "lucide-react";
@@ -13,6 +13,8 @@ const Roomate = ({ data }) => {
   // make a callback method to calculate current age of the user
 
   // memoize the calculateAge function
+ 
+
   const memoizedCalculateAge = React.useCallback((data) => {
     const today = new Date();
     const birthDate = new Date(data?.dob);
@@ -41,6 +43,15 @@ const Roomate = ({ data }) => {
       throw error;
     }
   }
+
+  // useEffect(() => {
+  //   // fill all null values with not set in the data
+  //   for (const key in data) {
+  //     if (data[key] === null) {
+  //       data[key] = "Not set";
+  //     }
+  //   }
+  // }, []);
 
   return (
     <div className="max-w-xs min-w-52 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
@@ -104,6 +115,10 @@ const Roomate = ({ data }) => {
           </li>
           <li className="text-justify text-sm font-normal text-gray-500">
             <strong className="text-black">Languages:</strong> {data?.languages}
+          </li>
+          <li className="text-justify text-sm font-normal text-gray-500">
+            <strong className="text-black">Pets Friendly</strong>{" "}
+            {data?.pet == 1 ? "Yes" : "No"}
           </li>
         </ul>
 

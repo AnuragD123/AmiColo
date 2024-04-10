@@ -560,10 +560,10 @@ const Edit = () => {
               className="w-full rounded-3xl bg-gray-300"
             >
               <option value={null}>Select Price</option>
-              <option value="800 - 1000">800 - 1000</option>
-              <option value="1001 - 1500">1001 - 1500</option>
-              <option value="1501 - 2000">1501 - 2000</option>
-              <option value="2000+">2000+</option>
+              <option value="900">800 - 1000</option>
+              <option value="1200">1001 - 1500</option>
+              <option value="1800">1501 - 2000</option>
+              <option value="3000">2000+</option>
             </select>
           </div>
           <div className="w-1/2 max-sm:w-full">

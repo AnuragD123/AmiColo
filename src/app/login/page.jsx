@@ -24,7 +24,7 @@ const Login = () => {
       console.log("object", response.data.user);
       localStorage.setItem("user", JSON.stringify(response.data.user[0]));
       setUser(response.data.user[0]);
-      router.push("/profile");
+      router.push("/");
     } catch (error) {
       toast.error(error.response.data.error);
     }
@@ -43,7 +43,7 @@ const Login = () => {
         toast.success("Login success");
         localStorage.setItem("user", JSON.stringify(response.data.user[0]));
         setUser(response.data.user[0]);
-        router.push("/profile");
+        router.push("/");
       } catch (error) {
         toast.error(error.response.data.error);
       }
