@@ -13,7 +13,6 @@ const Roomate = ({ data }) => {
   // make a callback method to calculate current age of the user
 
   // memoize the calculateAge function
- 
 
   const memoizedCalculateAge = React.useCallback((data) => {
     const today = new Date();
@@ -44,17 +43,10 @@ const Roomate = ({ data }) => {
     }
   }
 
-  // useEffect(() => {
-  //   // fill all null values with not set in the data
-  //   for (const key in data) {
-  //     if (data[key] === null) {
-  //       data[key] = "Not set";
-  //     }
-  //   }
-  // }, []);
+  console.log("Roomate data", data);
 
   return (
-    <div className="max-w-xs min-w-52 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
+    <div className="aspect-auto min-w-52 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
       <a href="/">
         <Image
           className="mx-auto pt-4 rounded-full center w-40 h-40 "
