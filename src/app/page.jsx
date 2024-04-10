@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { MoveRight } from "lucide-react";
 import { Carousel } from "flowbite-react";
+
 export default function Home() {
     return (
         <main className="">

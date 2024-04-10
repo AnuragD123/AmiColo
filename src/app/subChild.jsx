@@ -3,13 +3,13 @@ import React, { useState, useEffect } from "react";
 import { useUserContext } from "@/context/context";
 
 const SubChild = ({ data }) => {
-
     const { user } = useUserContext();
     const [scriptLoaded, setScriptLoaded] = useState(false);
+
     useEffect(() => {
         let script;
-
-        if (user && !scriptLoaded) {
+        if (!user) return;
+        if (!scriptLoaded) {
             script = document.createElement("script");
             script.src = "https://app.wonderchat.io/scripts/wonderchat.js";
             script.setAttribute("data-name", "wonderchat");
