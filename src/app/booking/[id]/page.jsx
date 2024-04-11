@@ -202,37 +202,45 @@ const BookingRoomPage = ({ params }) => {
         </div>
         <div>
           <ul className="space-y-2">
-            {matchSearch.map((match) => (
-              <li
-                key={match.user2}
-                onClick={() => handleMatchSelect(match)}
-                className="cursor-pointer"
-              >
-                <div
-                  className={`bg-white p-4 rounded-md shadow-md transition-transform transform hover:scale-105 flex align-center ${
-                    selectedMatchIds.includes(match.user2) &&
-                    "ring ring-blue-500"
-                  }`}
-                >
-                  <Image
-                    className="w-8 h-8 object-cover rounded-full mb-2"
-                    src={match.avatar ? user?.avatar : Profile}
-                    width={50}
-                    height={50}
-                    alt="Picture of the author"
-                  />
-                  {/* <img src={match.avatar} alt={`${match.first_name}'s avatar`} /> */}
-                  <div className="ml-2">
-                    <p className="text-sm font-semibold text-gray-800">
-                      {match.first_name + " " + match.last_name}
-                    </p>
-                    <p className="text-xs text-gray-500">
-                      Age: {match.age}, Gender: {match.gender}
-                    </p>
-                  </div>
-                </div>
-              </li>
-            ))}
+            {matchSearch.map(
+              (match) => (
+                console.log(match),
+                (
+                  <li
+                    key={match.user2}
+                    onClick={() => handleMatchSelect(match)}
+                    className="cursor-pointer"
+                  >
+                    <div
+                      className={`bg-white p-4 rounded-md shadow-md transition-transform transform hover:scale-105 flex align-center ${
+                        selectedMatchIds.includes(match.user2) &&
+                        "ring ring-blue-500"
+                      }`}
+                    >
+                      <Image
+                        className="w-8 h-8 object-cover rounded-full mb-2"
+                        src={match.avatar ? match?.avatar : Profile}
+                        width={50}
+                        height={50}
+                        alt="Picture of the author"
+                      />
+                      {/* <img src={match.avatar} alt={`${match.first_name}'s avatar`} /> */}
+                      <div className="ml-2">
+                        <p className="text-sm font-semibold text-gray-800">
+                          {match.first_name + " " + match.last_name}
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          Age:{" "}
+                          {new Date().getFullYear() -
+                            new Date(match.dob).getFullYear()}
+                          , Gender: {match.gender}
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                )
+              )
+            )}
           </ul>
         </div>
         <div className="mt-4">

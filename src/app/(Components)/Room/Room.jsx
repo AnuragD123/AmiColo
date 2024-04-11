@@ -55,6 +55,7 @@ const Room = ({
         const res = await axios.post(`/api/room/fetch_sent_room_req`, {
           booking_req_id,
         });
+        console.log("*************ROOM PAGE", res.data.data);
         setRequests(res.data.data);
 
         Callback;
@@ -128,46 +129,57 @@ const Room = ({
             <h5 className="text-lg font-bold text-green-600 dark:text-white">
               Booking Requests
             </h5>
-            {requests.map((request, index) => (
-              <div key={index} className="bg-white p-4 shadow-md rounded-md">
-                <div className="flex items-center">
-                  <img
-                    src={`https://placekitten.com/50/50?image=${request.id}`} // Replace with your actual requests avatar
-                    alt={`Avatar of ${request.first_name}`}
-                    className="rounded-full h-10 w-10 object-cover"
-                  />
+            {requests.map(
+              (request, index) => (
+                console.log(request),
+                (
                   <div
-                    className="flex items-center"
-                    style={{ justifyContent: "space-between", width: "100%" }}
+                    key={index}
+                    className="bg-white p-4 shadow-md rounded-md"
                   >
-                    <div className="ml-4">
-                      <h2 className="text-lg font-semibold">
-                        {request.first_name} {request.last_name}
-                      </h2>
-                      <p className="text-gray-500">{request.email}</p>
-                    </div>
-
-                    <div className="mt-4">
+                    <div className="flex items-center">
+                      <img
+                        src={request.avatar} // Replace with your actual requests avatar
+                        alt={`Avatar of ${request.first_name}`}
+                        className="rounded-full h-10 w-10 object-cover"
+                      />
                       <div
-                        className="text-black ml-2 px-2 rounded-xl"
-                        style={{ border: "1px solid black", fontSize: 10 }}
+                        className="flex items-center"
+                        style={{
+                          justifyContent: "space-between",
+                          width: "100%",
+                        }}
                       >
-                        {request.invitation_status}
+                        <div className="ml-4">
+                          <h2 className="text-lg font-semibold">
+                            {request.first_name} {request.last_name}
+                          </h2>
+                          <p className="text-gray-500">{request.email}</p>
+                        </div>
+
+                        <div className="mt-4">
+                          <div
+                            className="text-black ml-2 px-2 rounded-xl"
+                            style={{ border: "1px solid black", fontSize: 10 }}
+                          >
+                            {request.invitation_status}
+                          </div>
+                        </div>
+
+                        <div className="mt-4">
+                          <button
+                            onClick={() => Decline(request.invitation_id)}
+                            className="bg-gray-300 text-gray-700 ml-2 px-3 py-1 rounded-md"
+                          >
+                            withdraw request
+                          </button>
+                        </div>
                       </div>
                     </div>
-
-                    <div className="mt-4">
-                      <button
-                        onClick={() => Decline(request.invitation_id)}
-                        className="bg-gray-300 text-gray-700 ml-2 px-3 py-1 rounded-md"
-                      >
-                        withdraw request
-                      </button>
-                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                )
+              )
+            )}
           </div>
         )}
         {!booked && (

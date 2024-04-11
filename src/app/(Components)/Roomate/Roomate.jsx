@@ -43,10 +43,9 @@ const Roomate = ({ data }) => {
     }
   }
 
-  console.log("Roomate data", data);
 
   return (
-    <div className="aspect-auto min-w-52 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
+    <div className="max-w-md aspect-auto min-w-52 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
       <a href="/">
         <Image
           className="mx-auto pt-4 rounded-full center w-40 h-40 "
