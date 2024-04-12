@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import Friend from './Friend';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import Friend from "./Friend";
+import axios from "axios";
 
 const MatchesPage = () => {
   const [matchesList, setMatchesList] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   useEffect(() => {
     const fetchMatches = async () => {
       try {
-        const response = await axios.get('/api/user/fetch_all_matches');
+        const response = await axios.get("/api/user/fetch_all_matches");
         setMatchesList(response.data.matches);
       } catch (error) {
-        console.error('Error fetching matches:', error);
+        console.error("Error fetching matches:", error);
       }
     };
 
@@ -21,10 +21,9 @@ const MatchesPage = () => {
   }, []);
 
   const handlematchReq = (id) => {
-    console.log("Enter", id)
+    console.log("Enter", id);
     setMatchRequests(matchRequests.filter((data) => data.from_id !== id));
-  }
-
+  };
 
   const handleSearch = (event) => {
     const query = event.target.value.toLowerCase();
@@ -34,14 +33,15 @@ const MatchesPage = () => {
       `${match.first_name} ${match.last_name}`.toLowerCase().includes(query)
     );
 
-
     setMatchesList(filteredMatches);
   };
 
   return (
     <div className="bg-gray-100 w-full min-h-screen flex flex-col items-center justify-start">
       <div className="container mx-auto p-8 bg-white rounded-lg shadow-md">
-        <h1 className="text-4xl font-extrabold mb-6 text-gray-800">My Matches</h1>
+        <h1 className="text-4xl font-extrabold mb-6 text-gray-800">
+          My Matches
+        </h1>
         <div className="mb-4">
           <input
             type="text"
